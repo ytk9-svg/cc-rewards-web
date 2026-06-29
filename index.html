@@ -69,8 +69,9 @@
   .cs .card:first-child{border-top:0}
   .cs h3{margin:0;font-size:1rem;font-weight:660}
   .cs .iss{font-size:.74rem;color:var(--muted);margin:2px 0 8px}
-  .cs .r{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:3px 0}
-  .cs .r .c{color:var(--muted)} .cs .r .rt{font-weight:680;white-space:nowrap}
+  .cs .r{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:4px 0;align-items:baseline}
+  .cs .r .c{color:var(--muted);flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+  .cs .r .rt{font-weight:680;flex:0 0 auto;text-align:right;max-width:52%;overflow-wrap:anywhere}
 
   /* month tracker */
   .trk .it{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
@@ -142,17 +143,23 @@ const EMBEDDED = {
             {
               "category": "Foreign currency spending in designated regions (Japan, South Korea, Thailand, Mainland China, Macau, Taiwan)",
               "rate": "7%",
-              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars."
+              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars.",
+              "category_zh": "指定地區外幣簽賬（日本、南韓、泰國、中國內地、澳門、台灣）",
+              "note_zh": "於實體商戶，只限外幣。包括基本0.4% +FUN Dollars。"
             },
             {
               "category": "Foreign currency spending in other regions",
               "rate": "5%",
-              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars."
+              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars.",
+              "category_zh": "其他地區外幣簽賬",
+              "note_zh": "於實體商戶，只限外幣。包括基本0.4% +FUN Dollars。"
             },
             {
               "category": "Local dining",
               "rate": "5%",
-              "note": "At physical restaurants, excludes online, banquets, hotel restaurants, department store food courts, etc. Includes basic 0.4% +FUN Dollars."
+              "note": "At physical restaurants, excludes online, banquets, hotel restaurants, department store food courts, etc. Includes basic 0.4% +FUN Dollars.",
+              "category_zh": "本地餐飲",
+              "note_zh": "於實體餐廳，不包括網上簽賬、宴會、酒店餐廳、百貨公司美食廣場等。包括基本0.4% +FUN Dollars。"
             }
           ],
           "monthly_min_spend": 6000,
@@ -207,7 +214,9 @@ const EMBEDDED = {
             {
               "category": "Designated Everyday & Travel Spend Merchants",
               "rate": "HK$2 = 1 mile",
-              "note": "Earned via 2.5% RewardCash rebate converted at 1:20 miles rate. Only for listed Café & Light Meals, Cross-border Transportation, Local Transportation, Driving-related, and Travel Services merchants in Hong Kong SAR. See excludes for ineligible transactions within these categories."
+              "note": "Earned via 2.5% RewardCash rebate converted at 1:20 miles rate. Only for listed Café & Light Meals, Cross-border Transportation, Local Transportation, Driving-related, and Travel Services merchants in Hong Kong SAR. See excludes for ineligible transactions within these categories.",
+              "category_zh": "指定日常及旅遊消費商戶",
+              "note_zh": "透過2.5% RewardCash回贈以1:20里數兌換率轉換賺取。只適用於香港特別行政區所列明的咖啡店及輕食、跨境交通、本地交通、駕駛相關及旅遊服務商戶。有關此等類別內不符合資格之交易，請參閱除外條款。"
             }
           ],
           "monthly_min_spend": null,
@@ -244,17 +253,23 @@ const EMBEDDED = {
             {
               "category": "指定商户（餐饮/潮流及运动服饰/休闲娱乐指定商户）",
               "rate": "8%",
-              "note": "已包括基本奖赏；每月首HKD1,250签账享8%，超出部分享0.4%；每月最高可赚$100奖赏钱；只限香港分店，不包括百货公司专柜及特卖场；透过电子钱包支付只享基本奖赏"
+              "note": "已包括基本奖赏；每月首HKD1,250签账享8%，超出部分享0.4%；每月最高可赚$100奖赏钱；只限香港分店，不包括百货公司专柜及特卖场；透过电子钱包支付只享基本奖赏",
+              "category_zh": "指定商戶（餐飲/潮流及運動服飾/休閒娛樂指定商戶）",
+              "note_zh": "已包括基本獎賞；每月首HKD1,250簽賬享8%，超出部分享0.4%；每月最高可賺$100獎賞錢；只限香港分店，不包括百貨公司專櫃及特賣場；透過電子錢包支付只享基本獎賞"
             },
             {
               "category": "网上签账",
               "rate": "4%",
-              "note": "已包括基本奖赏；每月首HKD10,000签账享4%，超出部分享0.4%；每月最高可赚$400奖赏钱；不包括网上缴费、保费、证券买卖、租金／物业管理费、广告服务及八达通自动增值／增值八达通；透过电子钱包支付只享基本奖赏"
+              "note": "已包括基本奖赏；每月首HKD10,000签账享4%，超出部分享0.4%；每月最高可赚$400奖赏钱；不包括网上缴费、保费、证券买卖、租金／物业管理费、广告服务及八达通自动增值／增值八达通；透过电子钱包支付只享基本奖赏",
+              "category_zh": "網上簽賬",
+              "note_zh": "已包括基本獎賞；每月首HKD10,000簽賬享4%，超出部分享0.4%；每月最高可賺$400獎賞錢；不包括網上繳費、保費、證券買賣、租金／物業管理費、廣告服務及八達通自動增值／增值八達通；透過電子錢包支付只享基本獎賞"
             },
             {
               "category": "其他合资格签账",
               "rate": "0.4%",
-              "note": "基本奖赏，每HKD250=$1奖赏钱，无额外奖赏上限"
+              "note": "基本奖赏，每HKD250=$1奖赏钱，无额外奖赏上限",
+              "category_zh": "其他合資格簽賬",
+              "note_zh": "基本獎賞，每HKD250=$1獎賞錢，無額外獎賞上限"
             }
           ],
           "monthly_min_spend": null,
@@ -288,12 +303,16 @@ const EMBEDDED = {
             {
               "category": "specified merchants",
               "rate": "8% (first HK$1,250/month)",
-              "note": "Includes base 0.4% RewardCash. Specified merchants: Sushiro, TamJai SamGor, TamJai Yunnan, GU, Decathlon, NAMCO, TAITO STATION (Hong Kong branches only, excluding department store counters and outlets). Cap: $100 RewardCash per calendar month."
+              "note": "Includes base 0.4% RewardCash. Specified merchants: Sushiro, TamJai SamGor, TamJai Yunnan, GU, Decathlon, NAMCO, TAITO STATION (Hong Kong branches only, excluding department store counters and outlets). Cap: $100 RewardCash per calendar month.",
+              "category_zh": "指定商戶",
+              "note_zh": "包括基本0.4% RewardCash。指定商戶：Sushiro、TamJai SamGor、TamJai Yunnan、GU、Decathlon、NAMCO、TAITO STATION（只限香港分店，不包括百貨公司專櫃及特賣場）。每曆月上限$100 RewardCash。"
             },
             {
               "category": "online spend",
               "rate": "4% (first HK$10,000/month)",
-              "note": "Includes base 0.4% RewardCash. Online spend determined by Mastercard merchant category or acquirer. Cap: $400 RewardCash per calendar month."
+              "note": "Includes base 0.4% RewardCash. Online spend determined by Mastercard merchant category or acquirer. Cap: $400 RewardCash per calendar month.",
+              "category_zh": "網上簽賬",
+              "note_zh": "包括基本0.4% RewardCash。網上簽賬根據Mastercard商戶類別或收單機構而定。每曆月上限$400 RewardCash。"
             }
           ],
           "monthly_min_spend": null,
@@ -333,12 +352,16 @@ const EMBEDDED = {
             {
               "category": "all spending",
               "rate": "1% (or 2% with eligible salary credit or Mox+)",
-              "note": "Base 1% unlimited; 2% unlocked if monthly salary ≥HKD25,000 credited via FPS or Mox+ membership."
+              "note": "Base 1% unlimited; 2% unlocked if monthly salary ≥HKD25,000 credited via FPS or Mox+ membership.",
+              "category_zh": "所有簽賬",
+              "note_zh": "基本1%無限回贈；如每月薪金達HKD25,000並透過FPS或Mox+會籍入賬，即可解鎖2%回贈。"
             },
             {
               "category": "supermarket",
               "rate": "3%",
-              "note": "Applies to supermarkets and grocery stores based on Mastercard merchant category codes (e.g. HKTVmall, ParknShop, Wellcome, city'super)."
+              "note": "Applies to supermarkets and grocery stores based on Mastercard merchant category codes (e.g. HKTVmall, ParknShop, Wellcome, city'super).",
+              "category_zh": "超級市場",
+              "note_zh": "根據Mastercard商戶類別代碼適用於超級市場及雜貨店（例如HKTVmall、ParknShop、Wellcome、city'super）。"
             }
           ],
           "monthly_min_spend": null,
@@ -378,7 +401,9 @@ const EMBEDDED = {
             {
               "category": "retail",
               "rate": "2%",
-              "note": "Base 1% + additional 1% during promotion. HK$2 cash rebate per HK$100 spend. Extra 1% capped at HK$1,500 for the whole promotion period."
+              "note": "Base 1% + additional 1% during promotion. HK$2 cash rebate per HK$100 spend. Extra 1% capped at HK$1,500 for the whole promotion period.",
+              "category_zh": "零售",
+              "note_zh": "基本1% + 推廣期內額外1%。每消費HK$100可獲HK$2現金回贈。整個推廣期內額外1%回贈上限為HK$1,500。"
             }
           ],
           "monthly_min_spend": null,
@@ -421,22 +446,30 @@ const EMBEDDED = {
             {
               "category": "Mobile Payment",
               "rate": "3.6%",
-              "note": "Apple Pay, UnionPay QuickPass/QR via OmyCard app; not supported for WeWa Visa on Android"
+              "note": "Apple Pay, UnionPay QuickPass/QR via OmyCard app; not supported for WeWa Visa on Android",
+              "category_zh": "流動支付",
+              "note_zh": "Apple Pay、銀聯QuickPass／QR（透過OmyCard應用程式）；不支援Android上的WeWa Visa"
             },
             {
               "category": "Travel Spending",
               "rate": "3.6%",
-              "note": "Travel agencies, airlines, hotels (room accommodation only)"
+              "note": "Travel agencies, airlines, hotels (room accommodation only)",
+              "category_zh": "旅遊消費",
+              "note_zh": "旅行社、航空公司、酒店（只限房間住宿）"
             },
             {
               "category": "Overseas Spending",
               "rate": "3.6%",
-              "note": "Non-HK registered merchants, foreign-currency transactions"
+              "note": "Non-HK registered merchants, foreign-currency transactions",
+              "category_zh": "海外消費",
+              "note_zh": "非香港註冊商戶、外幣交易"
             },
             {
               "category": "Online Entertainment",
               "rate": "3.6%",
-              "note": "Apple App Store (APPLE.COM/BILL), Disney+, Google Play, JOOX, KKBOX, MYTV SUPER, Netflix, Nintendo, Patreon, PlayStation, Spotify, STEAM, Xbox, YouTube"
+              "note": "Apple App Store (APPLE.COM/BILL), Disney+, Google Play, JOOX, KKBOX, MYTV SUPER, Netflix, Nintendo, Patreon, PlayStation, Spotify, STEAM, Xbox, YouTube",
+              "category_zh": "網上娛樂",
+              "note_zh": "Apple App Store (APPLE.COM/BILL)、Disney+、Google Play、JOOX、KKBOX、MYTV SUPER、Netflix、Nintendo、Patreon、PlayStation、Spotify、STEAM、Xbox、YouTube"
             }
           ],
           "monthly_min_spend": 1500,
@@ -486,17 +519,23 @@ const EMBEDDED = {
             {
               "category": "Dining",
               "rate": "HK$4 = 1 mile",
-              "note": "HKD transactions at dining outlets; excludes banquets, hotel restaurants, food courts, supermarkets, department stores, clubs. Based on Mastercard merchant codes."
+              "note": "HKD transactions at dining outlets; excludes banquets, hotel restaurants, food courts, supermarkets, department stores, clubs. Based on Mastercard merchant codes.",
+              "category_zh": "餐飲",
+              "note_zh": "於餐飲商戶的港幣交易；不包括宴會、酒店餐廳、美食廣場、超級市場、百貨公司、會所。根據Mastercard商戶代碼分類。"
             },
             {
               "category": "Hotels",
               "rate": "HK$4 = 1 mile",
-              "note": "HKD transactions directly at hotels or via official hotel websites; excludes third-party platforms like OTAs."
+              "note": "HKD transactions directly at hotels or via official hotel websites; excludes third-party platforms like OTAs.",
+              "category_zh": "酒店",
+              "note_zh": "直接於酒店或經酒店官方網站進行的港幣交易；不包括第三方平台如OTA。"
             },
             {
               "category": "Overseas",
               "rate": "HK$4 = 1 mile",
-              "note": "Non-HKD currency transactions."
+              "note": "Non-HKD currency transactions.",
+              "category_zh": "海外",
+              "note_zh": "非港幣貨幣交易。"
             }
           ],
           "monthly_min_spend": null,
@@ -546,12 +585,16 @@ const EMBEDDED = {
             {
               "category": "local",
               "rate": "1.5%",
-              "note": "HKD-posted spend"
+              "note": "HKD-posted spend",
+              "category_zh": "本地",
+              "note_zh": "HKD已入賬簽賬"
             },
             {
               "category": "foreign",
               "rate": "2%",
-              "note": "non-HKD posted spend"
+              "note": "non-HKD posted spend",
+              "category_zh": "海外",
+              "note_zh": "非HKD已入賬簽賬"
             }
           ],
           "monthly_min_spend": null,
@@ -599,12 +642,16 @@ const EMBEDDED = {
             {
               "category": "Designated Merchants",
               "rate": "5%",
-              "note": "Up to a Spending Cap per promotion period (cap amount not specified in this T&C); includes Basic Cashback. List of merchants at sc.com/hk/en/smartcard."
+              "note": "Up to a Spending Cap per promotion period (cap amount not specified in this T&C); includes Basic Cashback. List of merchants at sc.com/hk/en/smartcard.",
+              "category_zh": "指定商戶",
+              "note_zh": "每個推廣期內設有消費上限（本條款及細則未列明上限金額）；包括基本現金回贈。商戶列表請參閱 sc.com/hk/en/smartcard。"
             },
             {
               "category": "Other Eligible Transactions",
               "rate": "0.56% - 1.20%",
-              "note": "0.56% when monthly eligible spending HKD4,000-14,999; 1.20% when HKD15,000+."
+              "note": "0.56% when monthly eligible spending HKD4,000-14,999; 1.20% when HKD15,000+.",
+              "category_zh": "其他合資格交易",
+              "note_zh": "每月合資格消費達 HKD4,000-14,999 可享 0.56%；達 HKD15,000+ 可享 1.20%。"
             }
           ],
           "monthly_min_spend": 4000,
@@ -652,27 +699,37 @@ const EMBEDDED = {
             {
               "category": "online retail (single transaction >= HKD500)",
               "rate": "8%",
-              "note": "Requires monthly offline retail spend >= HKD1,000 to unlock. Single transaction net >= HKD500. Includes 0.4% base rebate."
+              "note": "Requires monthly offline retail spend >= HKD1,000 to unlock. Single transaction net >= HKD500. Includes 0.4% base rebate.",
+              "category_zh": "網上零售（單一交易≥HKD500）",
+              "note_zh": "需每月線下零售消費 ≥ HKD1,000 方可解鎖。單一交易淨額 ≥ HKD500。包含0.4%基本回贈。"
             },
             {
               "category": "designated local public transport",
               "rate": "8%",
-              "note": "Citybus, KMB, LWB, MTR (tap-to-pay gates only), Hong Kong Tramways, Star Ferry. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+              "note": "Citybus, KMB, LWB, MTR (tap-to-pay gates only), Hong Kong Tramways, Star Ferry. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
+              "category_zh": "指定本地公共交通工具",
+              "note_zh": "城巴、九巴、龍運巴士、港鐵（僅限感應式支付閘機）、香港電車、天星小輪。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
             },
             {
               "category": "designated local merchants",
               "rate": "3%",
-              "note": "Adidas, Fila, PUMA, Matsumoto Kiyoshi, Tokyo Lifestyle. In-store transactions only. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+              "note": "Adidas, Fila, PUMA, Matsumoto Kiyoshi, Tokyo Lifestyle. In-store transactions only. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
+              "category_zh": "指定本地商戶",
+              "note_zh": "Adidas、Fila、PUMA、Matsumoto Kiyoshi、Tokyo Lifestyle。僅限實體店交易。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
             },
             {
               "category": "bill payment via sim Credit Card app",
               "rate": "2%",
-              "note": "Excludes payments to Inland Revenue Department. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+              "note": "Excludes payments to Inland Revenue Department. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
+              "category_zh": "透過 sim Credit Card app 繳付賬單",
+              "note_zh": "不包括繳付稅務局款項。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
             },
             {
               "category": "other retail spend (local & overseas)",
               "rate": "0.4%",
-              "note": "All other retail transactions not in above categories. Requires monthly offline retail spend >= HKD1,000. Includes base 0.4% rebate."
+              "note": "All other retail transactions not in above categories. Requires monthly offline retail spend >= HKD1,000. Includes base 0.4% rebate.",
+              "category_zh": "其他零售消費（本地及海外）",
+              "note_zh": "所有不屬上述類別的其他零售交易。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
             }
           ],
           "monthly_min_spend": 1000,
@@ -741,6 +798,9 @@ const I18N = {
 };
 let LANG = localStorage.getItem("lang") || "en";
 const T = ()=>I18N[LANG];
+// Use the Traditional-Chinese rule text when in 繁中 mode (falls back to source text).
+const ruleCat  = r => (LANG==="zh" && r.category_zh) ? r.category_zh : r.category;
+const ruleNote = r => (LANG==="zh" && r.note_zh)     ? r.note_zh     : r.note;
 
 /* spending categories (friendly bucket -> keywords matched against rule categories) */
 const CATS = [
@@ -843,7 +903,7 @@ function render(rows, others, cat, amt, mv){
       <div class="head"><div class="name">${r.card.name}</div><div class="val ${v.cls} tnum">${v.txt}</div></div>
       <div class="net">${r.matched?'':'· '+t.baseRate+' '}${r.card.network} · ${r.card.issuer}</div>
       <div class="chips">${best?`<span class="chip best">${t.best}</span>`:''}${flags(r.prog,r.gate)}</div>
-      <div class="detail"><b>${r.rule.category}</b> — ${r.rule.rate}${r.rule.note?'<br>'+r.rule.note:''}</div>
+      <div class="detail"><b>${ruleCat(r.rule)}</b> — ${r.rule.rate}${ruleNote(r.rule)?'<br>'+ruleNote(r.rule):''}</div>
     </div>`;
   }).join("");
   if(!rows.length) html=`<div class="others">${t.none}</div>`;
@@ -858,7 +918,7 @@ function renderSheet(){
     return `<div class="card">
       <h3>${card.name}</h3>
       <div class="iss">${card.network} · ${card.issuer} · ${t.csType[p.reward_type]||p.reward_type||''}${p.promo_end?' · '+t.promo(p.promo_end):''}</div>
-      ${rules.map(r=>`<div class="r"><span class="c">${r.category}</span><span class="rt tnum">${r.rate}</span></div>`).join("")}
+      ${rules.map(r=>`<div class="r"><span class="c">${ruleCat(r)}</span><span class="rt tnum">${r.rate}</span></div>`).join("")}
       <div class="chips" style="margin-top:8px">${flags(p,null)}</div>
     </div>`;
   }).join("");
