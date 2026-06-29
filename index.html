@@ -3,88 +3,127 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>My Card Rewards — which card to use</title>
+<title>Card Rewards — which card to use</title>
 <style>
   :root{
-    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#2a2f3a;
-    --text:#e8ebf0; --muted:#9aa3b2; --accent:#4cc38a; --accent2:#6aa6ff; --warn:#e0a23c;
-    --gold:#f5c451;
+    --bg:#eef1f6; --surface:#ffffff; --surface2:#f6f8fb;
+    --ink:#192233; --muted:#5d6878; --line:#e2e7ef;
+    --emerald:#0e8a63; --emerald-soft:#e6f4ee;
+    --gold:#b8860b; --gold-soft:#fbf2da;
+    --amber:#b4690e; --blue:#2f6df0;
+    --radius:14px; --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang HK","Microsoft JhengHei",sans-serif}
-  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px}
-  h1{font-size:1.45rem;margin:.2em 0 .1em}
-  .sub{color:var(--muted);font-size:.85rem;margin-bottom:16px}
-  .tabs{display:flex;gap:8px;margin:14px 0}
-  .tabs button{flex:1;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.95rem;cursor:pointer}
-  .tabs button.active{background:var(--panel2);color:var(--text);border-color:var(--accent2)}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-  label{display:block;font-size:.8rem;color:var(--muted);margin:10px 0 4px}
-  select,input{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px;font-size:1rem}
-  .row{display:flex;gap:10px}.row>div{flex:1}
-  .miles{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);margin-top:12px;flex-wrap:wrap}
-  .miles input{width:90px}
-  .result{margin-top:6px}
-  .card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px}
-  .card.win{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
-  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-  .card .nm{font-weight:600}
-  .card .val{font-weight:700;font-size:1.05rem;white-space:nowrap}
-  .card .val.miles{color:var(--accent2)} .card .val.cash{color:var(--accent)}
-  .card .meta{font-size:.78rem;color:var(--muted);margin-top:4px}
-  .badge{display:inline-block;font-size:.68rem;padding:2px 7px;border-radius:20px;border:1px solid var(--line);margin:4px 6px 0 0;color:var(--muted)}
-  .badge.warn{color:var(--warn);border-color:var(--warn)}
-  .badge.win{color:#1a1d22;background:var(--gold);border-color:var(--gold);font-weight:700}
-  .rule{font-size:.82rem;color:var(--muted);margin-top:7px;border-top:1px dashed var(--line);padding-top:7px}
-  .rule b{color:var(--text)}
-  a{color:var(--accent2)}
-  .cs-card{margin-bottom:12px}
-  .cs-card h3{margin:0 0 2px;font-size:1rem}
-  .cs-card .iss{font-size:.75rem;color:var(--muted);margin-bottom:6px}
-  .cs-rule{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;padding:4px 0;border-top:1px solid var(--line)}
-  .cs-rule .cat{color:var(--muted);flex:1}
-  .cs-rule .rt{font-weight:600;white-space:nowrap}
-  .note{font-size:.75rem;color:#7e879a;margin-top:8px}
-  .hi{color:var(--gold)}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang HK","Microsoft JhengHei",sans-serif}
+  .tnum{font-variant-numeric:tabular-nums}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 64px}
+
+  header{position:sticky;top:0;z-index:5;background:rgba(238,241,246,.85);backdrop-filter:saturate(1.4) blur(8px);
+    border-bottom:1px solid var(--line);margin:0 -16px 18px;padding:14px 16px}
+  .bar{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:baseline;gap:9px;min-width:0}
+  .brand .logo{font-size:1.15rem}
+  .brand h1{font-size:1.06rem;font-weight:680;margin:0;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lang{flex:none;display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+  .lang button{appearance:none;border:0;background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;padding:7px 12px;cursor:pointer}
+  .lang button.on{background:var(--ink);color:#fff}
+
+  .sub{color:var(--muted);font-size:.84rem;margin:-6px 0 16px}
+  .tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:16px}
+  .tabs button{flex:1;appearance:none;border:0;background:transparent;color:var(--muted);font-size:.9rem;font-weight:600;padding:9px 8px;border-radius:999px;cursor:pointer}
+  .tabs button.on{background:var(--emerald);color:#fff}
+
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:14px}
+  label{display:block;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 5px;font-weight:600}
+  select,input{width:100%;background:var(--surface2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:1rem;font-family:inherit}
+  select:focus,input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+  .grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:11px}
+  .mile{display:flex;align-items:center;gap:8px;margin-top:13px;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+  .mile input{width:84px;text-align:right}
+
+  .res{display:flex;flex-direction:column;gap:10px;margin-top:2px}
+  .row{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:13px 15px;transition:opacity .15s}
+  .row.best{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-soft),var(--shadow)}
+  .row.muted{opacity:.62}
+  .row .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .row .name{font-weight:660;letter-spacing:-.01em}
+  .row .val{font-weight:760;font-size:1.12rem;white-space:nowrap}
+  .row .val.cash{color:var(--emerald)} .row .val.miles{color:var(--blue)} .row .val.off{color:var(--muted)}
+  .row .net{font-size:.76rem;color:var(--muted);margin-top:3px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .chip{font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--muted)}
+  .chip.best{background:var(--gold);border-color:var(--gold);color:#fff}
+  .chip.warn{background:#fff;border-color:var(--amber);color:var(--amber)}
+  .chip.good{background:var(--emerald-soft);border-color:#bfe3d3;color:var(--emerald)}
+  .detail{font-size:.82rem;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+  .detail b{color:var(--ink);font-weight:640}
+  .others{font-size:.82rem;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);padding:13px 15px}
+  .others b{color:var(--ink)}
+  .note{font-size:.74rem;color:#7a8493;margin-top:12px;line-height:1.5}
+
+  /* cheat-sheet */
+  .cs{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 15px}
+  .cs .card{padding:14px 0;border-top:1px solid var(--line)}
+  .cs .card:first-child{border-top:0}
+  .cs h3{margin:0;font-size:1rem;font-weight:660}
+  .cs .iss{font-size:.74rem;color:var(--muted);margin:2px 0 8px}
+  .cs .r{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:3px 0}
+  .cs .r .c{color:var(--muted)} .cs .r .rt{font-weight:680;white-space:nowrap}
+
+  /* month tracker */
+  .trk .it{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+  .trk .it:first-child{border-top:0}
+  .trk .it .nm{flex:1;min-width:0}
+  .trk .it .nm .t{font-weight:620;font-size:.95rem}
+  .trk .it .nm .g{font-size:.74rem;color:var(--muted)}
+  .trk .it input{width:120px;text-align:right}
+  .bar2{height:6px;border-radius:99px;background:var(--line);margin-top:6px;overflow:hidden}
+  .bar2 span{display:block;height:100%;background:var(--emerald)}
+  .bar2 span.full{background:var(--gold)}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>💳 Which card should I use?</h1>
-  <div class="sub" id="updated">Your Hong Kong cards · rewards auto-tracked</div>
-
-  <div class="tabs">
-    <button id="tabDecide" class="active" onclick="show('decide')">Best card for a purchase</button>
-    <button id="tabSheet" onclick="show('sheet')">Cheat-sheet</button>
-  </div>
-
-  <div id="decide">
-    <div class="panel">
-      <div class="row">
-        <div>
-          <label>Spending category</label>
-          <select id="cat"></select>
-        </div>
-        <div>
-          <label>Amount (HK$)</label>
-          <input id="amt" type="number" value="1000" min="0" step="100" />
-        </div>
-      </div>
-      <div class="miles">
-        <span>Value of 1 mile:</span>
-        <span>HK$</span><input id="mv" type="number" value="0.10" min="0" step="0.01" />
-        <span>(adjust to taste — changes how miles cards rank)</span>
-      </div>
+<header>
+  <div class="bar">
+    <div class="brand"><span class="logo">💳</span><h1 id="appTitle"></h1></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="langEn" onclick="setLang('en')">EN</button>
+      <button id="langZh" onclick="setLang('zh')">繁中</button>
     </div>
-    <div class="result" id="result"></div>
-    <div class="note">Estimates use each card's headline rate for the chosen category (or its base rate if it has no bonus there). Caps, minimum spends, registration and promo end-dates are flagged but not fully modelled — always check the card's own terms. Not financial advice.</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="sub" id="sub"></div>
+  <div class="tabs">
+    <button id="tabDecide" class="on" onclick="show('decide')"></button>
+    <button id="tabSheet" onclick="show('sheet')"></button>
+    <button id="tabMonth" onclick="show('month')"></button>
   </div>
 
-  <div id="sheet" style="display:none"></div>
+  <section id="decide">
+    <div class="panel">
+      <div class="grid2">
+        <div><label id="lblCat"></label><select id="cat"></select></div>
+        <div><label id="lblAmt"></label><input id="amt" type="number" inputmode="numeric" value="500" min="0" step="50" /></div>
+      </div>
+      <div class="mile"><span id="lblMile"></span><span>HK$</span><input id="mv" type="number" value="0.10" min="0" step="0.01" /><span id="lblMileHint"></span></div>
+    </div>
+    <div class="res" id="result"></div>
+    <div class="note" id="disclaimer"></div>
+  </section>
+
+  <section id="sheet" style="display:none"><div class="cs" id="sheetBody"></div></section>
+
+  <section id="month" style="display:none">
+    <div class="panel"><div id="monthIntro" class="sub" style="margin:0 0 4px"></div><div class="trk" id="trkBody"></div></div>
+    <div class="note" id="monthNote"></div>
+  </section>
 </div>
 
 <script>
-// Embedded snapshot of the live data (the deployed page refreshes this from ./cards.json).
 const EMBEDDED = {
   "cards": [
     {
@@ -667,146 +706,221 @@ const EMBEDDED = {
 };
 let CARDS = EMBEDDED.cards;
 
-// ---- spending categories (friendly bucket -> keywords matched against rule categories) ----
+/* ---------------- i18n ---------------- */
+const I18N = {
+  en:{ title:"Which card should I use?", sub:c=>`Your Hong Kong cards · ${c} cards`,
+    tDecide:"Best card", tSheet:"Cheat-sheet", tMonth:"This month",
+    lblCat:"Spending category", lblAmt:"Amount (HK$)", lblMile:"Value of 1 mile:",
+    lblMileHint:"(tune how miles cards rank)",
+    best:"BEST", baseRate:"base rate", reg:"needs registration",
+    min:n=>`min HK$${n.toLocaleString()}/mo`, cap:n=>`cap HK$${n.toLocaleString()}/mo`,
+    promo:d=>`promo ends ${d}`, conf:c=>`${c} confidence`,
+    locked:n=>`🔒 needs HK$${n.toLocaleString()} more this month to unlock`,
+    unlocks:"✓ this purchase unlocks the bonus", capped:"cap likely reached this month",
+    backHK:"back", others:cat=>`No specific rate for ${cat} — these earn their base rate (≈0.4%); check the card:`,
+    none:"No card has a known rate for this category.",
+    disc:"Estimates use each card's headline rate for the chosen category (or its base rate), adjusted for your month-to-date spend below. Caps are approximate. Always check the card's own terms. Not financial advice.",
+    monthIntro:"Tick how much you've spent on each card this month, so locked/capped cards stop topping the list.",
+    spent:"spent so far", monthNote:"Saved in this browser only · resets automatically each month.",
+    csType:{cashback:"cashback",miles:"miles"} },
+  zh:{ title:"用邊張卡最抵？", sub:c=>`你的香港信用卡 · ${c} 張`,
+    tDecide:"最佳卡", tSheet:"一覽表", tMonth:"本月簽賬",
+    lblCat:"簽賬類別", lblAmt:"金額 (HK$)", lblMile:"每里價值：",
+    lblMileHint:"（調整里數卡的排名）",
+    best:"最佳", baseRate:"基本回贈", reg:"需要登記",
+    min:n=>`最低 HK$${n.toLocaleString()}/月`, cap:n=>`上限 HK$${n.toLocaleString()}/月`,
+    promo:d=>`優惠至 ${d}`, conf:c=>({high:"高",medium:"中",low:"低"}[c]||c)+"信心",
+    locked:n=>`🔒 本月尚欠 HK$${n.toLocaleString()} 先解鎖`,
+    unlocks:"✓ 今次簽賬即可解鎖獎賞", capped:"本月或已達上限",
+    backHK:"回贈", others:cat=>`「${cat}」沒有特定回贈 — 這些卡只賺基本回贈（約0.4%），請查閱卡章則：`,
+    none:"沒有卡有此類別的已知回贈。",
+    disc:"以各卡該類別的主要回贈率（或基本回贈率）估算，並按下方你本月的簽賬調整。上限為粗略估計，一切以發卡機構條款為準。並非理財建議。",
+    monthIntro:"記下你本月在各卡的簽賬額，未達標／已封頂的卡就不會再排在最前。",
+    spent:"本月已簽", monthNote:"只儲存在此瀏覽器 · 每月自動重設。",
+    csType:{cashback:"現金回贈",miles:"里數"} }
+};
+let LANG = localStorage.getItem("lang") || "en";
+const T = ()=>I18N[LANG];
+
+/* spending categories (friendly bucket -> keywords matched against rule categories) */
 const CATS = [
-  {key:"dining",   label:"Dining (local)",          kw:["dining","dine","restaurant","餐飲","餐饮","食肆"], foreign:false},
-  {key:"overseas", label:"Overseas / foreign currency", kw:["overseas","foreign","海外","外幣","designated region","other region","non-hk"], foreign:true},
-  {key:"online",   label:"Online shopping",          kw:["online","网上","網上","e-commerce"], foreign:false},
-  {key:"transport",label:"Public transport",         kw:["transport","transit","交通","mtr","bus","ferry"], foreign:false},
-  {key:"supermarket",label:"Supermarket / grocery",  kw:["supermarket","grocery","超市","超級市場"], foreign:false},
-  {key:"mobile",   label:"Mobile payment (Apple/Google Pay)", kw:["mobile payment","apple pay","手機支付","quickpass","qr"], foreign:false},
-  {key:"entertain",label:"Online entertainment / subscriptions", kw:["entertainment","娛樂","netflix","spotify","streaming"], foreign:false},
-  {key:"travel",   label:"Travel (hotels / airlines)", kw:["travel","旅遊","hotel","airline","酒店","機票"], foreign:false},
-  {key:"general",  label:"Everything else (general)", kw:[], foreign:false},
+  {key:"dining",   en:"Dining (local)",        zh:"本地餐飲",        kw:["dining","dine","restaurant","餐"]},
+  {key:"overseas", en:"Overseas / foreign",    zh:"海外／外幣簽賬",  kw:["overseas","foreign","海外","外幣","region","non-hk"]},
+  {key:"online",   en:"Online shopping",       zh:"網上購物",        kw:["online","網上","网上","e-commerce"]},
+  {key:"transport",en:"Public transport",      zh:"公共交通",        kw:["transport","transit","交通","mtr","bus","ferry"]},
+  {key:"supermarket",en:"Supermarket / grocery",zh:"超級市場",       kw:["supermarket","grocery","超"]},
+  {key:"mobile",   en:"Mobile payment",        zh:"手機支付",        kw:["mobile payment","apple pay","手機支付","quickpass","qr"]},
+  {key:"entertain",en:"Online entertainment",  zh:"網上娛樂",        kw:["entertainment","娛樂","netflix","spotify","streaming"]},
+  {key:"travel",   en:"Travel (hotel/airline)",zh:"旅遊（酒店／機票）",kw:["travel","旅遊","hotel","airline","酒店","機票"]},
+  {key:"general",  en:"Everything else",       zh:"其他一般簽賬",    kw:[]},
 ];
-// A rule counts as the card's "base/catch-all" rate if its category looks generic.
 const BASE_SUBSTR = ["其他","基本","all spending","other retail","other eligible","all other","general spend"];
 const BASE_EXACT  = ["retail","local","local spend"];
-function isBaseCat(c){ c=(c||"").toLowerCase().trim(); return BASE_EXACT.includes(c) || BASE_SUBSTR.some(k=>c.includes(k)); }
+const isBaseCat = c=>{c=(c||"").toLowerCase().trim(); return BASE_EXACT.includes(c)||BASE_SUBSTR.some(k=>c.includes(k));};
+
+/* spend tracker (month-keyed localStorage) */
+function monthKey(){ const d=new Date(); return "spend-"+d.getFullYear()+"-"+(d.getMonth()+1); }
+let SPEND = JSON.parse(localStorage.getItem(monthKey())||"{}");
+function saveSpend(){ localStorage.setItem(monthKey(), JSON.stringify(SPEND)); }
 
 function parseRate(rate, milesValue){
   if(!rate) return null;
   const m = rate.match(/(?:HK\$?|HKD)\s*\$?\s*([\d.]+)\s*=\s*1\s*mile/i);
-  if(m){ const n=parseFloat(m[1]); if(n>0){ const milesPerHKD=1/n; return {kind:"miles", perHKD:milesPerHKD, valuePerHKD:milesPerHKD*milesValue, n}; } }
+  if(m){ const n=parseFloat(m[1]); if(n>0) return {kind:"miles", perHKD:1/n, valuePerHKD:(1/n)*milesValue, n}; }
   const p = rate.match(/([\d.]+)\s*%/);
-  if(p){ const pct=parseFloat(p[1]); return {kind:"cash", pct, valuePerHKD:pct/100}; }
+  if(p) return {kind:"cash", pct:parseFloat(p[1]), valuePerHKD:parseFloat(p[1])/100};
   return null;
 }
-
-// Pick the best rule of a card for a chosen category.
-// score 2 = category-specific match, 1 = base/catch-all rate, 0 = neither (no number shown).
 function pickRule(card, cat){
-  const prog = card.reward_programs[0]; if(!prog) return {rule:null, score:0};
-  const rules = prog.rules||[];
-  const scoreOf = (r)=>{
+  const prog=card.reward_programs[0]; if(!prog) return {rule:null,score:0,prog};
+  let best=null,bs=0,bv=-1;
+  for(const r of (prog.rules||[])){
     const c=(r.category||"").toLowerCase();
-    if(cat.key!=="general" && cat.kw.some(k=>c.includes(k))) return 2;
-    if(isBaseCat(r.category)) return 1;
-    return 0;
-  };
-  let best=null,bestScore=0,bestVal=-1;
-  for(const r of rules){
-    const s=scoreOf(r); if(s===0) continue;
-    const pr=parseRate(r.rate, 0.1);
-    const v=pr?pr.valuePerHKD:0;
-    if(s>bestScore || (s===bestScore && v>bestVal)){ best=r;bestScore=s;bestVal=v; }
+    let s = (cat.key!=="general" && cat.kw.some(k=>c.includes(k))) ? 2 : (isBaseCat(r.category)?1:0);
+    if(s===0) continue;
+    const v=(parseRate(r.rate,0.1)||{valuePerHKD:0}).valuePerHKD;
+    if(s>bs||(s===bs&&v>bv)){ best=r;bs=s;bv=v; }
   }
-  return {rule: best, score: bestScore};
+  return {rule:best, score:bs, prog};
+}
+// gate status from month-to-date spend
+function gate(prog, cardId, amount, valuePerHKD){
+  const mtd = SPEND[cardId]||0;
+  if(prog.monthly_min_spend){
+    if(mtd + amount < prog.monthly_min_spend) return {status:"locked", needMore:prog.monthly_min_spend-mtd};
+    if(mtd < prog.monthly_min_spend) return {status:"unlocks"};
+  }
+  if(prog.monthly_cap && valuePerHKD>0 && mtd*valuePerHKD >= prog.monthly_cap) return {status:"capped"};
+  return {status:"ok"};
 }
 
 function compute(){
-  const cat = CATS.find(c=>c.key===document.getElementById("cat").value);
-  const amt = Math.max(0, parseFloat(document.getElementById("amt").value)||0);
-  const mv  = Math.max(0, parseFloat(document.getElementById("mv").value)||0);
+  const cat=CATS.find(c=>c.key===document.getElementById("cat").value)||CATS[0];
+  const amt=Math.max(0,parseFloat(document.getElementById("amt").value)||0);
+  const mv =Math.max(0,parseFloat(document.getElementById("mv").value)||0);
+  localStorage.setItem("milesValue", mv);
   const rows=[], others=[];
   for(const card of CARDS){
-    const prog=card.reward_programs[0]; if(!prog) continue;
-    const pick=pickRule(card, cat);
-    if(pick.rule && pick.score>=1){
-      const pr=parseRate(pick.rule.rate, mv);
-      const reward=(pr?pr.valuePerHKD:0)*amt;
-      rows.push({card, prog, rule:pick.rule, matched:pick.score>=2, pr, reward});
-    } else {
-      others.push(card);
-    }
+    const pk=pickRule(card,cat);
+    if(pk.rule && pk.score>=1){
+      const pr=parseRate(pk.rule.rate, mv);
+      const vph=pr?pr.valuePerHKD:0;
+      const g=gate(pk.prog, card.id, amt, vph);
+      const blocked = g.status==="locked"||g.status==="capped";
+      const reward = blocked?0:vph*amt;
+      rows.push({card,prog:pk.prog,rule:pk.rule,matched:pk.score>=2,pr,reward,vph,gate:g,blocked});
+    } else others.push(card);
   }
-  rows.sort((a,b)=>b.reward-a.reward);
+  rows.sort((a,b)=> (a.blocked-b.blocked) || (b.reward-a.reward));
   render(rows, others, cat, amt, mv);
 }
 
-function flags(prog){
-  const f=[];
-  if(prog.needs_registration) f.push('<span class="badge warn">needs registration</span>');
-  if(prog.monthly_min_spend) f.push('<span class="badge warn">min HK$'+prog.monthly_min_spend.toLocaleString()+'/mo</span>');
-  if(prog.monthly_cap) f.push('<span class="badge warn">cap HK$'+prog.monthly_cap.toLocaleString()+'/mo</span>');
-  if(prog.promo_end) f.push('<span class="badge">promo ends '+prog.promo_end+'</span>');
-  if(prog.confidence && prog.confidence!=="high") f.push('<span class="badge warn">'+prog.confidence+' confidence</span>');
+function flags(prog, g){
+  const t=T(); const f=[];
+  if(g && g.status==="unlocks") f.push(`<span class="chip good">${t.unlocks}</span>`);
+  if(g && g.status==="locked")  f.push(`<span class="chip warn">${t.locked(g.needMore)}</span>`);
+  if(g && g.status==="capped")  f.push(`<span class="chip warn">${t.capped}</span>`);
+  if(prog.needs_registration) f.push(`<span class="chip warn">${t.reg}</span>`);
+  if(prog.monthly_min_spend)  f.push(`<span class="chip">${t.min(prog.monthly_min_spend)}</span>`);
+  if(prog.monthly_cap)        f.push(`<span class="chip">${t.cap(prog.monthly_cap)}</span>`);
+  if(prog.promo_end)          f.push(`<span class="chip">${t.promo(prog.promo_end)}</span>`);
+  if(prog.confidence&&prog.confidence!=="high") f.push(`<span class="chip warn">${t.conf(prog.confidence)}</span>`);
   return f.join("");
 }
-
-function valueLabel(r){
-  if(!r.pr) return {txt:'see terms', cls:''};
-  if(r.pr.kind==="miles"){
-    const miles = Math.round(r.reward / (document.getElementById('mv').value||0.1));
-    return {txt: miles.toLocaleString()+' mi (~HK$'+r.reward.toFixed(0)+')', cls:'miles'};
-  }
-  return {txt:'HK$'+r.reward.toFixed(1)+' back', cls:'cash'};
+function valLabel(r){
+  const t=T();
+  if(r.blocked) return {txt:"—",cls:"off"};
+  if(!r.pr) return {txt:"—",cls:"off"};
+  if(r.pr.kind==="miles"){ const mv=parseFloat(document.getElementById("mv").value)||0.1; const mi=Math.round(r.reward/mv); return {txt:`${mi.toLocaleString()} mi · ~HK$${r.reward.toFixed(0)}`,cls:"miles"}; }
+  return {txt:`HK$${r.reward.toFixed(1)} ${t.backHK}`,cls:"cash"};
 }
-
 function render(rows, others, cat, amt, mv){
-  const el=document.getElementById("result");
+  const t=T(), el=document.getElementById("result");
+  const catLabel = LANG==="zh"?cat.zh:cat.en;
   let html = rows.map((r,i)=>{
-    const v=valueLabel(r);
-    const win = i===0 && r.reward>0;
-    return `<div class="card ${win?'win':''}">
-      <div class="top">
-        <div class="nm">${win?'<span class="badge win">BEST</span> ':''}${r.card.name}</div>
-        <div class="val ${v.cls}">${v.txt}</div>
-      </div>
-      <div class="meta">${r.matched?'':'(base rate — no specific '+cat.label.toLowerCase()+' bonus) '}${r.card.network} · ${r.card.issuer}</div>
-      <div>${flags(r.prog)}</div>
-      <div class="rule"><b>${r.rule.category}</b> — ${r.rule.rate}${r.rule.note?'<br>'+r.rule.note:''}</div>
+    const v=valLabel(r), best=i===0&&!r.blocked&&r.reward>0;
+    return `<div class="row ${best?'best':''} ${r.blocked?'muted':''}">
+      <div class="head"><div class="name">${r.card.name}</div><div class="val ${v.cls} tnum">${v.txt}</div></div>
+      <div class="net">${r.matched?'':'· '+t.baseRate+' '}${r.card.network} · ${r.card.issuer}</div>
+      <div class="chips">${best?`<span class="chip best">${t.best}</span>`:''}${flags(r.prog,r.gate)}</div>
+      <div class="detail"><b>${r.rule.category}</b> — ${r.rule.rate}${r.rule.note?'<br>'+r.rule.note:''}</div>
     </div>`;
   }).join("");
-  if(!rows.length) html = "<div class='panel'>No cards have a known rate for this category.</div>";
-  if(others.length){
-    html += `<div class="rule" style="border-top:none;margin-top:14px"><b>No specific rate found for ${cat.label.toLowerCase()}</b> — these earn their base rate (usually ~0.4%); check the card:<br>${others.map(c=>c.name).join(" · ")}</div>`;
-  }
-  el.innerHTML = html;
+  if(!rows.length) html=`<div class="others">${t.none}</div>`;
+  if(others.length) html+=`<div class="others"><b>${t.others(catLabel)}</b><br>${others.map(c=>c.name).join(" · ")}</div>`;
+  el.innerHTML=html;
 }
 
 function renderSheet(){
-  const el=document.getElementById("sheet");
-  el.innerHTML = '<div class="panel">'+ CARDS.map(card=>{
-    const prog=card.reward_programs[0]||{}; const rules=prog.rules||[];
-    return `<div class="cs-card">
+  const t=T();
+  document.getElementById("sheetBody").innerHTML = CARDS.map(card=>{
+    const p=card.reward_programs[0]||{}; const rules=p.rules||[];
+    return `<div class="card">
       <h3>${card.name}</h3>
-      <div class="iss">${card.network} · ${card.issuer} · ${prog.reward_type||''}${prog.promo_end?' · promo→'+prog.promo_end:''}</div>
-      ${rules.map(r=>`<div class="cs-rule"><span class="cat">${r.category}</span><span class="rt">${r.rate}</span></div>`).join("")}
-      <div style="margin-top:6px">${flags(prog)}</div>
+      <div class="iss">${card.network} · ${card.issuer} · ${t.csType[p.reward_type]||p.reward_type||''}${p.promo_end?' · '+t.promo(p.promo_end):''}</div>
+      ${rules.map(r=>`<div class="r"><span class="c">${r.category}</span><span class="rt tnum">${r.rate}</span></div>`).join("")}
+      <div class="chips" style="margin-top:8px">${flags(p,null)}</div>
     </div>`;
-  }).join('<hr style="border:none;border-top:1px solid var(--line);margin:14px 0">') + '</div>';
+  }).join("");
+}
+function renderMonth(){
+  const t=T();
+  document.getElementById("monthIntro").textContent=t.monthIntro;
+  document.getElementById("monthNote").textContent=t.monthNote;
+  const gated=CARDS.filter(c=>{const p=c.reward_programs[0]||{};return p.monthly_min_spend||p.monthly_cap;});
+  document.getElementById("trkBody").innerHTML = gated.map(c=>{
+    const p=c.reward_programs[0]; const mtd=SPEND[c.id]||0;
+    const target=p.monthly_min_spend||0; const pct=target?Math.min(100,Math.round(mtd/target*100)):0;
+    const gline=[p.monthly_min_spend?t.min(p.monthly_min_spend):null,p.monthly_cap?t.cap(p.monthly_cap):null].filter(Boolean).join(" · ");
+    return `<div class="it">
+      <div class="nm"><div class="t">${c.name}</div><div class="g">${gline}</div>
+        ${target?`<div class="bar2"><span class="${pct>=100?'full':''}" style="width:${pct}%"></span></div>`:''}</div>
+      <input type="number" inputmode="numeric" min="0" step="100" value="${mtd||''}" placeholder="0"
+        oninput="SPEND['${c.id}']=parseFloat(this.value)||0;saveSpend();updateBar(this,'${c.id}');" aria-label="${t.spent}">
+    </div>`;
+  }).join("") || `<div class="g" style="color:var(--muted)">—</div>`;
+}
+function updateBar(input,id){
+  const card=CARDS.find(c=>c.id===id); const p=card.reward_programs[0]; const target=p.monthly_min_spend||0;
+  if(!target) return; const bar=input.closest(".it").querySelector(".bar2 span"); if(!bar) return;
+  const pct=Math.min(100,Math.round(((SPEND[id]||0)/target)*100)); bar.style.width=pct+"%"; bar.className=pct>=100?"full":"";
 }
 
-function show(which){
-  document.getElementById("decide").style.display = which==="decide"?"":"none";
-  document.getElementById("sheet").style.display  = which==="sheet"?"":"none";
-  document.getElementById("tabDecide").classList.toggle("active", which==="decide");
-  document.getElementById("tabSheet").classList.toggle("active", which==="sheet");
-  if(which==="sheet") renderSheet();
+function applyStaticText(){
+  const t=T();
+  document.documentElement.lang = LANG==="zh"?"zh-Hant":"en";
+  document.getElementById("appTitle").textContent=t.title;
+  document.getElementById("sub").textContent=t.sub(CARDS.length);
+  document.getElementById("tabDecide").textContent=t.tDecide;
+  document.getElementById("tabSheet").textContent=t.tSheet;
+  document.getElementById("tabMonth").textContent=t.tMonth;
+  document.getElementById("lblCat").textContent=t.lblCat;
+  document.getElementById("lblAmt").textContent=t.lblAmt;
+  document.getElementById("lblMile").textContent=t.lblMile;
+  document.getElementById("lblMileHint").textContent=t.lblMileHint;
+  document.getElementById("disclaimer").textContent=t.disc;
+  document.getElementById("langEn").classList.toggle("on",LANG==="en");
+  document.getElementById("langZh").classList.toggle("on",LANG==="zh");
+  const sel=document.getElementById("cat"); const cur=sel.value;
+  sel.innerHTML=CATS.map(c=>`<option value="${c.key}">${LANG==="zh"?c.zh:c.en}</option>`).join("");
+  if(cur) sel.value=cur;
 }
-
+function setLang(l){ LANG=l; localStorage.setItem("lang",l); applyStaticText(); compute(); renderSheet(); renderMonth(); }
+function show(w){
+  for(const s of ["decide","sheet","month"]) document.getElementById(s).style.display = (s===w)?"":"none";
+  document.getElementById("tabDecide").classList.toggle("on",w==="decide");
+  document.getElementById("tabSheet").classList.toggle("on",w==="sheet");
+  document.getElementById("tabMonth").classList.toggle("on",w==="month");
+  if(w==="sheet") renderSheet(); if(w==="month") renderMonth();
+}
 function init(){
-  document.getElementById("cat").innerHTML = CATS.map(c=>`<option value="${c.key}">${c.label}</option>`).join("");
-  ["cat","amt","mv"].forEach(id=>document.getElementById(id).addEventListener("input", compute));
-  const lv = CARDS[0]?.reward_programs?.[0]?.last_verified;
-  if(lv) document.getElementById("updated").textContent = "Your Hong Kong cards · "+CARDS.length+" cards · last verified "+lv;
+  const mv=localStorage.getItem("milesValue"); if(mv) document.getElementById("mv").value=mv;
+  applyStaticText();
+  ["cat","amt","mv"].forEach(id=>document.getElementById(id).addEventListener("input",compute));
   compute();
 }
-
-// Use embedded data immediately; refresh from live cards.json when deployed (ignored offline/in preview).
 init();
-fetch("./cards.json").then(r=>r.ok?r.json():null).then(d=>{ if(d&&Array.isArray(d.cards)&&d.cards.length){ CARDS=d.cards; init(); } }).catch(()=>{});
+fetch("./cards.json").then(r=>r.ok?r.json():null).then(d=>{ if(d&&Array.isArray(d.cards)&&d.cards.length){ CARDS=d.cards; SPEND=JSON.parse(localStorage.getItem(monthKey())||"{}"); applyStaticText(); compute(); } }).catch(()=>{});
 </script>
 </body>
 </html>
