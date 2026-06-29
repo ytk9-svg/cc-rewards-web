@@ -1,0 +1,580 @@
+{
+  "cards": [
+    {
+      "id": "hangseng-travelplus",
+      "name": "Hang Seng Travel+ Visa Signature",
+      "issuer": "Hang Seng",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hangseng-travelplus",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "Foreign currency spending in designated regions (Japan, South Korea, Thailand, Mainland China, Macau, Taiwan)",
+              "rate": "7%",
+              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars."
+            },
+            {
+              "category": "Foreign currency spending in other regions",
+              "rate": "5%",
+              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars."
+            },
+            {
+              "category": "Local dining",
+              "rate": "5%",
+              "note": "At physical restaurants, excludes online, banquets, hotel restaurants, department store food courts, etc. Includes basic 0.4% +FUN Dollars."
+            }
+          ],
+          "monthly_min_spend": 6000,
+          "monthly_cap": 500,
+          "needs_registration": true,
+          "excludes": [
+            "online bill payment",
+            "tax payment",
+            "insurance transactions",
+            "Alipay/WeChat Pay",
+            "phone/fax orders",
+            "gift voucher purchase",
+            "instalment",
+            "balance transfer",
+            "Octopus top-up",
+            "stored value card/e-wallet purchase/top-up",
+            "financial institution transactions",
+            "cash advance",
+            "cash advance fee",
+            "casino chips",
+            "autopay",
+            "standing instruction",
+            "annual fee",
+            "card fee",
+            "finance charge",
+            "late fee",
+            "cancelled/returned/fraudulent transactions"
+          ],
+          "source_url": "https://www.hangseng.com/content/dam/wpb/hase/rwd/personal/cards/pdfs/travelplus_fundollars_tnc_tc.pdf",
+          "source_file": "raw/hangseng-travelplus/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-01-01",
+          "promo_end": "2026-12-31"
+        }
+      ]
+    },
+    {
+      "id": "hsbc-everymile",
+      "name": "HSBC EveryMile Credit Card",
+      "issuer": "HSBC",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hsbc-everymile",
+          "reward_type": "miles",
+          "miles_program": "RewardCash convertible to multiple frequent flyer/hotel programmes (1 RewardCash = 20 miles)",
+          "rules": [
+            {
+              "category": "Designated Everyday & Travel Spend Merchants",
+              "rate": "HK$2 = 1 mile",
+              "note": "Earned via 2.5% RewardCash rebate converted at 1:20 miles rate. Only for listed Café & Light Meals, Cross-border Transportation, Local Transportation, Driving-related, and Travel Services merchants in Hong Kong SAR. See excludes for ineligible transactions within these categories."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "transactions via e-wallets at designated merchants",
+            "fuel card purchase/reload",
+            "Autotoll",
+            "MTR transactions other than gate tapping (e.g., Customer Service Centre, MTR Mobile tickets)",
+            "online ride-hailing platforms",
+            "non-Hong Kong SAR transactions"
+          ],
+          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/everymile/everymile-everyday-spend.pdf",
+          "source_file": "raw/hsbc-everymile/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "hsbc-gold",
+      "name": "HSBC Visa Gold (滙財金卡)",
+      "issuer": "HSBC",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hsbc-gold",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "指定商户（餐饮/潮流及运动服饰/休闲娱乐指定商户）",
+              "rate": "8%",
+              "note": "已包括基本奖赏；每月首HKD1,250签账享8%，超出部分享0.4%；每月最高可赚$100奖赏钱；只限香港分店，不包括百货公司专柜及特卖场；透过电子钱包支付只享基本奖赏"
+            },
+            {
+              "category": "网上签账",
+              "rate": "4%",
+              "note": "已包括基本奖赏；每月首HKD10,000签账享4%，超出部分享0.4%；每月最高可赚$400奖赏钱；不包括网上缴费、保费、证券买卖、租金／物业管理费、广告服务及八达通自动增值／增值八达通；透过电子钱包支付只享基本奖赏"
+            },
+            {
+              "category": "其他合资格签账",
+              "rate": "0.4%",
+              "note": "基本奖赏，每HKD250=$1奖赏钱，无额外奖赏上限"
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "e-wallet top-up"
+          ],
+          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/reward-scheme-terms-and-conditions.pdf",
+          "source_file": "raw/hsbc-gold/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-04-01",
+          "promo_end": "2026-06-30"
+        }
+      ]
+    },
+    {
+      "id": "hsbc-red",
+      "name": "HSBC Red Card",
+      "issuer": "HSBC",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hsbc-red",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "specified merchants",
+              "rate": "8% (first HK$1,250/month)",
+              "note": "Includes base 0.4% RewardCash. Specified merchants: Sushiro, TamJai SamGor, TamJai Yunnan, GU, Decathlon, NAMCO, TAITO STATION (Hong Kong branches only, excluding department store counters and outlets). Cap: $100 RewardCash per calendar month."
+            },
+            {
+              "category": "online spend",
+              "rate": "4% (first HK$10,000/month)",
+              "note": "Includes base 0.4% RewardCash. Online spend determined by Mastercard merchant category or acquirer. Cap: $400 RewardCash per calendar month."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "electronic wallet top-up/transactions",
+            "online bill payment",
+            "insurance premium",
+            "securities trading",
+            "rent/property management fee",
+            "advertising services",
+            "Octopus AAVS/top-up"
+          ],
+          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/reward-scheme-terms-and-conditions.pdf",
+          "source_file": "raw/hsbc-red/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-04-01",
+          "promo_end": "2026-06-30"
+        }
+      ]
+    },
+    {
+      "id": "mox-credit",
+      "name": "Mox Credit",
+      "issuer": "Mox Bank",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "mox-credit",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "all spending",
+              "rate": "1% (or 2% with eligible salary credit or Mox+)",
+              "note": "Base 1% unlimited; 2% unlocked if monthly salary ≥HKD25,000 credited via FPS or Mox+ membership."
+            },
+            {
+              "category": "supermarket",
+              "rate": "3%",
+              "note": "Applies to supermarkets and grocery stores based on Mastercard merchant category codes (e.g. HKTVmall, ParknShop, Wellcome, city'super)."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "cash advance",
+            "fees/charges",
+            "balance transfer",
+            "FPS/transfers",
+            "bill payment",
+            "insurance",
+            "tax payment",
+            "octopus/e-wallet top-up",
+            "instalment"
+          ],
+          "source_url": "https://mox.com/zh/promotions/unlimitedcashback/",
+          "source_file": "raw/mox-credit/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "primecredit-earnmore",
+      "name": "PrimeCredit EarnMORE UnionPay Card",
+      "issuer": "PrimeCredit (安信)",
+      "network": "UnionPay",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "primecredit-earnmore",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "retail",
+              "rate": "2%",
+              "note": "Base 1% + additional 1% during promotion. HK$2 cash rebate per HK$100 spend. Extra 1% capped at HK$1,500 for the whole promotion period."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "cash advance",
+            "Octopus Automatic Add-Value",
+            "money transfer/P2P/e-wallet reload/bill payment via e-wallet",
+            "casino",
+            "cash instalment",
+            "instalment",
+            "credit card fees",
+            "unposted/cancelled/returned/counterfeit transactions",
+            "unauthorized transactions",
+            "cash out"
+          ],
+          "source_url": "https://www.primecredit.com/wp-content/uploads/2024/12/EarnMORE-UnionPay-Card-Additional-Cash-Rebate-Program-Terms-Conditions_C20211162.pdf",
+          "source_file": "raw/primecredit-earnmore/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2025-01-01",
+          "promo_end": "2025-12-31"
+        }
+      ]
+    },
+    {
+      "id": "primecredit-wewa",
+      "name": "PrimeCredit WeWa UnionPay Card",
+      "issuer": "PrimeCredit (安信)",
+      "network": "UnionPay",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "primecredit-wewa",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "Mobile Payment",
+              "rate": "3.6%",
+              "note": "Apple Pay, UnionPay QuickPass/QR via OmyCard app; not supported for WeWa Visa on Android"
+            },
+            {
+              "category": "Travel Spending",
+              "rate": "3.6%",
+              "note": "Travel agencies, airlines, hotels (room accommodation only)"
+            },
+            {
+              "category": "Overseas Spending",
+              "rate": "3.6%",
+              "note": "Non-HK registered merchants, foreign-currency transactions"
+            },
+            {
+              "category": "Online Entertainment",
+              "rate": "3.6%",
+              "note": "Apple App Store (APPLE.COM/BILL), Disney+, Google Play, JOOX, KKBOX, MYTV SUPER, Netflix, Nintendo, Patreon, PlayStation, Spotify, STEAM, Xbox, YouTube"
+            }
+          ],
+          "monthly_min_spend": 1500,
+          "monthly_cap": 200,
+          "needs_registration": true,
+          "excludes": [
+            "Octopus AAV",
+            "stored value card purchase/reload",
+            "e-wallet top-up",
+            "autopay",
+            "cash advance",
+            "instalment plan",
+            "offline transactions",
+            "bill payment",
+            "fund transactions",
+            "casino",
+            "cash voucher purchase",
+            "deposit",
+            "money transfer",
+            "chargeback",
+            "unposted/cancelled/returned",
+            "unauthorized"
+          ],
+          "source_url": "https://www.wewacard.com/wp-content/uploads/2026/06/WeWa-Cash-Rebate-TC__C20250432.pdf",
+          "source_file": "raw/primecredit-wewa/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2025-07-01",
+          "promo_end": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "id": "sc-cathay-mc",
+      "name": "Standard Chartered Cathay Mastercard",
+      "issuer": "Standard Chartered",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sc-cathay-mc",
+          "reward_type": "miles",
+          "miles_program": "Asia Miles",
+          "rules": [
+            {
+              "category": "Dining",
+              "rate": "HK$4 = 1 mile",
+              "note": "HKD transactions at dining outlets; excludes banquets, hotel restaurants, food courts, supermarkets, department stores, clubs. Based on Mastercard merchant codes."
+            },
+            {
+              "category": "Hotels",
+              "rate": "HK$4 = 1 mile",
+              "note": "HKD transactions directly at hotels or via official hotel websites; excludes third-party platforms like OTAs."
+            },
+            {
+              "category": "Overseas",
+              "rate": "HK$4 = 1 mile",
+              "note": "Non-HKD currency transactions."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "insurance payment",
+            "bill payment (Online Banking, Phone Banking, JET Payment)",
+            "phone order",
+            "mail order",
+            "FPS/transfer to e-wallet (Octopus, Alipay, etc.)",
+            "gambling/betting",
+            "security brokers/dealers",
+            "non-financial institutions (foreign exchange, money orders, travelers cheques)",
+            "financial institutions (merchandise/services, cash disbursement)",
+            "wire transfer money orders",
+            "wholesale precious stones/metals, watches, jewellery",
+            "cash advance",
+            "balance transfer",
+            "Instalment Credit / Credit-to-Cash",
+            "tax payment",
+            "fees and charges",
+            "unposted/cancelled/refunded/falsified/unauthorised transactions"
+          ],
+          "source_url": "https://av.sc.com/hk/content/docs/hk-cc-cx-card-selected-category-tnc.pdf",
+          "source_file": "raw/sc-cathay-mc/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-01-01",
+          "promo_end": "2026-12-31"
+        }
+      ]
+    },
+    {
+      "id": "sc-simply-cash",
+      "name": "Standard Chartered Simply Cash Visa",
+      "issuer": "Standard Chartered",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sc-simply-cash",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "local",
+              "rate": "1.5%",
+              "note": "HKD-posted spend"
+            },
+            {
+              "category": "foreign",
+              "rate": "2%",
+              "note": "non-HKD posted spend"
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "transfers/top-ups to e-wallets (Octopus O! ePay, Alipay)",
+            "FPS/non-card association payments",
+            "insurance payment",
+            "bill payment (online/phone/JET)",
+            "phone/mail order",
+            "gambling",
+            "securities brokerages",
+            "non-financial institutions (foreign currency, money orders, travelers cheques)",
+            "financial institutions (bank merchandise/services, cash disbursement)",
+            "wire transfer/money orders",
+            "wholesale precious stones/metals/watches/jewelry",
+            "cash advance",
+            "balance transfer",
+            "Instalment Credit/Credit-to-Cash amounts",
+            "tax payment",
+            "financial charges and fees",
+            "unposted/cancelled/refunded/falsified/unauthorised transactions"
+          ],
+          "source_url": "https://av.sc.com/hk/content/docs/hk-promo-simply-cash-tnc.pdf",
+          "source_file": "raw/sc-simply-cash/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "id": "sc-smart",
+      "name": "Standard Chartered Smart Card",
+      "issuer": "Standard Chartered",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sc-smart",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "Designated Merchants",
+              "rate": "5%",
+              "note": "Up to a Spending Cap per promotion period (cap amount not specified in this T&C); includes Basic Cashback. List of merchants at sc.com/hk/en/smartcard."
+            },
+            {
+              "category": "Other Eligible Transactions",
+              "rate": "0.56% - 1.20%",
+              "note": "0.56% when monthly eligible spending HKD4,000-14,999; 1.20% when HKD15,000+."
+            }
+          ],
+          "monthly_min_spend": 4000,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "FPS/transfer",
+            "Octopus Wallet top-up",
+            "Alipay top-up",
+            "insurance",
+            "bill payment",
+            "phone order",
+            "mail order",
+            "gambling",
+            "securities",
+            "foreign currency/money orders",
+            "financial institution purchase",
+            "cash advance",
+            "balance transfer",
+            "instalment credit",
+            "tax",
+            "fees",
+            "wholesale precious stones/metals/watches/jewellery"
+          ],
+          "source_url": "https://av.sc.com/hk/zh/content/docs/hk-promo-smart-tnc.pdf",
+          "source_file": "raw/sc-smart/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "id": "sim-card",
+      "name": "sim Credit Card",
+      "issuer": "UA Finance (亞洲聯合財務)",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sim-card",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "online retail (single transaction >= HKD500)",
+              "rate": "8%",
+              "note": "Requires monthly offline retail spend >= HKD1,000 to unlock. Single transaction net >= HKD500. Includes 0.4% base rebate."
+            },
+            {
+              "category": "designated local public transport",
+              "rate": "8%",
+              "note": "Citybus, KMB, LWB, MTR (tap-to-pay gates only), Hong Kong Tramways, Star Ferry. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+            },
+            {
+              "category": "designated local merchants",
+              "rate": "3%",
+              "note": "Adidas, Fila, PUMA, Matsumoto Kiyoshi, Tokyo Lifestyle. In-store transactions only. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+            },
+            {
+              "category": "bill payment via sim Credit Card app",
+              "rate": "2%",
+              "note": "Excludes payments to Inland Revenue Department. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+            },
+            {
+              "category": "other retail spend (local & overseas)",
+              "rate": "0.4%",
+              "note": "All other retail transactions not in above categories. Requires monthly offline retail spend >= HKD1,000. Includes base 0.4% rebate."
+            }
+          ],
+          "monthly_min_spend": 1000,
+          "monthly_cap": 200,
+          "needs_registration": false,
+          "excludes": [
+            "cash advance",
+            "card fees/charges",
+            "tax payment",
+            "insurance",
+            "charity/donation",
+            "gift vouchers/cash coupons",
+            "fund subscriptions",
+            "gambling",
+            "FPS/transfer",
+            "e-wallet top-up/transfer",
+            "Octopus top-up (including AAVS)",
+            "instalment",
+            "unposted/cancelled/refund transactions"
+          ],
+          "source_url": "https://cdn.thesim.com/88_sim_Credit_Card_Terms_and_Conditions_of_Cash_Back_Promotion_TC_20260129_a1fe55d53b.pdf",
+          "source_file": "raw/sim-card/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-05-01",
+          "promo_end": "2026-09-30"
+        }
+      ]
+    }
+  ]
+}

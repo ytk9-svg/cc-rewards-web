@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Card Rewards — which card to use</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#2a2f3a;
+    --text:#e8ebf0; --muted:#9aa3b2; --accent:#4cc38a; --accent2:#6aa6ff; --warn:#e0a23c;
+    --gold:#f5c451;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang HK","Microsoft JhengHei",sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px}
+  h1{font-size:1.45rem;margin:.2em 0 .1em}
+  .sub{color:var(--muted);font-size:.85rem;margin-bottom:16px}
+  .tabs{display:flex;gap:8px;margin:14px 0}
+  .tabs button{flex:1;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.95rem;cursor:pointer}
+  .tabs button.active{background:var(--panel2);color:var(--text);border-color:var(--accent2)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  label{display:block;font-size:.8rem;color:var(--muted);margin:10px 0 4px}
+  select,input{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px;font-size:1rem}
+  .row{display:flex;gap:10px}.row>div{flex:1}
+  .miles{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);margin-top:12px;flex-wrap:wrap}
+  .miles input{width:90px}
+  .result{margin-top:6px}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px}
+  .card.win{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .card .nm{font-weight:600}
+  .card .val{font-weight:700;font-size:1.05rem;white-space:nowrap}
+  .card .val.miles{color:var(--accent2)} .card .val.cash{color:var(--accent)}
+  .card .meta{font-size:.78rem;color:var(--muted);margin-top:4px}
+  .badge{display:inline-block;font-size:.68rem;padding:2px 7px;border-radius:20px;border:1px solid var(--line);margin:4px 6px 0 0;color:var(--muted)}
+  .badge.warn{color:var(--warn);border-color:var(--warn)}
+  .badge.win{color:#1a1d22;background:var(--gold);border-color:var(--gold);font-weight:700}
+  .rule{font-size:.82rem;color:var(--muted);margin-top:7px;border-top:1px dashed var(--line);padding-top:7px}
+  .rule b{color:var(--text)}
+  a{color:var(--accent2)}
+  .cs-card{margin-bottom:12px}
+  .cs-card h3{margin:0 0 2px;font-size:1rem}
+  .cs-card .iss{font-size:.75rem;color:var(--muted);margin-bottom:6px}
+  .cs-rule{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;padding:4px 0;border-top:1px solid var(--line)}
+  .cs-rule .cat{color:var(--muted);flex:1}
+  .cs-rule .rt{font-weight:600;white-space:nowrap}
+  .note{font-size:.75rem;color:#7e879a;margin-top:8px}
+  .hi{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>💳 Which card should I use?</h1>
+  <div class="sub" id="updated">Your Hong Kong cards · rewards auto-tracked</div>
+
+  <div class="tabs">
+    <button id="tabDecide" class="active" onclick="show('decide')">Best card for a purchase</button>
+    <button id="tabSheet" onclick="show('sheet')">Cheat-sheet</button>
+  </div>
+
+  <div id="decide">
+    <div class="panel">
+      <div class="row">
+        <div>
+          <label>Spending category</label>
+          <select id="cat"></select>
+        </div>
+        <div>
+          <label>Amount (HK$)</label>
+          <input id="amt" type="number" value="1000" min="0" step="100" />
+        </div>
+      </div>
+      <div class="miles">
+        <span>Value of 1 mile:</span>
+        <span>HK$</span><input id="mv" type="number" value="0.10" min="0" step="0.01" />
+        <span>(adjust to taste — changes how miles cards rank)</span>
+      </div>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="note">Estimates use each card's headline rate for the chosen category (or its base rate if it has no bonus there). Caps, minimum spends, registration and promo end-dates are flagged but not fully modelled — always check the card's own terms. Not financial advice.</div>
+  </div>
+
+  <div id="sheet" style="display:none"></div>
+</div>
+
+<script>
+// Embedded snapshot of the live data (the deployed page refreshes this from ./cards.json).
+const EMBEDDED = {
+  "cards": [
+    {
+      "id": "hangseng-travelplus",
+      "name": "Hang Seng Travel+ Visa Signature",
+      "issuer": "Hang Seng",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hangseng-travelplus",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "Foreign currency spending in designated regions (Japan, South Korea, Thailand, Mainland China, Macau, Taiwan)",
+              "rate": "7%",
+              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars."
+            },
+            {
+              "category": "Foreign currency spending in other regions",
+              "rate": "5%",
+              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars."
+            },
+            {
+              "category": "Local dining",
+              "rate": "5%",
+              "note": "At physical restaurants, excludes online, banquets, hotel restaurants, department store food courts, etc. Includes basic 0.4% +FUN Dollars."
+            }
+          ],
+          "monthly_min_spend": 6000,
+          "monthly_cap": 500,
+          "needs_registration": true,
+          "excludes": [
+            "online bill payment",
+            "tax payment",
+            "insurance transactions",
+            "Alipay/WeChat Pay",
+            "phone/fax orders",
+            "gift voucher purchase",
+            "instalment",
+            "balance transfer",
+            "Octopus top-up",
+            "stored value card/e-wallet purchase/top-up",
+            "financial institution transactions",
+            "cash advance",
+            "cash advance fee",
+            "casino chips",
+            "autopay",
+            "standing instruction",
+            "annual fee",
+            "card fee",
+            "finance charge",
+            "late fee",
+            "cancelled/returned/fraudulent transactions"
+          ],
+          "source_url": "https://www.hangseng.com/content/dam/wpb/hase/rwd/personal/cards/pdfs/travelplus_fundollars_tnc_tc.pdf",
+          "source_file": "raw/hangseng-travelplus/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-01-01",
+          "promo_end": "2026-12-31"
+        }
+      ]
+    },
+    {
+      "id": "hsbc-everymile",
+      "name": "HSBC EveryMile Credit Card",
+      "issuer": "HSBC",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hsbc-everymile",
+          "reward_type": "miles",
+          "miles_program": "RewardCash convertible to multiple frequent flyer/hotel programmes (1 RewardCash = 20 miles)",
+          "rules": [
+            {
+              "category": "Designated Everyday & Travel Spend Merchants",
+              "rate": "HK$2 = 1 mile",
+              "note": "Earned via 2.5% RewardCash rebate converted at 1:20 miles rate. Only for listed Café & Light Meals, Cross-border Transportation, Local Transportation, Driving-related, and Travel Services merchants in Hong Kong SAR. See excludes for ineligible transactions within these categories."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "transactions via e-wallets at designated merchants",
+            "fuel card purchase/reload",
+            "Autotoll",
+            "MTR transactions other than gate tapping (e.g., Customer Service Centre, MTR Mobile tickets)",
+            "online ride-hailing platforms",
+            "non-Hong Kong SAR transactions"
+          ],
+          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/everymile/everymile-everyday-spend.pdf",
+          "source_file": "raw/hsbc-everymile/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "hsbc-gold",
+      "name": "HSBC Visa Gold (滙財金卡)",
+      "issuer": "HSBC",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hsbc-gold",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "指定商户（餐饮/潮流及运动服饰/休闲娱乐指定商户）",
+              "rate": "8%",
+              "note": "已包括基本奖赏；每月首HKD1,250签账享8%，超出部分享0.4%；每月最高可赚$100奖赏钱；只限香港分店，不包括百货公司专柜及特卖场；透过电子钱包支付只享基本奖赏"
+            },
+            {
+              "category": "网上签账",
+              "rate": "4%",
+              "note": "已包括基本奖赏；每月首HKD10,000签账享4%，超出部分享0.4%；每月最高可赚$400奖赏钱；不包括网上缴费、保费、证券买卖、租金／物业管理费、广告服务及八达通自动增值／增值八达通；透过电子钱包支付只享基本奖赏"
+            },
+            {
+              "category": "其他合资格签账",
+              "rate": "0.4%",
+              "note": "基本奖赏，每HKD250=$1奖赏钱，无额外奖赏上限"
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "e-wallet top-up"
+          ],
+          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/reward-scheme-terms-and-conditions.pdf",
+          "source_file": "raw/hsbc-gold/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-04-01",
+          "promo_end": "2026-06-30"
+        }
+      ]
+    },
+    {
+      "id": "hsbc-red",
+      "name": "HSBC Red Card",
+      "issuer": "HSBC",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "hsbc-red",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "specified merchants",
+              "rate": "8% (first HK$1,250/month)",
+              "note": "Includes base 0.4% RewardCash. Specified merchants: Sushiro, TamJai SamGor, TamJai Yunnan, GU, Decathlon, NAMCO, TAITO STATION (Hong Kong branches only, excluding department store counters and outlets). Cap: $100 RewardCash per calendar month."
+            },
+            {
+              "category": "online spend",
+              "rate": "4% (first HK$10,000/month)",
+              "note": "Includes base 0.4% RewardCash. Online spend determined by Mastercard merchant category or acquirer. Cap: $400 RewardCash per calendar month."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "electronic wallet top-up/transactions",
+            "online bill payment",
+            "insurance premium",
+            "securities trading",
+            "rent/property management fee",
+            "advertising services",
+            "Octopus AAVS/top-up"
+          ],
+          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/reward-scheme-terms-and-conditions.pdf",
+          "source_file": "raw/hsbc-red/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-04-01",
+          "promo_end": "2026-06-30"
+        }
+      ]
+    },
+    {
+      "id": "mox-credit",
+      "name": "Mox Credit",
+      "issuer": "Mox Bank",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "mox-credit",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "all spending",
+              "rate": "1% (or 2% with eligible salary credit or Mox+)",
+              "note": "Base 1% unlimited; 2% unlocked if monthly salary ≥HKD25,000 credited via FPS or Mox+ membership."
+            },
+            {
+              "category": "supermarket",
+              "rate": "3%",
+              "note": "Applies to supermarkets and grocery stores based on Mastercard merchant category codes (e.g. HKTVmall, ParknShop, Wellcome, city'super)."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "cash advance",
+            "fees/charges",
+            "balance transfer",
+            "FPS/transfers",
+            "bill payment",
+            "insurance",
+            "tax payment",
+            "octopus/e-wallet top-up",
+            "instalment"
+          ],
+          "source_url": "https://mox.com/zh/promotions/unlimitedcashback/",
+          "source_file": "raw/mox-credit/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "primecredit-earnmore",
+      "name": "PrimeCredit EarnMORE UnionPay Card",
+      "issuer": "PrimeCredit (安信)",
+      "network": "UnionPay",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "primecredit-earnmore",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "retail",
+              "rate": "2%",
+              "note": "Base 1% + additional 1% during promotion. HK$2 cash rebate per HK$100 spend. Extra 1% capped at HK$1,500 for the whole promotion period."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "cash advance",
+            "Octopus Automatic Add-Value",
+            "money transfer/P2P/e-wallet reload/bill payment via e-wallet",
+            "casino",
+            "cash instalment",
+            "instalment",
+            "credit card fees",
+            "unposted/cancelled/returned/counterfeit transactions",
+            "unauthorized transactions",
+            "cash out"
+          ],
+          "source_url": "https://www.primecredit.com/wp-content/uploads/2024/12/EarnMORE-UnionPay-Card-Additional-Cash-Rebate-Program-Terms-Conditions_C20211162.pdf",
+          "source_file": "raw/primecredit-earnmore/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2025-01-01",
+          "promo_end": "2025-12-31"
+        }
+      ]
+    },
+    {
+      "id": "primecredit-wewa",
+      "name": "PrimeCredit WeWa UnionPay Card",
+      "issuer": "PrimeCredit (安信)",
+      "network": "UnionPay",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "primecredit-wewa",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "Mobile Payment",
+              "rate": "3.6%",
+              "note": "Apple Pay, UnionPay QuickPass/QR via OmyCard app; not supported for WeWa Visa on Android"
+            },
+            {
+              "category": "Travel Spending",
+              "rate": "3.6%",
+              "note": "Travel agencies, airlines, hotels (room accommodation only)"
+            },
+            {
+              "category": "Overseas Spending",
+              "rate": "3.6%",
+              "note": "Non-HK registered merchants, foreign-currency transactions"
+            },
+            {
+              "category": "Online Entertainment",
+              "rate": "3.6%",
+              "note": "Apple App Store (APPLE.COM/BILL), Disney+, Google Play, JOOX, KKBOX, MYTV SUPER, Netflix, Nintendo, Patreon, PlayStation, Spotify, STEAM, Xbox, YouTube"
+            }
+          ],
+          "monthly_min_spend": 1500,
+          "monthly_cap": 200,
+          "needs_registration": true,
+          "excludes": [
+            "Octopus AAV",
+            "stored value card purchase/reload",
+            "e-wallet top-up",
+            "autopay",
+            "cash advance",
+            "instalment plan",
+            "offline transactions",
+            "bill payment",
+            "fund transactions",
+            "casino",
+            "cash voucher purchase",
+            "deposit",
+            "money transfer",
+            "chargeback",
+            "unposted/cancelled/returned",
+            "unauthorized"
+          ],
+          "source_url": "https://www.wewacard.com/wp-content/uploads/2026/06/WeWa-Cash-Rebate-TC__C20250432.pdf",
+          "source_file": "raw/primecredit-wewa/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2025-07-01",
+          "promo_end": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "id": "sc-cathay-mc",
+      "name": "Standard Chartered Cathay Mastercard",
+      "issuer": "Standard Chartered",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sc-cathay-mc",
+          "reward_type": "miles",
+          "miles_program": "Asia Miles",
+          "rules": [
+            {
+              "category": "Dining",
+              "rate": "HK$4 = 1 mile",
+              "note": "HKD transactions at dining outlets; excludes banquets, hotel restaurants, food courts, supermarkets, department stores, clubs. Based on Mastercard merchant codes."
+            },
+            {
+              "category": "Hotels",
+              "rate": "HK$4 = 1 mile",
+              "note": "HKD transactions directly at hotels or via official hotel websites; excludes third-party platforms like OTAs."
+            },
+            {
+              "category": "Overseas",
+              "rate": "HK$4 = 1 mile",
+              "note": "Non-HKD currency transactions."
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "insurance payment",
+            "bill payment (Online Banking, Phone Banking, JET Payment)",
+            "phone order",
+            "mail order",
+            "FPS/transfer to e-wallet (Octopus, Alipay, etc.)",
+            "gambling/betting",
+            "security brokers/dealers",
+            "non-financial institutions (foreign exchange, money orders, travelers cheques)",
+            "financial institutions (merchandise/services, cash disbursement)",
+            "wire transfer money orders",
+            "wholesale precious stones/metals, watches, jewellery",
+            "cash advance",
+            "balance transfer",
+            "Instalment Credit / Credit-to-Cash",
+            "tax payment",
+            "fees and charges",
+            "unposted/cancelled/refunded/falsified/unauthorised transactions"
+          ],
+          "source_url": "https://av.sc.com/hk/content/docs/hk-cc-cx-card-selected-category-tnc.pdf",
+          "source_file": "raw/sc-cathay-mc/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-01-01",
+          "promo_end": "2026-12-31"
+        }
+      ]
+    },
+    {
+      "id": "sc-simply-cash",
+      "name": "Standard Chartered Simply Cash Visa",
+      "issuer": "Standard Chartered",
+      "network": "Visa",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sc-simply-cash",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "local",
+              "rate": "1.5%",
+              "note": "HKD-posted spend"
+            },
+            {
+              "category": "foreign",
+              "rate": "2%",
+              "note": "non-HKD posted spend"
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "transfers/top-ups to e-wallets (Octopus O! ePay, Alipay)",
+            "FPS/non-card association payments",
+            "insurance payment",
+            "bill payment (online/phone/JET)",
+            "phone/mail order",
+            "gambling",
+            "securities brokerages",
+            "non-financial institutions (foreign currency, money orders, travelers cheques)",
+            "financial institutions (bank merchandise/services, cash disbursement)",
+            "wire transfer/money orders",
+            "wholesale precious stones/metals/watches/jewelry",
+            "cash advance",
+            "balance transfer",
+            "Instalment Credit/Credit-to-Cash amounts",
+            "tax payment",
+            "financial charges and fees",
+            "unposted/cancelled/refunded/falsified/unauthorised transactions"
+          ],
+          "source_url": "https://av.sc.com/hk/content/docs/hk-promo-simply-cash-tnc.pdf",
+          "source_file": "raw/sc-simply-cash/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "id": "sc-smart",
+      "name": "Standard Chartered Smart Card",
+      "issuer": "Standard Chartered",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sc-smart",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "Designated Merchants",
+              "rate": "5%",
+              "note": "Up to a Spending Cap per promotion period (cap amount not specified in this T&C); includes Basic Cashback. List of merchants at sc.com/hk/en/smartcard."
+            },
+            {
+              "category": "Other Eligible Transactions",
+              "rate": "0.56% - 1.20%",
+              "note": "0.56% when monthly eligible spending HKD4,000-14,999; 1.20% when HKD15,000+."
+            }
+          ],
+          "monthly_min_spend": 4000,
+          "monthly_cap": null,
+          "needs_registration": false,
+          "excludes": [
+            "FPS/transfer",
+            "Octopus Wallet top-up",
+            "Alipay top-up",
+            "insurance",
+            "bill payment",
+            "phone order",
+            "mail order",
+            "gambling",
+            "securities",
+            "foreign currency/money orders",
+            "financial institution purchase",
+            "cash advance",
+            "balance transfer",
+            "instalment credit",
+            "tax",
+            "fees",
+            "wholesale precious stones/metals/watches/jewellery"
+          ],
+          "source_url": "https://av.sc.com/hk/zh/content/docs/hk-promo-smart-tnc.pdf",
+          "source_file": "raw/sc-smart/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "id": "sim-card",
+      "name": "sim Credit Card",
+      "issuer": "UA Finance (亞洲聯合財務)",
+      "network": "Mastercard",
+      "status": "active",
+      "annual_fee_month": null,
+      "free_years": null,
+      "reward_programs": [
+        {
+          "program_id": "sim-card",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "online retail (single transaction >= HKD500)",
+              "rate": "8%",
+              "note": "Requires monthly offline retail spend >= HKD1,000 to unlock. Single transaction net >= HKD500. Includes 0.4% base rebate."
+            },
+            {
+              "category": "designated local public transport",
+              "rate": "8%",
+              "note": "Citybus, KMB, LWB, MTR (tap-to-pay gates only), Hong Kong Tramways, Star Ferry. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+            },
+            {
+              "category": "designated local merchants",
+              "rate": "3%",
+              "note": "Adidas, Fila, PUMA, Matsumoto Kiyoshi, Tokyo Lifestyle. In-store transactions only. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+            },
+            {
+              "category": "bill payment via sim Credit Card app",
+              "rate": "2%",
+              "note": "Excludes payments to Inland Revenue Department. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate."
+            },
+            {
+              "category": "other retail spend (local & overseas)",
+              "rate": "0.4%",
+              "note": "All other retail transactions not in above categories. Requires monthly offline retail spend >= HKD1,000. Includes base 0.4% rebate."
+            }
+          ],
+          "monthly_min_spend": 1000,
+          "monthly_cap": 200,
+          "needs_registration": false,
+          "excludes": [
+            "cash advance",
+            "card fees/charges",
+            "tax payment",
+            "insurance",
+            "charity/donation",
+            "gift vouchers/cash coupons",
+            "fund subscriptions",
+            "gambling",
+            "FPS/transfer",
+            "e-wallet top-up/transfer",
+            "Octopus top-up (including AAVS)",
+            "instalment",
+            "unposted/cancelled/refund transactions"
+          ],
+          "source_url": "https://cdn.thesim.com/88_sim_Credit_Card_Terms_and_Conditions_of_Cash_Back_Promotion_TC_20260129_a1fe55d53b.pdf",
+          "source_file": "raw/sim-card/latest.txt",
+          "last_verified": "2026-06-29",
+          "confidence": "high",
+          "promo_start": "2026-05-01",
+          "promo_end": "2026-09-30"
+        }
+      ]
+    }
+  ]
+};
+let CARDS = EMBEDDED.cards;
+
+// ---- spending categories (friendly bucket -> keywords matched against rule categories) ----
+const CATS = [
+  {key:"dining",   label:"Dining (local)",          kw:["dining","dine","restaurant","餐飲","餐饮","食肆"], foreign:false},
+  {key:"overseas", label:"Overseas / foreign currency", kw:["overseas","foreign","海外","外幣","designated region","other region","non-hk"], foreign:true},
+  {key:"online",   label:"Online shopping",          kw:["online","网上","網上","e-commerce"], foreign:false},
+  {key:"transport",label:"Public transport",         kw:["transport","transit","交通","mtr","bus","ferry"], foreign:false},
+  {key:"supermarket",label:"Supermarket / grocery",  kw:["supermarket","grocery","超市","超級市場"], foreign:false},
+  {key:"mobile",   label:"Mobile payment (Apple/Google Pay)", kw:["mobile payment","apple pay","手機支付","quickpass","qr"], foreign:false},
+  {key:"entertain",label:"Online entertainment / subscriptions", kw:["entertainment","娛樂","netflix","spotify","streaming"], foreign:false},
+  {key:"travel",   label:"Travel (hotels / airlines)", kw:["travel","旅遊","hotel","airline","酒店","機票"], foreign:false},
+  {key:"general",  label:"Everything else (general)", kw:[], foreign:false},
+];
+// A rule counts as the card's "base/catch-all" rate if its category looks generic.
+const BASE_SUBSTR = ["其他","基本","all spending","other retail","other eligible","all other","general spend"];
+const BASE_EXACT  = ["retail","local","local spend"];
+function isBaseCat(c){ c=(c||"").toLowerCase().trim(); return BASE_EXACT.includes(c) || BASE_SUBSTR.some(k=>c.includes(k)); }
+
+function parseRate(rate, milesValue){
+  if(!rate) return null;
+  const m = rate.match(/(?:HK\$?|HKD)\s*\$?\s*([\d.]+)\s*=\s*1\s*mile/i);
+  if(m){ const n=parseFloat(m[1]); if(n>0){ const milesPerHKD=1/n; return {kind:"miles", perHKD:milesPerHKD, valuePerHKD:milesPerHKD*milesValue, n}; } }
+  const p = rate.match(/([\d.]+)\s*%/);
+  if(p){ const pct=parseFloat(p[1]); return {kind:"cash", pct, valuePerHKD:pct/100}; }
+  return null;
+}
+
+// Pick the best rule of a card for a chosen category.
+// score 2 = category-specific match, 1 = base/catch-all rate, 0 = neither (no number shown).
+function pickRule(card, cat){
+  const prog = card.reward_programs[0]; if(!prog) return {rule:null, score:0};
+  const rules = prog.rules||[];
+  const scoreOf = (r)=>{
+    const c=(r.category||"").toLowerCase();
+    if(cat.key!=="general" && cat.kw.some(k=>c.includes(k))) return 2;
+    if(isBaseCat(r.category)) return 1;
+    return 0;
+  };
+  let best=null,bestScore=0,bestVal=-1;
+  for(const r of rules){
+    const s=scoreOf(r); if(s===0) continue;
+    const pr=parseRate(r.rate, 0.1);
+    const v=pr?pr.valuePerHKD:0;
+    if(s>bestScore || (s===bestScore && v>bestVal)){ best=r;bestScore=s;bestVal=v; }
+  }
+  return {rule: best, score: bestScore};
+}
+
+function compute(){
+  const cat = CATS.find(c=>c.key===document.getElementById("cat").value);
+  const amt = Math.max(0, parseFloat(document.getElementById("amt").value)||0);
+  const mv  = Math.max(0, parseFloat(document.getElementById("mv").value)||0);
+  const rows=[], others=[];
+  for(const card of CARDS){
+    const prog=card.reward_programs[0]; if(!prog) continue;
+    const pick=pickRule(card, cat);
+    if(pick.rule && pick.score>=1){
+      const pr=parseRate(pick.rule.rate, mv);
+      const reward=(pr?pr.valuePerHKD:0)*amt;
+      rows.push({card, prog, rule:pick.rule, matched:pick.score>=2, pr, reward});
+    } else {
+      others.push(card);
+    }
+  }
+  rows.sort((a,b)=>b.reward-a.reward);
+  render(rows, others, cat, amt, mv);
+}
+
+function flags(prog){
+  const f=[];
+  if(prog.needs_registration) f.push('<span class="badge warn">needs registration</span>');
+  if(prog.monthly_min_spend) f.push('<span class="badge warn">min HK$'+prog.monthly_min_spend.toLocaleString()+'/mo</span>');
+  if(prog.monthly_cap) f.push('<span class="badge warn">cap HK$'+prog.monthly_cap.toLocaleString()+'/mo</span>');
+  if(prog.promo_end) f.push('<span class="badge">promo ends '+prog.promo_end+'</span>');
+  if(prog.confidence && prog.confidence!=="high") f.push('<span class="badge warn">'+prog.confidence+' confidence</span>');
+  return f.join("");
+}
+
+function valueLabel(r){
+  if(!r.pr) return {txt:'see terms', cls:''};
+  if(r.pr.kind==="miles"){
+    const miles = Math.round(r.reward / (document.getElementById('mv').value||0.1));
+    return {txt: miles.toLocaleString()+' mi (~HK$'+r.reward.toFixed(0)+')', cls:'miles'};
+  }
+  return {txt:'HK$'+r.reward.toFixed(1)+' back', cls:'cash'};
+}
+
+function render(rows, others, cat, amt, mv){
+  const el=document.getElementById("result");
+  let html = rows.map((r,i)=>{
+    const v=valueLabel(r);
+    const win = i===0 && r.reward>0;
+    return `<div class="card ${win?'win':''}">
+      <div class="top">
+        <div class="nm">${win?'<span class="badge win">BEST</span> ':''}${r.card.name}</div>
+        <div class="val ${v.cls}">${v.txt}</div>
+      </div>
+      <div class="meta">${r.matched?'':'(base rate — no specific '+cat.label.toLowerCase()+' bonus) '}${r.card.network} · ${r.card.issuer}</div>
+      <div>${flags(r.prog)}</div>
+      <div class="rule"><b>${r.rule.category}</b> — ${r.rule.rate}${r.rule.note?'<br>'+r.rule.note:''}</div>
+    </div>`;
+  }).join("");
+  if(!rows.length) html = "<div class='panel'>No cards have a known rate for this category.</div>";
+  if(others.length){
+    html += `<div class="rule" style="border-top:none;margin-top:14px"><b>No specific rate found for ${cat.label.toLowerCase()}</b> — these earn their base rate (usually ~0.4%); check the card:<br>${others.map(c=>c.name).join(" · ")}</div>`;
+  }
+  el.innerHTML = html;
+}
+
+function renderSheet(){
+  const el=document.getElementById("sheet");
+  el.innerHTML = '<div class="panel">'+ CARDS.map(card=>{
+    const prog=card.reward_programs[0]||{}; const rules=prog.rules||[];
+    return `<div class="cs-card">
+      <h3>${card.name}</h3>
+      <div class="iss">${card.network} · ${card.issuer} · ${prog.reward_type||''}${prog.promo_end?' · promo→'+prog.promo_end:''}</div>
+      ${rules.map(r=>`<div class="cs-rule"><span class="cat">${r.category}</span><span class="rt">${r.rate}</span></div>`).join("")}
+      <div style="margin-top:6px">${flags(prog)}</div>
+    </div>`;
+  }).join('<hr style="border:none;border-top:1px solid var(--line);margin:14px 0">') + '</div>';
+}
+
+function show(which){
+  document.getElementById("decide").style.display = which==="decide"?"":"none";
+  document.getElementById("sheet").style.display  = which==="sheet"?"":"none";
+  document.getElementById("tabDecide").classList.toggle("active", which==="decide");
+  document.getElementById("tabSheet").classList.toggle("active", which==="sheet");
+  if(which==="sheet") renderSheet();
+}
+
+function init(){
+  document.getElementById("cat").innerHTML = CATS.map(c=>`<option value="${c.key}">${c.label}</option>`).join("");
+  ["cat","amt","mv"].forEach(id=>document.getElementById(id).addEventListener("input", compute));
+  const lv = CARDS[0]?.reward_programs?.[0]?.last_verified;
+  if(lv) document.getElementById("updated").textContent = "Your Hong Kong cards · "+CARDS.length+" cards · last verified "+lv;
+  compute();
+}
+
+// Use embedded data immediately; refresh from live cards.json when deployed (ignored offline/in preview).
+init();
+fetch("./cards.json").then(r=>r.ok?r.json():null).then(d=>{ if(d&&Array.isArray(d.cards)&&d.cards.length){ CARDS=d.cards; init(); } }).catch(()=>{});
+</script>
+</body>
+</html>
