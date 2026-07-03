@@ -16,23 +16,23 @@
             {
               "category": "Foreign currency spending in designated regions (Japan, South Korea, Thailand, Mainland China, Macau, Taiwan)",
               "rate": "7%",
-              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars.",
+              "note": "At physical stores, foreign currency only (HKD-denominated transactions excluded). Includes basic 0.4% +FUN Dollars.",
               "category_zh": "指定地區外幣簽賬（日本、南韓、泰國、中國內地、澳門、台灣）",
-              "note_zh": "於實體商戶，只限外幣。包括基本0.4% +FUN Dollars。"
+              "note_zh": "於實體商戶，只限外幣（港幣結算交易除外）。包括基本0.4% +FUN Dollars。"
             },
             {
               "category": "Foreign currency spending in other regions",
               "rate": "5%",
-              "note": "At physical stores, foreign currency only. Includes basic 0.4% +FUN Dollars.",
+              "note": "At physical stores, foreign currency only. Online FX spend earns only the basic 0.4%. Includes basic 0.4% +FUN Dollars.",
               "category_zh": "其他地區外幣簽賬",
-              "note_zh": "於實體商戶，只限外幣。包括基本0.4% +FUN Dollars。"
+              "note_zh": "於實體商戶，只限外幣。網上外幣簽賬只享基本0.4%。包括基本0.4% +FUN Dollars。"
             },
             {
               "category": "Local dining",
               "rate": "5%",
-              "note": "At physical restaurants, excludes online, banquets, hotel restaurants, department store food courts, etc. Includes basic 0.4% +FUN Dollars.",
+              "note": "At physical restaurants, excludes online, banquets, private parties/rooms, hotel restaurants, department store food courts, clubhouses. Includes basic 0.4% +FUN Dollars.",
               "category_zh": "本地餐飲",
-              "note_zh": "於實體餐廳，不包括網上簽賬、宴會、酒店餐廳、百貨公司美食廣場等。包括基本0.4% +FUN Dollars。"
+              "note_zh": "於實體餐廳，不包括網上簽賬、宴會、私人派對／房間、酒店餐廳、百貨公司美食廣場、會所。包括基本0.4% +FUN Dollars。"
             }
           ],
           "monthly_min_spend": 6000,
@@ -63,7 +63,7 @@
           ],
           "source_url": "https://www.hangseng.com/content/dam/wpb/hase/rwd/personal/cards/pdfs/travelplus_fundollars_tnc_tc.pdf",
           "source_file": "raw/hangseng-travelplus/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high",
           "promo_start": "2026-01-01",
           "promo_end": "2026-12-31"
@@ -82,14 +82,28 @@
         {
           "program_id": "hsbc-everymile",
           "reward_type": "miles",
-          "miles_program": "RewardCash convertible to multiple frequent flyer/hotel programmes (1 RewardCash = 20 miles)",
+          "miles_program": "RewardCash convertible to 19 frequent flyer/hotel programmes (1 RewardCash = 20 miles preferential rate)",
           "rules": [
             {
-              "category": "Designated Everyday & Travel Spend Merchants",
+              "category": "Designated everyday, local transport & travel merchants",
               "rate": "HK$2 = 1 mile",
-              "note": "Earned via 2.5% RewardCash rebate converted at 1:20 miles rate. Only for listed Café & Light Meals, Cross-border Transportation, Local Transportation, Driving-related, and Travel Services merchants in Hong Kong SAR. See excludes for ineligible transactions within these categories.",
-              "category_zh": "指定日常及旅遊消費商戶",
-              "note_zh": "透過2.5% RewardCash回贈以1:20里數兌換率轉換賺取。只適用於香港特別行政區所列明的咖啡店及輕食、跨境交通、本地交通、駕駛相關及旅遊服務商戶。有關此等類別內不符合資格之交易，請參閱除外條款。"
+              "note": "2.5% RewardCash converted at 1:20. HK-only: cafés & light meals (Starbucks, Pacific Coffee, %Arabica...), local transport (KMB, Citybus, MTR gate fares, taxis, tram, petrol stations, Tesla SuperCharger, carparks, tunnel tolls), cross-border transport, travel services (Klook, kkday, TurboJet...). Unlimited; e-wallet payments excluded.",
+              "category_zh": "指定日常、本地交通及旅遊商戶",
+              "note_zh": "2.5% RewardCash以1:20兌換。只限香港：咖啡店及輕食（Starbucks、Pacific Coffee、%Arabica等）、本地交通（九巴、城巴、港鐵閘機、的士、電車、油站、Tesla充電、停車場、隧道費）、跨境交通、旅遊服務（Klook、kkday、噴射飛航等）。無上限；電子錢包付款除外。"
+            },
+            {
+              "category": "All other local spending",
+              "rate": "HK$5 = 1 mile",
+              "note": "Base rate (1% RewardCash at 1:20), unlimited.",
+              "category_zh": "其他本地簽賬",
+              "note_zh": "基本回贈（1% RewardCash以1:20兌換），無上限。"
+            },
+            {
+              "category": "Overseas spending",
+              "rate": "HK$5 = 1 mile (HK$2 = 1 mile with registration, Jul–Dec 2026)",
+              "note": "Standard HK$5=1 mile. Limited-time HK$2=1 mile: 1 Jul–31 Dec 2026 in two phases (Jul–Sep, Oct–Dec); MUST register in Reward+ app BEFORE spending; needs HK$12,000+ net overseas spend per phase; extra RewardCash capped $225/phase ($450 total).",
+              "category_zh": "海外簽賬",
+              "note_zh": "標準HK$5=1里。限時HK$2=1里：2026年7月1日至12月31日分兩階段（7-9月、10-12月）；須先於Reward+應用程式登記方可簽賬；每階段須滿HK$12,000海外淨簽賬；額外RewardCash每階段上限$225（合共$450）。"
             }
           ],
           "monthly_min_spend": null,
@@ -100,13 +114,12 @@
             "fuel card purchase/reload",
             "Autotoll",
             "MTR transactions other than gate tapping (e.g., Customer Service Centre, MTR Mobile tickets)",
-            "online ride-hailing platforms",
-            "non-Hong Kong SAR transactions"
+            "online ride-hailing platforms"
           ],
           "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/everymile/everymile-everyday-spend.pdf",
           "source_file": "raw/hsbc-everymile/latest.txt",
-          "last_verified": "2026-06-29",
-          "confidence": "medium"
+          "last_verified": "2026-07-03",
+          "confidence": "high"
         }
       ]
     },
@@ -124,39 +137,38 @@
           "reward_type": "cashback",
           "rules": [
             {
-              "category": "指定商户（餐饮/潮流及运动服饰/休闲娱乐指定商户）",
-              "rate": "8%",
-              "note": "已包括基本奖赏；每月首HKD1,250签账享8%，超出部分享0.4%；每月最高可赚$100奖赏钱；只限香港分店，不包括百货公司专柜及特卖场；透过电子钱包支付只享基本奖赏",
-              "category_zh": "指定商戶（餐飲/潮流及運動服飾/休閒娛樂指定商戶）",
-              "note_zh": "已包括基本獎賞；每月首HKD1,250簽賬享8%，超出部分享0.4%；每月最高可賺$100獎賞錢；只限香港分店，不包括百貨公司專櫃及特賣場；透過電子錢包支付只享基本獎賞"
+              "category": "Red Hot Rewards registered categories (your allocation TBC)",
+              "rate": "up to 2.4%",
+              "note": "最紅自主獎賞: you are REGISTERED ✓. Extra 5X RewardCash (extra 2% + 0.4% base) on the categories you allocated your 5X to; applies to first HK$100,000 eligible spend per year. Owner to confirm which categories were allocated.",
+              "category_zh": "最紅自主獎賞已登記類別（分配待確認）",
+              "note_zh": "最紅自主獎賞：你已登記✓。額外5X獎賞錢（額外2% + 基本0.4%）適用於你所分配的類別；全年首HK$100,000合資格簽賬。請確認你分配了哪些類別。"
             },
             {
-              "category": "网上签账",
-              "rate": "4%",
-              "note": "已包括基本奖赏；每月首HKD10,000签账享4%，超出部分享0.4%；每月最高可赚$400奖赏钱；不包括网上缴费、保费、证券买卖、租金／物业管理费、广告服务及八达通自动增值／增值八达通；透过电子钱包支付只享基本奖赏",
-              "category_zh": "網上簽賬",
-              "note_zh": "已包括基本獎賞；每月首HKD10,000簽賬享4%，超出部分享0.4%；每月最高可賺$400獎賞錢；不包括網上繳費、保費、證券買賣、租金／物業管理費、廣告服務及八達通自動增值／增值八達通；透過電子錢包支付只享基本獎賞"
-            },
-            {
-              "category": "其他合资格签账",
+              "category": "All other eligible spending",
               "rate": "0.4%",
-              "note": "基本奖赏，每HKD250=$1奖赏钱，无额外奖赏上限",
+              "note": "Base: HK$250 = $1 RewardCash, unlimited. NOTE: the previously shown 8%/4% scheme belongs to the Red Card, not Gold — corrected 2026-07-03.",
               "category_zh": "其他合資格簽賬",
-              "note_zh": "基本獎賞，每HKD250=$1獎賞錢，無額外獎賞上限"
+              "note_zh": "基本獎賞：每HK$250 = $1獎賞錢，無上限。註：先前顯示的8%/4%計劃屬Red卡而非金卡——已於2026-07-03更正。"
             }
           ],
           "monthly_min_spend": null,
           "monthly_cap": null,
-          "needs_registration": false,
+          "needs_registration": true,
           "excludes": [
-            "e-wallet top-up"
+            "e-wallet top-up/transactions",
+            "online bill payment",
+            "insurance premium",
+            "securities trading",
+            "rent/property management fee",
+            "advertising services",
+            "Octopus AAVS/top-up"
           ],
-          "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/reward-scheme-terms-and-conditions.pdf",
+          "source_url": "https://www.redhotoffers.hsbc.com.hk/tc/rewards/red-hot-rewards-of-your-choice/",
           "source_file": "raw/hsbc-gold/latest.txt",
-          "last_verified": "2026-06-29",
-          "confidence": "high",
-          "promo_start": "2026-04-01",
-          "promo_end": "2026-06-30"
+          "last_verified": "2026-07-03",
+          "confidence": "medium",
+          "promo_start": "2026-01-01",
+          "promo_end": "2026-12-31"
         }
       ]
     },
@@ -176,9 +188,9 @@
             {
               "category": "specified merchants",
               "rate": "8% (first HK$1,250/month)",
-              "note": "Includes base 0.4% RewardCash. Specified merchants: Sushiro, TamJai SamGor, TamJai Yunnan, GU, Decathlon, NAMCO, TAITO STATION (Hong Kong branches only, excluding department store counters and outlets). Cap: $100 RewardCash per calendar month.",
+              "note": "Jul–Dec 2026 list — Local: Sushiro, TamJai SamGor, TamJai Yunnan, Bakehouse, Decathlon, NAMCO, TAITO STATION, Sephora, @cosme STORE, @cosme HONG KONG, 3COINS. Overseas: FamilyMart (Japan stores), Suica, WOWPASS, Tmoney. GU was REMOVED from 1 Jul 2026. Includes base 0.4%. Cap: $100 RewardCash/month.",
               "category_zh": "指定商戶",
-              "note_zh": "包括基本0.4% RewardCash。指定商戶：Sushiro、TamJai SamGor、TamJai Yunnan、GU、Decathlon、NAMCO、TAITO STATION（只限香港分店，不包括百貨公司專櫃及特賣場）。每曆月上限$100 RewardCash。"
+              "note_zh": "2026年7至12月名單——本地：Sushiro、譚仔三哥、譚仔雲南米線、Bakehouse、Decathlon、NAMCO、TAITO STATION、Sephora、@cosme STORE、@cosme HONG KONG、3COINS。海外：FamilyMart（日本分店）、Suica、WOWPASS、Tmoney。GU已於2026年7月1日起剔除。包括基本0.4%。每曆月上限$100獎賞錢。"
             },
             {
               "category": "online spend",
@@ -186,6 +198,13 @@
               "note": "Includes base 0.4% RewardCash. Online spend determined by Mastercard merchant category or acquirer. Cap: $400 RewardCash per calendar month.",
               "category_zh": "網上簽賬",
               "note_zh": "包括基本0.4% RewardCash。網上簽賬根據Mastercard商戶類別或收單機構而定。每曆月上限$400 RewardCash。"
+            },
+            {
+              "category": "All other eligible spending",
+              "rate": "0.4%",
+              "note": "Base: HK$250 = $1 RewardCash, unlimited.",
+              "category_zh": "其他合資格簽賬",
+              "note_zh": "基本獎賞：每HK$250 = $1獎賞錢，無上限。"
             }
           ],
           "monthly_min_spend": null,
@@ -202,10 +221,10 @@
           ],
           "source_url": "https://www.hsbc.com.hk/content/dam/hsbc/hk/tc/docs/credit-cards/reward-scheme-terms-and-conditions.pdf",
           "source_file": "raw/hsbc-red/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high",
-          "promo_start": "2026-04-01",
-          "promo_end": "2026-06-30"
+          "promo_start": "2026-07-01",
+          "promo_end": "2026-12-31"
         }
       ]
     },
@@ -224,17 +243,17 @@
           "rules": [
             {
               "category": "all spending",
-              "rate": "1% (or 2% with eligible salary credit or Mox+)",
-              "note": "Base 1% unlimited; 2% unlocked if monthly salary ≥HKD25,000 credited via FPS or Mox+ membership.",
+              "rate": "1% (or 2% with salary credit or Mox+)",
+              "note": "Base 1% unlimited (or HK$10 = 1 Asia Mile). 2% unlocked if monthly salary ≥HK$25,000 credited via FPS (must show as 'Salary') OR Mox+ membership. ⚠️ From 1 Sep 2026 the salary route ENDS — 2% becomes Mox+-members-only.",
               "category_zh": "所有簽賬",
-              "note_zh": "基本1%無限回贈；如每月薪金達HKD25,000並透過FPS或Mox+會籍入賬，即可解鎖2%回贈。"
+              "note_zh": "基本1%無上限（或HK$10 = 1亞洲萬里通里數）。每月薪金≥HK$25,000經FPS入賬（須顯示為「Salary」）或Mox+會籍可解鎖2%。⚠️ 2026年9月1日起薪金途徑取消——2%只限Mox+會員。"
             },
             {
               "category": "supermarket",
               "rate": "3%",
-              "note": "Applies to supermarkets and grocery stores based on Mastercard merchant category codes (e.g. HKTVmall, ParknShop, Wellcome, city'super).",
+              "note": "Unlimited, no published end date. MCC-based (supermarkets & grocery stores as classified by Mastercard) — covers HKTVmall, ParknShop, Wellcome, city'super, Don Don Donki, YATA, AEON and more.",
               "category_zh": "超級市場",
-              "note_zh": "根據Mastercard商戶類別代碼適用於超級市場及雜貨店（例如HKTVmall、ParknShop、Wellcome、city'super）。"
+              "note_zh": "無上限，暫無公佈結束日期。以Mastercard商戶類別代碼（MCC）界定超級市場及雜貨店——包括HKTVmall、百佳、惠康、city'super、Don Don Donki、一田、AEON等。"
             }
           ],
           "monthly_min_spend": null,
@@ -253,8 +272,8 @@
           ],
           "source_url": "https://mox.com/zh/promotions/unlimitedcashback/",
           "source_file": "raw/mox-credit/latest.txt",
-          "last_verified": "2026-06-29",
-          "confidence": "medium"
+          "last_verified": "2026-07-03",
+          "confidence": "high"
         }
       ]
     },
@@ -274,9 +293,9 @@
             {
               "category": "retail",
               "rate": "2%",
-              "note": "Base 1% + additional 1% during promotion. HK$2 cash rebate per HK$100 spend. Extra 1% capped at HK$1,500 for the whole promotion period.",
+              "note": "Base 1% + extra 1%, renewed for 1 Jul 2026 – 30 Jun 2027. Extra 1% reportedly applies to first HK$150,000/year (HK$1,500 extra cap) — cap structure pending official confirmation (issuer PDF not publicly fetchable). Bonus: extra 2% (up to 4% total) if a single transaction ≥HK$1,500 is put on a 6-month+ instalment plan.",
               "category_zh": "零售",
-              "note_zh": "基本1% + 推廣期內額外1%。每消費HK$100可獲HK$2現金回贈。整個推廣期內額外1%回贈上限為HK$1,500。"
+              "note_zh": "基本1% + 額外1%，已續期至2026年7月1日至2027年6月30日。額外1%據報適用於全年首HK$150,000（額外回贈上限HK$1,500）——上限結構有待官方確認（發卡機構PDF暫無法公開讀取）。加碼：單一簽賬≥HK$1,500並做6個月或以上分期，可額外賺2%（合共最高4%）。"
             }
           ],
           "monthly_min_spend": null,
@@ -294,12 +313,12 @@
             "unauthorized transactions",
             "cash out"
           ],
-          "source_url": "https://www.primecredit.com/wp-content/uploads/2024/12/EarnMORE-UnionPay-Card-Additional-Cash-Rebate-Program-Terms-Conditions_C20211162.pdf",
+          "source_url": "https://www.primecredit.com/earnmore/",
           "source_file": "raw/primecredit-earnmore/latest.txt",
-          "last_verified": "2026-06-29",
-          "confidence": "high",
-          "promo_start": "2025-01-01",
-          "promo_end": "2025-12-31"
+          "last_verified": "2026-07-03",
+          "confidence": "medium",
+          "promo_start": "2026-07-01",
+          "promo_end": "2027-06-30"
         }
       ]
     },
@@ -317,37 +336,23 @@
           "reward_type": "cashback",
           "rules": [
             {
-              "category": "Mobile Payment",
-              "rate": "3.6%",
-              "note": "Apple Pay, UnionPay QuickPass/QR via OmyCard app; not supported for WeWa Visa on Android",
-              "category_zh": "流動支付",
-              "note_zh": "Apple Pay、銀聯QuickPass／QR（透過OmyCard應用程式）；不支援Android上的WeWa Visa"
+              "category": "Mobile Payment (your selected category)",
+              "rate": "4% (incl. 0.4% base)",
+              "note": "WeWa gives the extra 3.6% on ONE self-selected category only — yours is Mobile Payment (Apple Pay; UnionPay QuickPass/QR via OmyCard app; Visa mobile pay = iOS/Apple Pay only). Selection is one-time and permanent. Requires HK$1,500/mo eligible retail spend; extra rebate capped HK$200/card/month.",
+              "category_zh": "流動支付（你已選擇的類別）",
+              "note_zh": "WeWa只在「玩樂類別4選1」中你所選的一個類別給予額外3.6%——你選了流動支付（Apple Pay；銀聯QuickPass／QR經OmyCard應用程式；Visa流動支付只限iOS/Apple Pay）。選擇一次性及永久。每月須有HK$1,500合資格零售簽賬；額外回贈每卡每月上限HK$200。"
             },
             {
-              "category": "Travel Spending",
-              "rate": "3.6%",
-              "note": "Travel agencies, airlines, hotels (room accommodation only)",
-              "category_zh": "旅遊消費",
-              "note_zh": "旅行社、航空公司、酒店（只限房間住宿）"
-            },
-            {
-              "category": "Overseas Spending",
-              "rate": "3.6%",
-              "note": "Non-HK registered merchants, foreign-currency transactions",
-              "category_zh": "海外消費",
-              "note_zh": "非香港註冊商戶、外幣交易"
-            },
-            {
-              "category": "Online Entertainment",
-              "rate": "3.6%",
-              "note": "Apple App Store (APPLE.COM/BILL), Disney+, Google Play, JOOX, KKBOX, MYTV SUPER, Netflix, Nintendo, Patreon, PlayStation, Spotify, STEAM, Xbox, YouTube",
-              "category_zh": "網上娛樂",
-              "note_zh": "Apple App Store (APPLE.COM/BILL)、Disney+、Google Play、JOOX、KKBOX、MYTV SUPER、Netflix、Nintendo、Patreon、PlayStation、Spotify、STEAM、Xbox、YouTube"
+              "category": "All other spending (incl. travel, overseas, online entertainment — NOT selected)",
+              "rate": "0.4%",
+              "note": "Travel, Overseas and Online Entertainment are NOT your selected category, so they earn base 0.4% only. (Corrected 2026-07-03: previously shown wrongly as 3.6% on all four categories.)",
+              "category_zh": "所有其他簽賬（包括旅遊、海外、網上娛樂——非已選類別）",
+              "note_zh": "旅遊、海外及網上娛樂並非你所選類別，只享基本0.4%。（2026-07-03更正：先前錯誤顯示為四類全部3.6%。）"
             }
           ],
           "monthly_min_spend": 1500,
           "monthly_cap": 200,
-          "needs_registration": true,
+          "needs_registration": false,
           "excludes": [
             "Octopus AAV",
             "stored value card purchase/reload",
@@ -368,7 +373,7 @@
           ],
           "source_url": "https://www.wewacard.com/wp-content/uploads/2026/06/WeWa-Cash-Rebate-TC__C20250432.pdf",
           "source_file": "raw/primecredit-wewa/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high",
           "promo_start": "2025-07-01",
           "promo_end": "2026-09-30"
@@ -392,23 +397,37 @@
             {
               "category": "Dining",
               "rate": "HK$4 = 1 mile",
-              "note": "HKD transactions at dining outlets; excludes banquets, hotel restaurants, food courts, supermarkets, department stores, clubs. Based on Mastercard merchant codes.",
+              "note": "HKD transactions at dining outlets; excludes banquets, hotel restaurants, food courts, supermarkets, department stores, clubs. No cap; odd dollars carry forward monthly. Confirmed for 1 Jan–31 Dec 2026.",
               "category_zh": "餐飲",
-              "note_zh": "於餐飲商戶的港幣交易；不包括宴會、酒店餐廳、美食廣場、超級市場、百貨公司、會所。根據Mastercard商戶代碼分類。"
+              "note_zh": "於餐飲商戶的港幣交易；不包括宴會、酒店餐廳、美食廣場、超級市場、百貨公司、會所。無上限；餘數每月滾存。已確認適用於2026年1月1日至12月31日。"
             },
             {
               "category": "Hotels",
               "rate": "HK$4 = 1 mile",
-              "note": "HKD transactions directly at hotels or via official hotel websites; excludes third-party platforms like OTAs.",
+              "note": "HKD transactions directly at hotels or via official hotel websites; excludes third-party platforms like OTAs. No cap.",
               "category_zh": "酒店",
-              "note_zh": "直接於酒店或經酒店官方網站進行的港幣交易；不包括第三方平台如OTA。"
+              "note_zh": "直接於酒店或經酒店官方網站進行的港幣交易；不包括第三方平台如OTA。無上限。"
             },
             {
               "category": "Overseas",
               "rate": "HK$4 = 1 mile",
-              "note": "Non-HKD currency transactions.",
+              "note": "Non-HKD currency transactions. No cap.",
               "category_zh": "海外",
-              "note_zh": "非港幣貨幣交易。"
+              "note_zh": "非港幣貨幣交易。無上限。"
+            },
+            {
+              "category": "Cathay Pacific & HK Express purchases",
+              "rate": "HK$4 = 1 mile + bonus",
+              "note": "Plus one-off 2,667 bonus miles per promo period on accumulating HK$8,000 Cathay/HKX spend (1 Jul–31 Dec 2026, two phases, bonus earnable once; requires linked Cathay membership).",
+              "category_zh": "國泰航空及香港快運簽賬",
+              "note_zh": "另加一次性2,667里獎賞：推廣期內累積HK$8,000國泰／香港快運簽賬（2026年7月1日至12月31日，分兩階段，獎賞只可賺一次；須連結國泰會員賬戶）。"
+            },
+            {
+              "category": "All other local spending",
+              "rate": "HK$6 = 1 mile",
+              "note": "Base evergreen rate on all other eligible HKD spend, unlimited.",
+              "category_zh": "其他本地簽賬",
+              "note_zh": "基本長期比率，適用於所有其他合資格港幣簽賬，無上限。"
             }
           ],
           "monthly_min_spend": null,
@@ -435,7 +454,7 @@
           ],
           "source_url": "https://av.sc.com/hk/content/docs/hk-cc-cx-card-selected-category-tnc.pdf",
           "source_file": "raw/sc-cathay-mc/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high",
           "promo_start": "2026-01-01",
           "promo_end": "2026-12-31"
@@ -458,16 +477,16 @@
             {
               "category": "local",
               "rate": "1.5%",
-              "note": "HKD-posted spend",
+              "note": "HKD-posted spend, no cap, no minimum.",
               "category_zh": "本地",
-              "note_zh": "HKD已入賬簽賬"
+              "note_zh": "HKD已入賬簽賬，無上限，無最低要求。"
             },
             {
               "category": "foreign",
               "rate": "2%",
-              "note": "non-HKD posted spend",
+              "note": "non-HKD posted spend, no cap, no minimum.",
               "category_zh": "海外",
-              "note_zh": "非HKD已入賬簽賬"
+              "note_zh": "非HKD已入賬簽賬，無上限，無最低要求。"
             }
           ],
           "monthly_min_spend": null,
@@ -481,6 +500,7 @@
             "phone/mail order",
             "gambling",
             "securities brokerages",
+            "government/tax payment",
             "non-financial institutions (foreign currency, money orders, travelers cheques)",
             "financial institutions (bank merchandise/services, cash disbursement)",
             "wire transfer/money orders",
@@ -488,13 +508,12 @@
             "cash advance",
             "balance transfer",
             "Instalment Credit/Credit-to-Cash amounts",
-            "tax payment",
             "financial charges and fees",
             "unposted/cancelled/refunded/falsified/unauthorised transactions"
           ],
           "source_url": "https://av.sc.com/hk/content/docs/hk-promo-simply-cash-tnc.pdf",
           "source_file": "raw/sc-simply-cash/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high"
         }
       ]
@@ -514,17 +533,17 @@
           "rules": [
             {
               "category": "Designated Merchants",
-              "rate": "5%",
-              "note": "Up to a Spending Cap per promotion period (cap amount not specified in this T&C); includes Basic Cashback. List of merchants at sc.com/hk/en/smartcard.",
+              "rate": "5% (first HK$5,000 spend/month)",
+              "note": "5% applies to first HK$5,000 eligible spend at designated merchants per statement cycle (≈HK$250 max/month), then base tier rate. Current merchants: China Mobile HK & s/ash, Circle K, foodpanda, HKTVmall, Klook, McDonald's HK, PARKnSHOP (+eShop), Watsons (+eShop), Sasa. Zero cashback (even at designated merchants) if monthly spend under HK$4,000. Evergreen scheme, no registration.",
               "category_zh": "指定商戶",
-              "note_zh": "每個推廣期內設有消費上限（本條款及細則未列明上限金額）；包括基本現金回贈。商戶列表請參閱 sc.com/hk/en/smartcard。"
+              "note_zh": "5%適用於每個月結單週期內指定商戶首HK$5,000合資格簽賬（每月最多約HK$250），其後按基本階梯比率。現時商戶：中國移動香港及s/ash、Circle K（OK便利店）、foodpanda、HKTVmall、Klook、麥當勞、百佳（及eShop）、屈臣氏（及eShop）、莎莎。每月簽賬不足HK$4,000則零回贈（指定商戶亦然）。長期計劃，毋須登記。"
             },
             {
               "category": "Other Eligible Transactions",
               "rate": "0.56% - 1.20%",
-              "note": "0.56% when monthly eligible spending HKD4,000-14,999; 1.20% when HKD15,000+.",
+              "note": "0.56% when monthly eligible spending HKD4,000-14,999; 1.20% when HKD15,000+; zero below HKD4,000.",
               "category_zh": "其他合資格交易",
-              "note_zh": "每月合資格消費達 HKD4,000-14,999 可享 0.56%；達 HKD15,000+ 可享 1.20%。"
+              "note_zh": "每月合資格消費達 HKD4,000-14,999 可享 0.56%；達 HKD15,000+ 可享 1.20%；不足HKD4,000則零回贈。"
             }
           ],
           "monthly_min_spend": 4000,
@@ -551,7 +570,7 @@
           ],
           "source_url": "https://av.sc.com/hk/zh/content/docs/hk-promo-smart-tnc.pdf",
           "source_file": "raw/sc-smart/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high"
         }
       ]
@@ -572,23 +591,23 @@
             {
               "category": "online retail (single transaction >= HKD500)",
               "rate": "8%",
-              "note": "Requires monthly offline retail spend >= HKD1,000 to unlock. Single transaction net >= HKD500. Includes 0.4% base rebate.",
+              "note": "Requires monthly offline retail spend >= HKD1,000 to unlock. Single transaction net >= HKD500. Includes 0.4% base rebate. Extra rebate capped HK$200/month AND HK$1,000 total for the whole promo period (1 May–30 Sep 2026).",
               "category_zh": "網上零售（單一交易≥HKD500）",
-              "note_zh": "需每月線下零售消費 ≥ HKD1,000 方可解鎖。單一交易淨額 ≥ HKD500。包含0.4%基本回贈。"
+              "note_zh": "需每月線下零售消費 ≥ HKD1,000 方可解鎖。單一交易淨額 ≥ HKD500。包含0.4%基本回贈。額外回贈每月上限HK$200，及整個推廣期（2026年5月1日至9月30日）合共上限HK$1,000。"
             },
             {
               "category": "designated local public transport",
               "rate": "8%",
-              "note": "Citybus, KMB, LWB, MTR (tap-to-pay gates only), Hong Kong Tramways, Star Ferry. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
+              "note": "Citybus (incl. airport routes), KMB, LWB, MTR (tap-to-pay gates only, excl. Airport Express), Hong Kong Tramways, Star Ferry. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
               "category_zh": "指定本地公共交通工具",
-              "note_zh": "城巴、九巴、龍運巴士、港鐵（僅限感應式支付閘機）、香港電車、天星小輪。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
+              "note_zh": "城巴（包括機場路線）、九巴、龍運巴士、港鐵（僅限感應式支付閘機，機場快綫除外）、香港電車、天星小輪。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
             },
             {
               "category": "designated local merchants",
               "rate": "3%",
-              "note": "Adidas, Fila, PUMA, Matsumoto Kiyoshi, Tokyo Lifestyle. In-store transactions only. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
+              "note": "Adidas, Fila, PUMA, Matsumoto Kiyoshi, Tokyo Lifestyle (東京生活館). In-store transactions only. Requires monthly offline retail spend >= HKD1,000. Includes 0.4% base rebate.",
               "category_zh": "指定本地商戶",
-              "note_zh": "Adidas、Fila、PUMA、Matsumoto Kiyoshi、Tokyo Lifestyle。僅限實體店交易。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
+              "note_zh": "Adidas、Fila、PUMA、松本清、東京生活館。僅限實體店交易。需每月線下零售消費 ≥ HKD1,000。包含0.4%基本回贈。"
             },
             {
               "category": "bill payment via sim Credit Card app",
@@ -625,7 +644,7 @@
           ],
           "source_url": "https://cdn.thesim.com/88_sim_Credit_Card_Terms_and_Conditions_of_Cash_Back_Promotion_TC_20260129_a1fe55d53b.pdf",
           "source_file": "raw/sim-card/latest.txt",
-          "last_verified": "2026-06-29",
+          "last_verified": "2026-07-03",
           "confidence": "high",
           "promo_start": "2026-05-01",
           "promo_end": "2026-09-30"
