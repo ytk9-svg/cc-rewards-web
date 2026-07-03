@@ -264,18 +264,18 @@ const EMBEDDED = {
           "reward_type": "cashback",
           "rules": [
             {
-              "category": "Red Hot Rewards registered categories (your allocation TBC)",
-              "rate": "up to 2.4%",
-              "note": "最紅自主獎賞: you are REGISTERED ✓. Extra 5X RewardCash (extra 2% + 0.4% base) on the categories you allocated your 5X to; applies to first HK$100,000 eligible spend per year. Owner to confirm which categories were allocated.",
-              "category_zh": "最紅自主獎賞已登記類別（分配待確認）",
-              "note_zh": "最紅自主獎賞：你已登記✓。額外5X獎賞錢（額外2% + 基本0.4%）適用於你所分配的類別；全年首HK$100,000合資格簽賬。請確認你分配了哪些類別。"
+              "category": "Dining (your 最紅自主獎賞 5X category)",
+              "rate": "2.4%",
+              "note": "You registered ✓ and allocated all 5X to DINING: extra 2% + 0.4% base. Applies to the first HK$100,000 eligible spend per year, then 0.4%. Until 31 Aug 2026 the 大折日 bonus stacks on top — see the separate entry below.",
+              "category_zh": "餐飲（你的最紅自主獎賞5X類別）",
+              "note_zh": "你已登記✓並將全部5X分配至餐飲：額外2% + 基本0.4%。適用於全年首HK$100,000合資格簽賬，其後0.4%。至2026年8月31日前另有大折日獎賞疊加——見下方獨立項目。"
             },
             {
               "category": "All other eligible spending",
               "rate": "0.4%",
-              "note": "Base: HK$250 = $1 RewardCash, unlimited. NOTE: the previously shown 8%/4% scheme belongs to the Red Card, not Gold — corrected 2026-07-03.",
+              "note": "Base: HK$250 = $1 RewardCash, unlimited.",
               "category_zh": "其他合資格簽賬",
-              "note_zh": "基本獎賞：每HK$250 = $1獎賞錢，無上限。註：先前顯示的8%/4%計劃屬Red卡而非金卡——已於2026-07-03更正。"
+              "note_zh": "基本獎賞：每HK$250 = $1獎賞錢，無上限。"
             }
           ],
           "monthly_min_spend": null,
@@ -293,9 +293,42 @@ const EMBEDDED = {
           "source_url": "https://www.redhotoffers.hsbc.com.hk/tc/rewards/red-hot-rewards-of-your-choice/",
           "source_file": "raw/hsbc-gold/latest.txt",
           "last_verified": "2026-07-03",
-          "confidence": "medium",
+          "confidence": "high",
           "promo_start": "2026-01-01",
           "promo_end": "2026-12-31"
+        },
+        {
+          "program_id": "hsbc-gold-summer2026",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "最紅大折日: local dining (in-store)",
+              "rate": "5.4% (0.4% base + 5X 2% + 大折日 3%)",
+              "note": "Your personalized targeted offer (Group 1): once your accumulated eligible spend reaches HK$15,000 (counts local + overseas spend across ALL your HSBC cards, 26 Jun–31 Aug 2026), you earn an EXTRA 3% RewardCash on in-store local dining and overseas spend made after registration. Extra 3% capped at $300 RewardCash for the period; credited by 30 Nov 2026. ⚠️ Must register in the Reward+ app BEFORE spending counts.",
+              "category_zh": "最紅大折日：本地餐飲（實體店）",
+              "note_zh": "你的特選目標獎賞（第1組）：推廣期內（2026年6月26日至8月31日）累積合資格簽賬達HK$15,000（計及你名下所有滙豐卡的本地+海外簽賬），登記後的實體店本地餐飲及海外簽賬可額外賺3%獎賞錢。額外3%全期上限$300獎賞錢；2026年11月30日前入賬。⚠️ 必須先於Reward+應用程式登記，簽賬方可計算。"
+            },
+            {
+              "category": "最紅大折日: overseas / non-HKD spend",
+              "rate": "3.4% (0.4% base + 大折日 3%)",
+              "note": "Same offer as above applied to overseas (non-HKD) transactions. Shares the HK$15,000 Group-1 target and the $300 RewardCash extra cap.",
+              "category_zh": "最紅大折日：海外／非港幣簽賬",
+              "note_zh": "同上優惠適用於海外（非港幣）交易。與餐飲共用HK$15,000第1組目標及$300獎賞錢額外上限。"
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": 300,
+          "needs_registration": true,
+          "excludes": [
+            "online transactions (extra 3% is in-store dining + overseas only)",
+            "fees, Octopus/e-wallet top-ups, online bill payments, tax, insurance, instalments, casino"
+          ],
+          "source_url": "https://www.hsbc.com.hk/zh-hk/forms/red-hot-festival/",
+          "source_file": "raw/hsbc-gold/latest.txt",
+          "last_verified": "2026-07-03",
+          "confidence": "medium",
+          "promo_start": "2026-06-26",
+          "promo_end": "2026-08-31"
         }
       ]
     },
@@ -371,9 +404,9 @@ const EMBEDDED = {
             {
               "category": "all spending",
               "rate": "1% (or 2% with salary credit or Mox+)",
-              "note": "Base 1% unlimited (or HK$10 = 1 Asia Mile). 2% unlocked if monthly salary ≥HK$25,000 credited via FPS (must show as 'Salary') OR Mox+ membership. ⚠️ From 1 Sep 2026 the salary route ENDS — 2% becomes Mox+-members-only.",
+              "note": "Owner currently earns 1% (salary-credit task not done, no Mox+) — rankings use 1%. 2% needs monthly salary ≥HK$25,000 via FPS (shows as 'Salary') or Mox+; ⚠️ from 1 Sep 2026 the salary route ends and 2% becomes Mox+-members-only.",
               "category_zh": "所有簽賬",
-              "note_zh": "基本1%無上限（或HK$10 = 1亞洲萬里通里數）。每月薪金≥HK$25,000經FPS入賬（須顯示為「Salary」）或Mox+會籍可解鎖2%。⚠️ 2026年9月1日起薪金途徑取消——2%只限Mox+會員。"
+              "note_zh": "你現時賺1%（未做出糧任務，亦無Mox+）——排名以1%計算。2%需每月薪金≥HK$25,000經FPS入賬（顯示為「Salary」）或Mox+會籍；⚠️ 2026年9月1日起薪金途徑取消，2%只限Mox+會員。"
             },
             {
               "category": "supermarket",
@@ -790,7 +823,7 @@ const I18N = {
     lblMileHint:"(tune how miles cards rank)",
     best:"BEST", baseRate:"base rate", reg:"needs registration",
     min:n=>`min HK$${n.toLocaleString()}/mo`, cap:n=>`cap HK$${n.toLocaleString()}/mo`,
-    promo:d=>`promo ends ${d}`, conf:c=>`${c} confidence`,
+    promo:d=>`promo ends ${d}`, expired:d=>`⚠️ promo ended ${d} — base rate shown until re-verified`, conf:c=>`${c} confidence`,
     locked:n=>`🔒 needs HK$${n.toLocaleString()} more this month to unlock`,
     unlocks:"✓ this purchase unlocks the bonus", capped:"cap likely reached this month",
     backHK:"back", others:cat=>`No specific rate for ${cat} — these earn their base rate (≈0.4%); check the card:`,
@@ -805,7 +838,7 @@ const I18N = {
     lblMileHint:"（調整里數卡的排名）",
     best:"最佳", baseRate:"基本回贈", reg:"需要登記",
     min:n=>`最低 HK$${n.toLocaleString()}/月`, cap:n=>`上限 HK$${n.toLocaleString()}/月`,
-    promo:d=>`優惠至 ${d}`, conf:c=>({high:"高",medium:"中",low:"低"}[c]||c)+"信心",
+    promo:d=>`優惠至 ${d}`, expired:d=>`⚠️ 優惠已於 ${d} 完結 — 待核實前只按基本回贈計算`, conf:c=>({high:"高",medium:"中",low:"低"}[c]||c)+"信心",
     locked:n=>`🔒 本月尚欠 HK$${n.toLocaleString()} 先解鎖`,
     unlocks:"✓ 今次簽賬即可解鎖獎賞", capped:"本月或已達上限",
     backHK:"回贈", others:cat=>`「${cat}」沒有特定回贈 — 這些卡只賺基本回贈（約0.4%），請查閱卡章則：`,
@@ -836,6 +869,10 @@ const CATS = [
 const BASE_SUBSTR = ["其他","基本","all spending","other retail","other eligible","all other","general spend"];
 const BASE_EXACT  = ["retail","local","local spend"];
 const isBaseCat = c=>{c=(c||"").toLowerCase().trim(); return BASE_EXACT.includes(c)||BASE_SUBSTR.some(k=>c.includes(k));};
+// Expiry gating: once a program's promo period has passed, its bonus rules stop counting
+// in rankings (base/catch-all rules still do) until the tracker re-verifies the card.
+const TODAY_ISO = new Date().toISOString().slice(0,10);
+const progExpired = p => !!(p && p.promo_end && p.promo_end < TODAY_ISO);
 
 /* spend tracker (month-keyed localStorage) */
 function monthKey(){ const d=new Date(); return "spend-"+d.getFullYear()+"-"+(d.getMonth()+1); }
@@ -851,16 +888,19 @@ function parseRate(rate, milesValue){
   return null;
 }
 function pickRule(card, cat){
-  const prog=card.reward_programs[0]; if(!prog) return {rule:null,score:0,prog};
-  let best=null,bs=0,bv=-1;
-  for(const r of (prog.rules||[])){
-    const c=(r.category||"").toLowerCase();
-    let s = (cat.key!=="general" && cat.kw.some(k=>c.includes(k))) ? 2 : (isBaseCat(r.category)?1:0);
-    if(s===0) continue;
-    const v=(parseRate(r.rate,0.1)||{valuePerHKD:0}).valuePerHKD;
-    if(s>bs||(s===bs&&v>bv)){ best=r;bs=s;bv=v; }
+  // Scan ALL of the card's reward programs (base scheme + any time-limited promos).
+  let best=null,bs=0,bv=-1,bp=null;
+  for(const prog of (card.reward_programs||[])){
+    for(const r of (prog.rules||[])){
+      if(progExpired(prog) && !isBaseCat(r.category)) continue; // expired promo → bonus rules don't rank
+      const c=(r.category||"").toLowerCase();
+      let s = (cat.key!=="general" && cat.kw.some(k=>c.includes(k))) ? 2 : (isBaseCat(r.category)?1:0);
+      if(s===0) continue;
+      const v=(parseRate(r.rate,0.1)||{valuePerHKD:0}).valuePerHKD;
+      if(s>bs||(s===bs&&v>bv)){ best=r;bs=s;bv=v;bp=prog; }
+    }
   }
-  return {rule:best, score:bs, prog};
+  return {rule:best, score:bs, prog:bp||card.reward_programs[0]};
 }
 // gate status from month-to-date spend
 function gate(prog, cardId, amount, valuePerHKD){
@@ -902,7 +942,7 @@ function flags(prog, g){
   if(prog.needs_registration) f.push(`<span class="chip warn">${t.reg}</span>`);
   if(prog.monthly_min_spend)  f.push(`<span class="chip">${t.min(prog.monthly_min_spend)}</span>`);
   if(prog.monthly_cap)        f.push(`<span class="chip">${t.cap(prog.monthly_cap)}</span>`);
-  if(prog.promo_end)          f.push(`<span class="chip">${t.promo(prog.promo_end)}</span>`);
+  if(prog.promo_end)          f.push(progExpired(prog) ? `<span class="chip warn">${t.expired(prog.promo_end)}</span>` : `<span class="chip">${t.promo(prog.promo_end)}</span>`);
   if(prog.confidence&&prog.confidence!=="high") f.push(`<span class="chip warn">${t.conf(prog.confidence)}</span>`);
   return f.join("");
 }
@@ -933,12 +973,13 @@ function render(rows, others, cat, amt, mv){
 function renderSheet(){
   const t=T();
   document.getElementById("sheetBody").innerHTML = CARDS.map(card=>{
-    const p=card.reward_programs[0]||{}; const rules=p.rules||[];
+    const progs=card.reward_programs||[]; const p0=progs[0]||{};
     return `<div class="card">
       <h3>${card.name}</h3>
-      <div class="iss">${card.network} · ${card.issuer} · ${t.csType[p.reward_type]||p.reward_type||''}${p.promo_end?' · '+t.promo(p.promo_end):''}</div>
-      ${rules.map(r=>`<div class="r"><span class="c">${ruleCat(r)}</span><span class="rt tnum">${r.rate}</span></div>`).join("")}
-      <div class="chips" style="margin-top:8px">${flags(p,null)}</div>
+      <div class="iss">${card.network} · ${card.issuer} · ${t.csType[p0.reward_type]||p0.reward_type||''}</div>
+      ${progs.map(p=>`
+        ${(p.rules||[]).map(r=>`<div class="r"><span class="c">${ruleCat(r)}</span><span class="rt tnum">${r.rate}</span></div>`).join("")}
+        <div class="chips" style="margin-top:8px">${flags(p,null)}</div>`).join("")}
     </div>`;
   }).join("");
 }
@@ -946,9 +987,10 @@ function renderMonth(){
   const t=T();
   document.getElementById("monthIntro").textContent=t.monthIntro;
   document.getElementById("monthNote").textContent=t.monthNote;
-  const gated=CARDS.filter(c=>{const p=c.reward_programs[0]||{};return p.monthly_min_spend||p.monthly_cap;});
+  const gatedProg=c=>(c.reward_programs||[]).find(p=>!progExpired(p)&&(p.monthly_min_spend||p.monthly_cap));
+  const gated=CARDS.filter(c=>gatedProg(c));
   document.getElementById("trkBody").innerHTML = gated.map(c=>{
-    const p=c.reward_programs[0]; const mtd=SPEND[c.id]||0;
+    const p=gatedProg(c); const mtd=SPEND[c.id]||0;
     const target=p.monthly_min_spend||0; const pct=target?Math.min(100,Math.round(mtd/target*100)):0;
     const gline=[p.monthly_min_spend?t.min(p.monthly_min_spend):null,p.monthly_cap?t.cap(p.monthly_cap):null].filter(Boolean).join(" · ");
     return `<div class="it">
@@ -960,7 +1002,9 @@ function renderMonth(){
   }).join("") || `<div class="g" style="color:var(--muted)">—</div>`;
 }
 function updateBar(input,id){
-  const card=CARDS.find(c=>c.id===id); const p=card.reward_programs[0]; const target=p.monthly_min_spend||0;
+  const card=CARDS.find(c=>c.id===id);
+  const p=(card.reward_programs||[]).find(q=>!progExpired(q)&&(q.monthly_min_spend||q.monthly_cap))||card.reward_programs[0];
+  const target=p.monthly_min_spend||0;
   if(!target) return; const bar=input.closest(".it").querySelector(".bar2 span"); if(!bar) return;
   const pct=Math.min(100,Math.round(((SPEND[id]||0)/target)*100)); bar.style.width=pct+"%"; bar.className=pct>=100?"full":"";
 }

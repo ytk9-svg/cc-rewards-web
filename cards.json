@@ -137,18 +137,18 @@
           "reward_type": "cashback",
           "rules": [
             {
-              "category": "Red Hot Rewards registered categories (your allocation TBC)",
-              "rate": "up to 2.4%",
-              "note": "最紅自主獎賞: you are REGISTERED ✓. Extra 5X RewardCash (extra 2% + 0.4% base) on the categories you allocated your 5X to; applies to first HK$100,000 eligible spend per year. Owner to confirm which categories were allocated.",
-              "category_zh": "最紅自主獎賞已登記類別（分配待確認）",
-              "note_zh": "最紅自主獎賞：你已登記✓。額外5X獎賞錢（額外2% + 基本0.4%）適用於你所分配的類別；全年首HK$100,000合資格簽賬。請確認你分配了哪些類別。"
+              "category": "Dining (your 最紅自主獎賞 5X category)",
+              "rate": "2.4%",
+              "note": "You registered ✓ and allocated all 5X to DINING: extra 2% + 0.4% base. Applies to the first HK$100,000 eligible spend per year, then 0.4%. Until 31 Aug 2026 the 大折日 bonus stacks on top — see the separate entry below.",
+              "category_zh": "餐飲（你的最紅自主獎賞5X類別）",
+              "note_zh": "你已登記✓並將全部5X分配至餐飲：額外2% + 基本0.4%。適用於全年首HK$100,000合資格簽賬，其後0.4%。至2026年8月31日前另有大折日獎賞疊加——見下方獨立項目。"
             },
             {
               "category": "All other eligible spending",
               "rate": "0.4%",
-              "note": "Base: HK$250 = $1 RewardCash, unlimited. NOTE: the previously shown 8%/4% scheme belongs to the Red Card, not Gold — corrected 2026-07-03.",
+              "note": "Base: HK$250 = $1 RewardCash, unlimited.",
               "category_zh": "其他合資格簽賬",
-              "note_zh": "基本獎賞：每HK$250 = $1獎賞錢，無上限。註：先前顯示的8%/4%計劃屬Red卡而非金卡——已於2026-07-03更正。"
+              "note_zh": "基本獎賞：每HK$250 = $1獎賞錢，無上限。"
             }
           ],
           "monthly_min_spend": null,
@@ -166,9 +166,42 @@
           "source_url": "https://www.redhotoffers.hsbc.com.hk/tc/rewards/red-hot-rewards-of-your-choice/",
           "source_file": "raw/hsbc-gold/latest.txt",
           "last_verified": "2026-07-03",
-          "confidence": "medium",
+          "confidence": "high",
           "promo_start": "2026-01-01",
           "promo_end": "2026-12-31"
+        },
+        {
+          "program_id": "hsbc-gold-summer2026",
+          "reward_type": "cashback",
+          "rules": [
+            {
+              "category": "最紅大折日: local dining (in-store)",
+              "rate": "5.4% (0.4% base + 5X 2% + 大折日 3%)",
+              "note": "Your personalized targeted offer (Group 1): once your accumulated eligible spend reaches HK$15,000 (counts local + overseas spend across ALL your HSBC cards, 26 Jun–31 Aug 2026), you earn an EXTRA 3% RewardCash on in-store local dining and overseas spend made after registration. Extra 3% capped at $300 RewardCash for the period; credited by 30 Nov 2026. ⚠️ Must register in the Reward+ app BEFORE spending counts.",
+              "category_zh": "最紅大折日：本地餐飲（實體店）",
+              "note_zh": "你的特選目標獎賞（第1組）：推廣期內（2026年6月26日至8月31日）累積合資格簽賬達HK$15,000（計及你名下所有滙豐卡的本地+海外簽賬），登記後的實體店本地餐飲及海外簽賬可額外賺3%獎賞錢。額外3%全期上限$300獎賞錢；2026年11月30日前入賬。⚠️ 必須先於Reward+應用程式登記，簽賬方可計算。"
+            },
+            {
+              "category": "最紅大折日: overseas / non-HKD spend",
+              "rate": "3.4% (0.4% base + 大折日 3%)",
+              "note": "Same offer as above applied to overseas (non-HKD) transactions. Shares the HK$15,000 Group-1 target and the $300 RewardCash extra cap.",
+              "category_zh": "最紅大折日：海外／非港幣簽賬",
+              "note_zh": "同上優惠適用於海外（非港幣）交易。與餐飲共用HK$15,000第1組目標及$300獎賞錢額外上限。"
+            }
+          ],
+          "monthly_min_spend": null,
+          "monthly_cap": 300,
+          "needs_registration": true,
+          "excludes": [
+            "online transactions (extra 3% is in-store dining + overseas only)",
+            "fees, Octopus/e-wallet top-ups, online bill payments, tax, insurance, instalments, casino"
+          ],
+          "source_url": "https://www.hsbc.com.hk/zh-hk/forms/red-hot-festival/",
+          "source_file": "raw/hsbc-gold/latest.txt",
+          "last_verified": "2026-07-03",
+          "confidence": "medium",
+          "promo_start": "2026-06-26",
+          "promo_end": "2026-08-31"
         }
       ]
     },
@@ -244,9 +277,9 @@
             {
               "category": "all spending",
               "rate": "1% (or 2% with salary credit or Mox+)",
-              "note": "Base 1% unlimited (or HK$10 = 1 Asia Mile). 2% unlocked if monthly salary ≥HK$25,000 credited via FPS (must show as 'Salary') OR Mox+ membership. ⚠️ From 1 Sep 2026 the salary route ENDS — 2% becomes Mox+-members-only.",
+              "note": "Owner currently earns 1% (salary-credit task not done, no Mox+) — rankings use 1%. 2% needs monthly salary ≥HK$25,000 via FPS (shows as 'Salary') or Mox+; ⚠️ from 1 Sep 2026 the salary route ends and 2% becomes Mox+-members-only.",
               "category_zh": "所有簽賬",
-              "note_zh": "基本1%無上限（或HK$10 = 1亞洲萬里通里數）。每月薪金≥HK$25,000經FPS入賬（須顯示為「Salary」）或Mox+會籍可解鎖2%。⚠️ 2026年9月1日起薪金途徑取消——2%只限Mox+會員。"
+              "note_zh": "你現時賺1%（未做出糧任務，亦無Mox+）——排名以1%計算。2%需每月薪金≥HK$25,000經FPS入賬（顯示為「Salary」）或Mox+會籍；⚠️ 2026年9月1日起薪金途徑取消，2%只限Mox+會員。"
             },
             {
               "category": "supermarket",
