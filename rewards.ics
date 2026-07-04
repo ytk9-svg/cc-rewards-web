@@ -1,0 +1,248 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//cc-rewards-tracker//rewards//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Card Rewards 信用卡提醒
+X-WR-TIMEZONE:Asia/Hong_Kong
+BEGIN:VEVENT
+UID:promo-hangseng-travelplus-2026-12-31@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:⏰ Hang Seng Travel+ Visa Signature promo ends today 
+ · 優惠今日結束
+DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Hang Seng Travel+ Visa Signature promo ends to
+ day · 優惠今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-hsbc-gold-2026-12-31@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:⏰ HSBC Visa Gold (滙財金卡) promo ends today · 優惠今日
+ 結束
+DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ HSBC Visa Gold (滙財金卡) promo ends today · 優惠
+ 今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-hsbc-gold-summer2026-2026-08-31@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:⏰ HSBC Visa Gold (滙財金卡) promo ends today · 優惠今日
+ 結束
+DESCRIPTION:Promo period ends 2026-08-31. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ HSBC Visa Gold (滙財金卡) promo ends today · 優惠
+ 今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-hsbc-red-2026-12-31@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:⏰ HSBC Red Card promo ends today · 優惠今日結束
+DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ HSBC Red Card promo ends today · 優惠今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-primecredit-earnmore-2027-06-30@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20270630
+DTEND;VALUE=DATE:20270701
+SUMMARY:⏰ PrimeCredit EarnMORE UnionPay Card promo ends toda
+ y · 優惠今日結束
+DESCRIPTION:Promo period ends 2027-06-30. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ PrimeCredit EarnMORE UnionPay Card promo ends 
+ today · 優惠今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-primecredit-wewa-2026-09-30@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:⏰ PrimeCredit WeWa UnionPay Card promo ends today · 
+ 優惠今日結束
+DESCRIPTION:Promo period ends 2026-09-30. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ PrimeCredit WeWa UnionPay Card promo ends toda
+ y · 優惠今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-sc-cathay-mc-2026-12-31@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:⏰ Standard Chartered Cathay Mastercard promo ends to
+ day · 優惠今日結束
+DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Standard Chartered Cathay Mastercard promo end
+ s today · 優惠今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:promo-sim-card-2026-09-30@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:⏰ sim Credit Card promo ends today · 優惠今日結束
+DESCRIPTION:Promo period ends 2026-09-30. Check the tracker 
+ for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ sim Credit Card promo ends today · 優惠今日結束
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:deadline-hsbc-gold-2026-07-15--early-bird-regi@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:📝 大折日 early-bird: register + HK$8\,000 spend by tod
+ ay → $250 e-voucher · 大折日早鳥：今日前登記並簽滿HK$8\,
+ 000 → $250電子禮券
+DESCRIPTION:Card: HSBC Visa Gold (滙財金卡)
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 大折日 early-bird: register + HK$8\,000 spend by
+  today → $250 e-voucher · 大折日早鳥：今日前登記並簽滿HK
+ $8\,000 → $250電子禮券
+TRIGGER:-P3D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:deadline-hsbc-gold-2026-08-31--ends-hit-your-H@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:📝 大折日 ends: hit your HK$15\,000 Group-1 target for 
+ extra 3% (dining/overseas\, cap $300) · 大折日結束：達成HK$15\,0
+ 00第1組目標賺額外3%（餐飲/海外，上限$300）
+DESCRIPTION:Card: HSBC Visa Gold (滙財金卡)
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 大折日 ends: hit your HK$15\,000 Group-1 target 
+ for extra 3% (dining/overseas\, cap $300) · 大折日結束：達成HK$1
+ 5\,000第1組目標賺額外3%（餐飲/海外，上限$300）
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:deadline-hsbc-gold-2026-10-31--registration-@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:📝 最紅自主獎賞 registration deadline (else Gold earns onl
+ y 0.4% this year) · 最紅自主獎賞登記截止（否則金卡全年
+ 只有0.4%）
+DESCRIPTION:Card: HSBC Visa Gold (滙財金卡)
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 最紅自主獎賞 registration deadline (else Gold earns
+  only 0.4% this year) · 最紅自主獎賞登記截止（否則金卡全
+ 年只有0.4%）
+TRIGGER:-P14D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:deadline-hsbc-everymile-2026-09-30-EveryMile-overseas-H@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:📝 EveryMile overseas HK$2=1mi phase 1 ends (need HK
+ $12\,000 overseas + Reward+ registration) · EveryMile海外HK$2
+ =1里第一階段結束（需HK$12\,000海外簽賬+Reward+登記）
+DESCRIPTION:Card: HSBC EveryMile Credit Card
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 EveryMile overseas HK$2=1mi phase 1 ends (nee
+ d HK$12\,000 overseas + Reward+ registration) · EveryMile海外
+ HK$2=1里第一階段結束（需HK$12\,000海外簽賬+Reward+登記）
+TRIGGER:-P14D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:deadline-hsbc-everymile-2026-12-31-EveryMile-overseas-H@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:📝 EveryMile overseas HK$2=1mi phase 2 ends — regist
+ er in Reward+ BEFORE overseas spending · EveryMile海外HK$2=1里
+ 第二階段結束——海外簽賬前先於Reward+登記
+DESCRIPTION:Card: HSBC EveryMile Credit Card
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 EveryMile overseas HK$2=1mi phase 2 ends — re
+ gister in Reward+ BEFORE overseas spending · EveryMile海外HK$
+ 2=1里第二階段結束——海外簽賬前先於Reward+登記
+TRIGGER:-P14D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:deadline-mox-credit-2026-08-31-Mox-2-salary-route-@cc-rewards-tracker
+DTSTAMP:20260703T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:📝 Mox 2% salary route ends today — from 1 Sep\, 2% 
+ needs Mox+ membership · Mox出糧2%途徑今日結束——9月1日起2%
+ 只限Mox+會員
+DESCRIPTION:Card: Mox Credit
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:📝 Mox 2% salary route ends today — from 1 Sep\,
+  2% needs Mox+ membership · Mox出糧2%途徑今日結束——9月1日
+ 起2%只限Mox+會員
+TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

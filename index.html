@@ -120,6 +120,13 @@
 
   <section id="month" style="display:none">
     <div class="panel"><div id="monthIntro" class="sub" style="margin:0 0 4px"></div><div class="trk" id="trkBody"></div></div>
+    <div class="panel" style="margin-top:14px">
+      <label id="lblAutolog"></label>
+      <input id="alUrl" type="url" placeholder="https://script.google.com/…/exec?token=…"
+        onchange="localStorage.setItem('autolog-url',this.value.trim());fetchRemote();" />
+      <div id="alStatus" style="font-size:.74rem;color:var(--muted);margin-top:6px"></div>
+      <div class="note" id="alHint" style="margin-top:4px"></div>
+    </div>
     <div class="note" id="monthNote"></div>
   </section>
 </div>
@@ -133,6 +140,7 @@ const EMBEDDED = {
       "issuer": "Hang Seng",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -203,6 +211,7 @@ const EMBEDDED = {
       "issuer": "HSBC",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 2000,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -256,6 +265,7 @@ const EMBEDDED = {
       "issuer": "HSBC",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 600,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -338,6 +348,7 @@ const EMBEDDED = {
       "issuer": "HSBC",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -394,6 +405,7 @@ const EMBEDDED = {
       "issuer": "Mox Bank",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -443,6 +455,7 @@ const EMBEDDED = {
       "issuer": "PrimeCredit (安信)",
       "network": "UnionPay",
       "status": "active",
+      "annual_fee": 800,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -488,6 +501,7 @@ const EMBEDDED = {
       "issuer": "PrimeCredit (安信)",
       "network": "UnionPay",
       "status": "active",
+      "annual_fee": 800,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -546,6 +560,7 @@ const EMBEDDED = {
       "issuer": "Standard Chartered",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 2000,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -627,6 +642,7 @@ const EMBEDDED = {
       "issuer": "Standard Chartered",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 2000,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -684,6 +700,7 @@ const EMBEDDED = {
       "issuer": "Standard Chartered",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -741,6 +758,7 @@ const EMBEDDED = {
       "issuer": "UA Finance (亞洲聯合財務)",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 800,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -831,6 +849,8 @@ const I18N = {
     disc:"Estimates use each card's headline rate for the chosen category (or its base rate), adjusted for your month-to-date spend below. Caps are approximate. Always check the card's own terms. Not financial advice.",
     monthIntro:"Tick how much you've spent on each card this month, so locked/capped cards stop topping the list.",
     spent:"spent so far", monthNote:"Saved in this browser only · resets automatically each month.",
+    alLabel:"Auto-log link (Apple Pay)", alHint:"Paste the link from the phone setup. Apple Pay taps then fill these numbers automatically; you can still type manual top-ups — the higher figure wins.",
+    alSynced:t=>`☁️ auto-log synced ${t}`, alError:"⚠️ couldn't reach the auto-log — using manual figures", alAuto:n=>`☁️ auto-logged HK$${n.toLocaleString()}`,
     csType:{cashback:"cashback",miles:"miles"} },
   zh:{ title:"用邊張卡最抵？", sub:c=>`你的香港信用卡 · ${c} 張`,
     tDecide:"最佳卡", tSheet:"一覽表", tMonth:"本月簽賬",
@@ -846,6 +866,8 @@ const I18N = {
     disc:"以各卡該類別的主要回贈率（或基本回贈率）估算，並按下方你本月的簽賬調整。上限為粗略估計，一切以發卡機構條款為準。並非理財建議。",
     monthIntro:"記下你本月在各卡的簽賬額，未達標／已封頂的卡就不會再排在最前。",
     spent:"本月已簽", monthNote:"只儲存在此瀏覽器 · 每月自動重設。",
+    alLabel:"自動記賬連結（Apple Pay）", alHint:"貼上手機設定後給你的連結，Apple Pay拍卡就會自動填入這些數字；仍可手動輸入補充——以較高數字為準。",
+    alSynced:t=>`☁️ 自動記賬已同步 ${t}`, alError:"⚠️ 無法連接自動記賬——暫用手動數字", alAuto:n=>`☁️ 自動記錄 HK$${n.toLocaleString()}`,
     csType:{cashback:"現金回贈",miles:"里數"} }
 };
 let LANG = localStorage.getItem("lang") || "en";
@@ -877,6 +899,19 @@ const progExpired = p => !!(p && p.promo_end && p.promo_end < TODAY_ISO);
 /* spend tracker (month-keyed localStorage) */
 function monthKey(){ const d=new Date(); return "spend-"+d.getFullYear()+"-"+(d.getMonth()+1); }
 let SPEND = JSON.parse(localStorage.getItem(monthKey())||"{}");
+// Phase 4: month-to-date figures fetched from the Apple Pay auto-log endpoint.
+// Effective spend per card = the HIGHER of manual entry and auto-log (avoids double counting).
+let REMOTE = {};
+const mtdOf = id => Math.max(SPEND[id]||0, REMOTE[id]||0);
+function fetchRemote(){
+  const url = localStorage.getItem("autolog-url");
+  const st = document.getElementById("alStatus");
+  if(!url){ REMOTE={}; if(st) st.textContent=""; return; }
+  fetch(url).then(r=>r.json()).then(d=>{
+    if(d && d.ok && d.mtd){ REMOTE=d.mtd; if(st) st.textContent=T().alSynced(new Date().toLocaleTimeString()); compute(); renderMonth(); }
+    else if(st) st.textContent=T().alError;
+  }).catch(()=>{ if(st) st.textContent=T().alError; });
+}
 function saveSpend(){ localStorage.setItem(monthKey(), JSON.stringify(SPEND)); }
 
 function parseRate(rate, milesValue){
@@ -904,7 +939,7 @@ function pickRule(card, cat){
 }
 // gate status from month-to-date spend
 function gate(prog, cardId, amount, valuePerHKD){
-  const mtd = SPEND[cardId]||0;
+  const mtd = mtdOf(cardId);
   if(prog.monthly_min_spend){
     if(mtd + amount < prog.monthly_min_spend) return {status:"locked", needMore:prog.monthly_min_spend-mtd};
     if(mtd < prog.monthly_min_spend) return {status:"unlocks"};
@@ -990,13 +1025,14 @@ function renderMonth(){
   const gatedProg=c=>(c.reward_programs||[]).find(p=>!progExpired(p)&&(p.monthly_min_spend||p.monthly_cap));
   const gated=CARDS.filter(c=>gatedProg(c));
   document.getElementById("trkBody").innerHTML = gated.map(c=>{
-    const p=gatedProg(c); const mtd=SPEND[c.id]||0;
+    const p=gatedProg(c); const mtd=mtdOf(c.id);
     const target=p.monthly_min_spend||0; const pct=target?Math.min(100,Math.round(mtd/target*100)):0;
     const gline=[p.monthly_min_spend?t.min(p.monthly_min_spend):null,p.monthly_cap?t.cap(p.monthly_cap):null].filter(Boolean).join(" · ");
+    const auto=REMOTE[c.id]?`<div class="g" style="color:var(--blue)">${t.alAuto(REMOTE[c.id])}</div>`:"";
     return `<div class="it">
-      <div class="nm"><div class="t">${c.name}</div><div class="g">${gline}</div>
+      <div class="nm"><div class="t">${c.name}</div><div class="g">${gline}</div>${auto}
         ${target?`<div class="bar2"><span class="${pct>=100?'full':''}" style="width:${pct}%"></span></div>`:''}</div>
-      <input type="number" inputmode="numeric" min="0" step="100" value="${mtd||''}" placeholder="0"
+      <input type="number" inputmode="numeric" min="0" step="100" value="${SPEND[c.id]||''}" placeholder="0"
         oninput="SPEND['${c.id}']=parseFloat(this.value)||0;saveSpend();updateBar(this,'${c.id}');" aria-label="${t.spent}">
     </div>`;
   }).join("") || `<div class="g" style="color:var(--muted)">—</div>`;
@@ -1006,7 +1042,7 @@ function updateBar(input,id){
   const p=(card.reward_programs||[]).find(q=>!progExpired(q)&&(q.monthly_min_spend||q.monthly_cap))||card.reward_programs[0];
   const target=p.monthly_min_spend||0;
   if(!target) return; const bar=input.closest(".it").querySelector(".bar2 span"); if(!bar) return;
-  const pct=Math.min(100,Math.round(((SPEND[id]||0)/target)*100)); bar.style.width=pct+"%"; bar.className=pct>=100?"full":"";
+  const pct=Math.min(100,Math.round((mtdOf(id)/target)*100)); bar.style.width=pct+"%"; bar.className=pct>=100?"full":"";
 }
 
 function applyStaticText(){
@@ -1022,6 +1058,9 @@ function applyStaticText(){
   document.getElementById("lblMile").textContent=t.lblMile;
   document.getElementById("lblMileHint").textContent=t.lblMileHint;
   document.getElementById("disclaimer").textContent=t.disc;
+  document.getElementById("lblAutolog").textContent=t.alLabel;
+  document.getElementById("alHint").textContent=t.alHint;
+  document.getElementById("alUrl").value=localStorage.getItem("autolog-url")||"";
   document.getElementById("langEn").classList.toggle("on",LANG==="en");
   document.getElementById("langZh").classList.toggle("on",LANG==="zh");
   const sel=document.getElementById("cat"); const cur=sel.value;
@@ -1043,6 +1082,7 @@ function init(){
   compute();
 }
 init();
+fetchRemote();
 fetch("./cards.json").then(r=>r.ok?r.json():null).then(d=>{ if(d&&Array.isArray(d.cards)&&d.cards.length){ CARDS=d.cards; SPEND=JSON.parse(localStorage.getItem(monthKey())||"{}"); applyStaticText(); compute(); } }).catch(()=>{});
 </script>
 </body>

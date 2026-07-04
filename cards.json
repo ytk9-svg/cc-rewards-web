@@ -6,6 +6,7 @@
       "issuer": "Hang Seng",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -76,6 +77,7 @@
       "issuer": "HSBC",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 2000,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -129,6 +131,7 @@
       "issuer": "HSBC",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 600,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -211,6 +214,7 @@
       "issuer": "HSBC",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -267,6 +271,7 @@
       "issuer": "Mox Bank",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -316,6 +321,7 @@
       "issuer": "PrimeCredit (安信)",
       "network": "UnionPay",
       "status": "active",
+      "annual_fee": 800,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -361,6 +367,7 @@
       "issuer": "PrimeCredit (安信)",
       "network": "UnionPay",
       "status": "active",
+      "annual_fee": 800,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -419,6 +426,7 @@
       "issuer": "Standard Chartered",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 2000,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -500,6 +508,7 @@
       "issuer": "Standard Chartered",
       "network": "Visa",
       "status": "active",
+      "annual_fee": 2000,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -557,6 +566,7 @@
       "issuer": "Standard Chartered",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 0,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
@@ -614,6 +624,7 @@
       "issuer": "UA Finance (亞洲聯合財務)",
       "network": "Mastercard",
       "status": "active",
+      "annual_fee": 800,
       "annual_fee_month": null,
       "free_years": null,
       "reward_programs": [
