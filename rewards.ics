@@ -7,13 +7,13 @@ X-WR-CALNAME:Card Rewards 信用卡提醒
 X-WR-TIMEZONE:Asia/Hong_Kong
 BEGIN:VEVENT
 UID:promo-hangseng-travelplus-2026-12-31@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:⏰ Hang Seng Travel+ Visa Signature promo ends today 
  · 優惠今日結束
-DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-12-31. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -24,13 +24,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-hsbc-gold-2026-12-31@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:⏰ HSBC Visa Gold (滙財金卡) promo ends today · 優惠今日
  結束
-DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-12-31. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -41,13 +41,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-hsbc-gold-summer2026-2026-08-31@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260901
 SUMMARY:⏰ HSBC Visa Gold (滙財金卡) promo ends today · 優惠今日
  結束
-DESCRIPTION:Promo period ends 2026-08-31. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-08-31. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -58,12 +58,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-hsbc-red-2026-12-31@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:⏰ HSBC Red Card promo ends today · 優惠今日結束
-DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-12-31. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -73,13 +73,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-primecredit-earnmore-2027-06-30@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20270630
 DTEND;VALUE=DATE:20270701
 SUMMARY:⏰ PrimeCredit EarnMORE UnionPay Card promo ends toda
  y · 優惠今日結束
-DESCRIPTION:Promo period ends 2027-06-30. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2027-06-30. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -90,13 +90,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-primecredit-wewa-2026-09-30@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260930
 DTEND;VALUE=DATE:20261001
 SUMMARY:⏰ PrimeCredit WeWa UnionPay Card promo ends today · 
  優惠今日結束
-DESCRIPTION:Promo period ends 2026-09-30. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-09-30. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -107,13 +107,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-sc-cathay-mc-2026-12-31@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:⏰ Standard Chartered Cathay Mastercard promo ends to
  day · 優惠今日結束
-DESCRIPTION:Promo period ends 2026-12-31. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-12-31. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -124,12 +124,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:promo-sim-card-2026-09-30@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260930
 DTEND;VALUE=DATE:20261001
 SUMMARY:⏰ sim Credit Card promo ends today · 優惠今日結束
-DESCRIPTION:Promo period ends 2026-09-30. Check the tracker 
- for what changes: https://ytk9-svg.github.io/cc-rewards-web/
+DESCRIPTION:Promo period ends 2026-09-30. See the tracker: h
+ ttps://ytk9-svg.github.io/cc-rewards-web/
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -139,7 +139,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:deadline-hsbc-gold-2026-07-15--early-bird-regi@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260715
 DTEND;VALUE=DATE:20260716
 SUMMARY:📝 大折日 early-bird: register + HK$8\,000 spend by tod
@@ -157,7 +157,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:deadline-hsbc-gold-2026-08-31--ends-hit-your-H@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260901
 SUMMARY:📝 大折日 ends: hit your HK$15\,000 Group-1 target for 
@@ -175,7 +175,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:deadline-hsbc-gold-2026-10-31--registration-@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:📝 最紅自主獎賞 registration deadline (else Gold earns onl
@@ -193,7 +193,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:deadline-hsbc-everymile-2026-09-30-EveryMile-overseas-H@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260930
 DTEND;VALUE=DATE:20261001
 SUMMARY:📝 EveryMile overseas HK$2=1mi phase 1 ends (need HK
@@ -211,7 +211,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:deadline-hsbc-everymile-2026-12-31-EveryMile-overseas-H@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:📝 EveryMile overseas HK$2=1mi phase 2 ends — regist
@@ -229,7 +229,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:deadline-mox-credit-2026-08-31-Mox-2-salary-route-@cc-rewards-tracker
-DTSTAMP:20260703T000000Z
+DTSTAMP:20260704T000000Z
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260901
 SUMMARY:📝 Mox 2% salary route ends today — from 1 Sep\, 2% 
@@ -243,6 +243,245 @@ DESCRIPTION:📝 Mox 2% salary route ends today — from 1 Sep\,
   2% needs Mox+ membership · Mox出糧2%途徑今日結束——9月1日
  起2%只限Mox+會員
 TRIGGER:-P7D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-sc-simply-cash@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20270601
+DTEND;VALUE=DATE:20270602
+SUMMARY:💳 Standard Chartered Simply Cash Visa: HK$2000 annu
+ al fee next month — call to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 7. Call the issuer ~no
+ w to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 Standard Chartered Simply Cash Visa: HK$2000 
+ annual fee next month — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-sc-cathay-mc@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260801
+DTEND;VALUE=DATE:20260802
+SUMMARY:💳 Standard Chartered Cathay Mastercard: HK$2000 ann
+ ual fee next month — call to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 9. Call the issuer ~no
+ w to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 Standard Chartered Cathay Mastercard: HK$2000
+  annual fee next month — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-hsbc-gold@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:💳 HSBC Visa Gold (滙財金卡): HK$600 annual fee next mon
+ th — call to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 10. Call the issuer ~n
+ ow to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 HSBC Visa Gold (滙財金卡): HK$600 annual fee next
+  month — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-primecredit-earnmore@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:💳 PrimeCredit EarnMORE UnionPay Card: HK$800 annual
+  fee next month — call to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 12. Call the issuer ~n
+ ow to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 PrimeCredit EarnMORE UnionPay Card: HK$800 an
+ nual fee next month — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-primecredit-wewa@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:💳 PrimeCredit WeWa UnionPay Card: HK$800 annual fee
+  next month — call to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 12. Call the issuer ~n
+ ow to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 PrimeCredit WeWa UnionPay Card: HK$800 annual
+  fee next month — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-sim-card@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:💳 sim Credit Card: HK$800 annual fee next month — c
+ all to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 4. Call the issuer ~no
+ w to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 sim Credit Card: HK$800 annual fee next month
+  — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fee-hsbc-everymile@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20270401
+DTEND;VALUE=DATE:20270402
+SUMMARY:💳 HSBC EveryMile Credit Card: HK$2000 annual fee ne
+ xt month — call to waive · 致電豁免年費
+DESCRIPTION:Annual fee posts in month 5. Call the issuer ~no
+ w to request a waiver.
+RRULE:FREQ=YEARLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:💳 HSBC EveryMile Credit Card: HK$2000 annual fe
+ e next month — call to waive · 致電豁免年費
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-1-0@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260801
+DTEND;VALUE=DATE:20260802
+SUMMARY:Mox → SC salary account HK$20\,000 (auto transfer) ·
+  Mox → 渣打出糧戶口 HK$20\,000（自動轉帳）
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-5-1@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260705
+DTEND;VALUE=DATE:20260706
+SUMMARY:SC card payment due · 渣打卡數到期
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SC card payment due · 渣打卡數到期
+TRIGGER:-P2D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-9-2@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:SC statement day — do the free FPS cash-out (~HK$40k
+ ) · 渣打對賬單日 — 記得FPS套現（約HK$40k）
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:SC statement day — do the free FPS cash-out (~HK
+ $40k) · 渣打對賬單日 — 記得FPS套現（約HK$40k）
+TRIGGER:-P0D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-12-3@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260712
+DTEND;VALUE=DATE:20260713
+SUMMARY:WeWa + EarnMORE card payment due · WeWa + EarnMORE 卡數到期
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:WeWa + EarnMORE card payment due · WeWa + EarnMO
+ RE 卡數到期
+TRIGGER:-P2D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-13-4@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:HSBC card payment due · 滙豐卡數到期
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:HSBC card payment due · 滙豐卡數到期
+TRIGGER:-P2D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-14-5@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:Mox card payment due · Mox 卡數到期
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mox card payment due · Mox 卡數到期
+TRIGGER:-P2D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-15-6@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:sim card payment due · sim 卡數到期
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:sim card payment due · sim 卡數到期
+TRIGGER:-P2D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:monthly-20-7@cc-rewards-tracker
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260720
+DTEND;VALUE=DATE:20260721
+SUMMARY:Mox statement day — do the free FPS cash-out (~HK$30
+ k) · Mox 對賬單日 — 記得FPS套現（約HK$30k）
+RRULE:FREQ=MONTHLY
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mox statement day — do the free FPS cash-out (~H
+ K$30k) · Mox 對賬單日 — 記得FPS套現（約HK$30k）
+TRIGGER:-P0D
 END:VALARM
 END:VEVENT
 END:VCALENDAR
