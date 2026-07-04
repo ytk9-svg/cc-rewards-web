@@ -158,6 +158,7 @@
 
   <section id="month" style="display:none">
     <div class="panel"><div id="monthIntro" class="sub" style="margin:0 0 4px"></div><div class="trk" id="trkBody"></div></div>
+    <div class="panel"><div id="allTitle" class="sub" style="margin:0 0 6px;font-weight:600;color:var(--ink)"></div><div class="trk" id="allBody"></div></div>
     <div class="panel" style="margin-top:14px">
       <label id="lblAutolog"></label>
       <input id="alUrl" type="url" placeholder="https://script.google.com/…/exec?token=…"
@@ -886,7 +887,7 @@ const I18N = {
     none:"No card has a known rate for this category.",
     disc:"Estimates use each card's headline rate for the chosen category (or its base rate), adjusted for your month-to-date spend below. Caps are approximate. Always check the card's own terms. Not financial advice.",
     monthIntro:"Tick how much you've spent on each card this month, so locked/capped cards stop topping the list.",
-    spent:"spent so far", monthNote:"Saved in this browser only · resets automatically each month.",
+    spent:"spent so far", allTitle:"All cards · this month", allTotal:"Total this month", monthNote:"Saved in this browser only · resets automatically each month.",
     alLabel:"Auto-log link (Apple Pay)", alHint:"Paste the link from the phone setup. Apple Pay taps then fill these numbers automatically; you can still type manual top-ups — the higher figure wins.",
     alSynced:t=>`☁️ auto-log synced ${t}`, alError:"⚠️ couldn't reach the auto-log — using manual figures", alAuto:n=>`☁️ auto-logged HK$${n.toLocaleString()}`,
     csType:{cashback:"cashback",miles:"miles"} },
@@ -903,7 +904,7 @@ const I18N = {
     none:"沒有卡有此類別的已知回贈。",
     disc:"以各卡該類別的主要回贈率（或基本回贈率）估算，並按下方你本月的簽賬調整。上限為粗略估計，一切以發卡機構條款為準。並非理財建議。",
     monthIntro:"記下你本月在各卡的簽賬額，未達標／已封頂的卡就不會再排在最前。",
-    spent:"本月已簽", monthNote:"只儲存在此瀏覽器 · 每月自動重設。",
+    spent:"本月已簽", allTitle:"所有卡 · 本月簽賬", allTotal:"本月總簽賬", monthNote:"只儲存在此瀏覽器 · 每月自動重設。",
     alLabel:"自動記賬連結（Apple Pay）", alHint:"貼上手機設定後給你的連結，Apple Pay拍卡就會自動填入這些數字；仍可手動輸入補充——以較高數字為準。",
     alSynced:t=>`☁️ 自動記賬已同步 ${t}`, alError:"⚠️ 無法連接自動記賬——暫用手動數字", alAuto:n=>`☁️ 自動記錄 HK$${n.toLocaleString()}`,
     csType:{cashback:"現金回贈",miles:"里數"} }
@@ -1077,6 +1078,19 @@ function renderMonth(){
         oninput="SPEND['${c.id}']=parseFloat(this.value)||0;saveSpend();updateBar(this,'${c.id}');" aria-label="${t.spent}">
     </div>`;
   }).join("") || `<div class="g" style="color:var(--muted)">—</div>`;
+
+  // All cards · this month — every card's month-to-date (auto-log + manual), with a total.
+  let total=0;
+  document.getElementById("allBody").innerHTML = CARDS.map(c=>{
+    const mtd=mtdOf(c.id); total+=mtd;
+    const cloud=REMOTE[c.id]?' <span style="color:var(--blue)">☁️</span>':'';
+    return `<div class="it">
+      <div class="nm"><div class="t">${mini(c,true)}<span>${c.name}</span></div></div>
+      <div class="tnum" style="font-weight:640;white-space:nowrap">HK$${mtd.toLocaleString(undefined,{minimumFractionDigits:mtd%1?2:0,maximumFractionDigits:2})}${cloud}</div>
+    </div>`;
+  }).join("") +
+    `<div class="it" style="border-top:2px solid var(--line)"><div class="nm"><div class="t">${t.allTotal}</div></div>
+      <div class="tnum" style="font-weight:760;white-space:nowrap">HK$${total.toLocaleString(undefined,{minimumFractionDigits:total%1?2:0,maximumFractionDigits:2})}</div></div>`;
 }
 function updateBar(input,id){
   const card=CARDS.find(c=>c.id===id);
@@ -1100,6 +1114,7 @@ function applyStaticText(){
   document.getElementById("lblMile").textContent=t.lblMile;
   document.getElementById("lblMileHint").textContent=t.lblMileHint;
   document.getElementById("disclaimer").textContent=t.disc;
+  document.getElementById("allTitle").textContent=t.allTitle;
   document.getElementById("lblAutolog").textContent=t.alLabel;
   document.getElementById("alHint").textContent=t.alHint;
   document.getElementById("alUrl").value=localStorage.getItem("autolog-url")||"";
