@@ -48,7 +48,7 @@
   .row.best{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-soft),var(--shadow)}
   .row.muted{opacity:.62}
   .row .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-  .row .name{font-weight:660;letter-spacing:-.01em}
+  .row .name{font-weight:660;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;min-width:0}
   .row .val{font-weight:760;font-size:1.12rem;white-space:nowrap}
   .row .val.cash{color:var(--emerald)} .row .val.miles{color:var(--blue)} .row .val.off{color:var(--muted)}
   .row .net{font-size:.76rem;color:var(--muted);margin-top:3px}
@@ -67,7 +67,7 @@
   .cs{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 15px}
   .cs .card{padding:14px 0;border-top:1px solid var(--line)}
   .cs .card:first-child{border-top:0}
-  .cs h3{margin:0;font-size:1rem;font-weight:660}
+  .cs h3{margin:0;font-size:1rem;font-weight:660;display:flex;align-items:center;gap:9px}
   .cs .iss{font-size:.74rem;color:var(--muted);margin:2px 0 8px}
   .cs .r{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:4px 0;align-items:baseline}
   .cs .r .c{color:var(--muted);flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
@@ -77,12 +77,50 @@
   .trk .it{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
   .trk .it:first-child{border-top:0}
   .trk .it .nm{flex:1;min-width:0}
-  .trk .it .nm .t{font-weight:620;font-size:.95rem}
+  .trk .it .nm .t{font-weight:620;font-size:.95rem;display:flex;align-items:center;gap:7px}
   .trk .it .nm .g{font-size:.74rem;color:var(--muted)}
   .trk .it input{width:120px;text-align:right}
   .bar2{height:6px;border-radius:99px;background:var(--line);margin-top:6px;overflow:hidden}
   .bar2 span{display:block;height:100%;background:var(--emerald)}
   .bar2 span.full{background:var(--gold)}
+
+  /* mini card-face icons (CSS-drawn, per-card brand colours) */
+  .mini{flex:none;display:inline-block;width:42px;height:27px;border-radius:5px;position:relative;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 1px 3px rgba(10,20,40,.28)}
+  .mini::before{content:"";position:absolute;left:6px;top:9px;width:9px;height:7px;border-radius:2px;
+    background:linear-gradient(135deg,#f6d47c,#caa04b)}
+  .mini::after{content:attr(data-net);position:absolute;right:5px;bottom:3px;font-size:6.5px;
+    font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.02em}
+  .mini.light::after{color:rgba(30,40,60,.72)}
+  .mini.sm{width:34px;height:22px;border-radius:4px}
+  .mini.sm::before{left:5px;top:7px;width:8px;height:6px}
+  .mc-hsbc-gold{background:linear-gradient(120deg,#e7c766,#a97e1f)}
+  .mc-hsbc-red{background:linear-gradient(120deg,#ff4d4d,#c00021)}
+  .mc-hsbc-everymile{background:linear-gradient(120deg,#3d4c5e,#12181f)}
+  .mc-hangseng-travelplus{background:linear-gradient(120deg,#57b96b,#1e7a4f)}
+  .mc-mox-credit{background:linear-gradient(120deg,#31d3c6 -20%,#0b0c0e 55%)}
+  .mc-sc-smart{background:linear-gradient(120deg,#3aa2ff,#0e59c4)}
+  .mc-sc-simply-cash{background:linear-gradient(120deg,#12335f,#071b36)}
+  .mc-sc-cathay-mc{background:linear-gradient(120deg,#1d6b60,#0b3a35)}
+  .mc-primecredit-earnmore{background:linear-gradient(120deg,#f2f5f8,#c6cfd8)}
+  .mc-primecredit-wewa{background:linear-gradient(120deg,#3b3f47,#131417)}
+  .mc-sim-card{background:linear-gradient(120deg,#5a54c9,#2b2782)}
+
+  /* nicer native select (custom chevron) */
+  select{appearance:none;-webkit-appearance:none;padding-right:34px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238a93a1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 12px center}
+
+  /* dark mode */
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#101418; --surface:#1a2027; --surface2:#232a33; --ink:#e8edf4; --muted:#96a1b0; --line:#2c343f;
+      --emerald:#2fbf8a; --emerald-soft:#123328; --gold:#d8a83c; --gold-soft:#3a2f14; --amber:#e09a4a; --blue:#6ea2ff;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35)}
+    header{background:rgba(16,20,24,.85)}
+    .chip.warn{background:var(--surface)}
+    .chip.good{border-color:#1d5a41}
+    .note{color:#8a93a1}
+  }
 </style>
 </head>
 <body>
@@ -835,7 +873,7 @@ let CARDS = EMBEDDED.cards;
 
 /* ---------------- i18n ---------------- */
 const I18N = {
-  en:{ title:"Which card should I use?", sub:c=>`Your Hong Kong cards · ${c} cards`,
+  en:{ title:"Which card should I use?", sub:(c,d)=>`Your Hong Kong cards · ${c} cards${d?` · data verified ${d}`:""}`,
     tDecide:"Best card", tSheet:"Cheat-sheet", tMonth:"This month",
     lblCat:"Spending category", lblAmt:"Amount (HK$)", lblMile:"Value of 1 mile:",
     lblMileHint:"(tune how miles cards rank)",
@@ -852,7 +890,7 @@ const I18N = {
     alLabel:"Auto-log link (Apple Pay)", alHint:"Paste the link from the phone setup. Apple Pay taps then fill these numbers automatically; you can still type manual top-ups — the higher figure wins.",
     alSynced:t=>`☁️ auto-log synced ${t}`, alError:"⚠️ couldn't reach the auto-log — using manual figures", alAuto:n=>`☁️ auto-logged HK$${n.toLocaleString()}`,
     csType:{cashback:"cashback",miles:"miles"} },
-  zh:{ title:"用邊張卡最抵？", sub:c=>`你的香港信用卡 · ${c} 張`,
+  zh:{ title:"用邊張卡最抵？", sub:(c,d)=>`你的香港信用卡 · ${c} 張${d?` · 資料核實於 ${d}`:""}`,
     tDecide:"最佳卡", tSheet:"一覽表", tMonth:"本月簽賬",
     lblCat:"簽賬類別", lblAmt:"金額 (HK$)", lblMile:"每里價值：",
     lblMileHint:"（調整里數卡的排名）",
@@ -872,6 +910,9 @@ const I18N = {
 };
 let LANG = localStorage.getItem("lang") || "en";
 const T = ()=>I18N[LANG];
+// Mini card-face icon per card (brand colours via .mc-<id> CSS classes).
+const NET_SHORT = {Visa:"VISA", Mastercard:"MC", UnionPay:"UP"};
+const mini = (c,sm)=>`<span class="mini${sm?' sm':''}${c.id==='primecredit-earnmore'?' light':''} mc-${c.id}" data-net="${NET_SHORT[c.network]||c.network}" aria-hidden="true"></span>`;
 // Use the Traditional-Chinese rule text when in 繁中 mode (falls back to source text).
 const ruleCat  = r => (LANG==="zh" && r.category_zh) ? r.category_zh : r.category;
 const ruleNote = r => (LANG==="zh" && r.note_zh)     ? r.note_zh     : r.note;
@@ -994,7 +1035,7 @@ function render(rows, others, cat, amt, mv){
   let html = rows.map((r,i)=>{
     const v=valLabel(r), best=i===0&&!r.blocked&&r.reward>0;
     return `<div class="row ${best?'best':''} ${r.blocked?'muted':''}">
-      <div class="head"><div class="name">${r.card.name}</div><div class="val ${v.cls} tnum">${v.txt}</div></div>
+      <div class="head"><div class="name">${mini(r.card)}<span>${r.card.name}</span></div><div class="val ${v.cls} tnum">${v.txt}</div></div>
       <div class="net">${r.matched?'':'· '+t.baseRate+' '}${r.card.network} · ${r.card.issuer}</div>
       <div class="chips">${best?`<span class="chip best">${t.best}</span>`:''}${flags(r.prog,r.gate)}</div>
       <div class="detail"><b>${ruleCat(r.rule)}</b> — ${r.rule.rate}${ruleNote(r.rule)?'<br>'+ruleNote(r.rule):''}</div>
@@ -1010,7 +1051,7 @@ function renderSheet(){
   document.getElementById("sheetBody").innerHTML = CARDS.map(card=>{
     const progs=card.reward_programs||[]; const p0=progs[0]||{};
     return `<div class="card">
-      <h3>${card.name}</h3>
+      <h3>${mini(card)}<span>${card.name}</span></h3>
       <div class="iss">${card.network} · ${card.issuer} · ${t.csType[p0.reward_type]||p0.reward_type||''}</div>
       ${progs.map(p=>`
         ${(p.rules||[]).map(r=>`<div class="r"><span class="c">${ruleCat(r)}</span><span class="rt tnum">${r.rate}</span></div>`).join("")}
@@ -1030,7 +1071,7 @@ function renderMonth(){
     const gline=[p.monthly_min_spend?t.min(p.monthly_min_spend):null,p.monthly_cap?t.cap(p.monthly_cap):null].filter(Boolean).join(" · ");
     const auto=REMOTE[c.id]?`<div class="g" style="color:var(--blue)">${t.alAuto(REMOTE[c.id])}</div>`:"";
     return `<div class="it">
-      <div class="nm"><div class="t">${c.name}</div><div class="g">${gline}</div>${auto}
+      <div class="nm"><div class="t">${mini(c,true)}<span>${c.name}</span></div><div class="g">${gline}</div>${auto}
         ${target?`<div class="bar2"><span class="${pct>=100?'full':''}" style="width:${pct}%"></span></div>`:''}</div>
       <input type="number" inputmode="numeric" min="0" step="100" value="${SPEND[c.id]||''}" placeholder="0"
         oninput="SPEND['${c.id}']=parseFloat(this.value)||0;saveSpend();updateBar(this,'${c.id}');" aria-label="${t.spent}">
@@ -1049,7 +1090,8 @@ function applyStaticText(){
   const t=T();
   document.documentElement.lang = LANG==="zh"?"zh-Hant":"en";
   document.getElementById("appTitle").textContent=t.title;
-  document.getElementById("sub").textContent=t.sub(CARDS.length);
+  let lv=""; for(const c of CARDS) for(const p of (c.reward_programs||[])) if(p.last_verified>lv) lv=p.last_verified;
+  document.getElementById("sub").textContent=t.sub(CARDS.length, lv);
   document.getElementById("tabDecide").textContent=t.tDecide;
   document.getElementById("tabSheet").textContent=t.tSheet;
   document.getElementById("tabMonth").textContent=t.tMonth;
