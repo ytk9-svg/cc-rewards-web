@@ -943,14 +943,17 @@ function monthKey(){ const d=new Date(); return "spend-"+d.getFullYear()+"-"+(d.
 let SPEND = JSON.parse(localStorage.getItem(monthKey())||"{}");
 // Phase 4: month-to-date figures fetched from the Apple Pay auto-log endpoint.
 // Effective spend per card = the HIGHER of manual entry and auto-log (avoids double counting).
-let REMOTE = {};
-const mtdOf = id => Math.max(SPEND[id]||0, REMOTE[id]||0);
+let REMOTE = {};    // total month-to-date per card (all spend, incl. non-qualifying)
+let REMOTE_Q = {};  // qualifying month-to-date per card (counts toward min-spend / cap)
+// Gauges (min-spend / cap) use QUALIFYING; the all-cards total uses everything.
+const qMtd = id => Math.max(SPEND[id]||0, REMOTE_Q[id]||0);
+const tMtd = id => Math.max(SPEND[id]||0, REMOTE[id]||0);
 function fetchRemote(){
   const url = localStorage.getItem("autolog-url");
   const st = document.getElementById("alStatus");
-  if(!url){ REMOTE={}; if(st) st.textContent=""; return; }
+  if(!url){ REMOTE={}; REMOTE_Q={}; if(st) st.textContent=""; return; }
   fetch(url).then(r=>r.json()).then(d=>{
-    if(d && d.ok && d.mtd){ REMOTE=d.mtd; if(st) st.textContent=T().alSynced(new Date().toLocaleTimeString()); compute(); renderMonth(); }
+    if(d && d.ok && d.mtd){ REMOTE=d.mtd; REMOTE_Q=d.mtdq||d.mtd; if(st) st.textContent=T().alSynced(new Date().toLocaleTimeString()); compute(); renderMonth(); }
     else if(st) st.textContent=T().alError;
   }).catch(()=>{ if(st) st.textContent=T().alError; });
 }
@@ -981,7 +984,7 @@ function pickRule(card, cat){
 }
 // gate status from month-to-date spend
 function gate(prog, cardId, amount, valuePerHKD){
-  const mtd = mtdOf(cardId);
+  const mtd = qMtd(cardId);
   if(prog.monthly_min_spend){
     if(mtd + amount < prog.monthly_min_spend) return {status:"locked", needMore:prog.monthly_min_spend-mtd};
     if(mtd < prog.monthly_min_spend) return {status:"unlocks"};
@@ -1067,7 +1070,7 @@ function renderMonth(){
   const gatedProg=c=>(c.reward_programs||[]).find(p=>!progExpired(p)&&(p.monthly_min_spend||p.monthly_cap));
   const gated=CARDS.filter(c=>gatedProg(c));
   document.getElementById("trkBody").innerHTML = gated.map(c=>{
-    const p=gatedProg(c); const mtd=mtdOf(c.id);
+    const p=gatedProg(c); const mtd=qMtd(c.id);
     const target=p.monthly_min_spend||0; const pct=target?Math.min(100,Math.round(mtd/target*100)):0;
     const gline=[p.monthly_min_spend?t.min(p.monthly_min_spend):null,p.monthly_cap?t.cap(p.monthly_cap):null].filter(Boolean).join(" · ");
     const auto=REMOTE[c.id]?`<div class="g" style="color:var(--blue)">${t.alAuto(REMOTE[c.id])}</div>`:"";
@@ -1082,7 +1085,7 @@ function renderMonth(){
   // All cards · this month — every card's month-to-date (auto-log + manual), with a total.
   let total=0;
   document.getElementById("allBody").innerHTML = CARDS.map(c=>{
-    const mtd=mtdOf(c.id); total+=mtd;
+    const mtd=tMtd(c.id); total+=mtd;
     const cloud=REMOTE[c.id]?' <span style="color:var(--blue)">☁️</span>':'';
     return `<div class="it">
       <div class="nm"><div class="t">${mini(c,true)}<span>${c.name}</span></div></div>
@@ -1097,7 +1100,7 @@ function updateBar(input,id){
   const p=(card.reward_programs||[]).find(q=>!progExpired(q)&&(q.monthly_min_spend||q.monthly_cap))||card.reward_programs[0];
   const target=p.monthly_min_spend||0;
   if(!target) return; const bar=input.closest(".it").querySelector(".bar2 span"); if(!bar) return;
-  const pct=Math.min(100,Math.round((mtdOf(id)/target)*100)); bar.style.width=pct+"%"; bar.className=pct>=100?"full":"";
+  const pct=Math.min(100,Math.round((qMtd(id)/target)*100)); bar.style.width=pct+"%"; bar.className=pct>=100?"full":"";
 }
 
 function applyStaticText(){
