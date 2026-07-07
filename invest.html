@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>投資 Dashboard</title>
+<style>
+  :root{
+    --bg:#eef1f6; --surface:#ffffff; --surface2:#f6f8fb;
+    --ink:#192233; --muted:#5d6878; --line:#e2e7ef;
+    --emerald:#0e8a63; --emerald-soft:#e6f4ee;
+    --gold:#b8860b; --gold-soft:#fbf2da;
+    --amber:#b4690e; --blue:#2f6df0; --qqq:#7c5cff;
+    --radius:14px; --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#101418; --surface:#1a2027; --surface2:#232a33; --ink:#e8edf4; --muted:#96a1b0; --line:#2c343f;
+      --emerald:#2fbf8a; --emerald-soft:#123328; --gold:#d8a83c; --gold-soft:#3a2f14; --amber:#e09a4a; --blue:#6ea2ff; --qqq:#9d86ff;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35)}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang HK","Microsoft JhengHei",sans-serif}
+  .tnum{font-variant-numeric:tabular-nums}
+  .wrap{max-width:720px;margin:0 auto;padding:16px 16px 64px}
+  h1{font-size:1.15rem;margin:6px 0 2px;display:flex;align-items:center;gap:8px}
+  .sub{color:var(--muted);font-size:.82rem;margin:0 0 16px}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:14px}
+  .lbl{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
+  .big{font-size:1.7rem;font-weight:760;letter-spacing:-.01em}
+  .pl{font-weight:700;color:var(--emerald)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .bar{height:26px;border-radius:8px;overflow:hidden;display:flex;position:relative;margin:10px 0 6px}
+  .bar .vti{background:var(--blue)} .bar .qqq{background:var(--qqq)}
+  .bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:.78rem;font-weight:700}
+  .bar .mark{position:absolute;left:50%;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.65}
+  .legend{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+  .chip{display:inline-block;font-size:.74rem;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--muted);margin-top:8px}
+  .chip.warn{border-color:var(--amber);color:var(--amber);background:transparent}
+  .chip.good{background:var(--emerald-soft);border-color:#bfe3d3;color:var(--emerald)}
+  table{width:100%;border-collapse:collapse;font-size:.88rem}
+  td{padding:7px 0;border-top:1px solid var(--line)}
+  tr:first-child td{border-top:0}
+  td.r{text-align:right;font-weight:640}
+  .note{font-size:.74rem;color:var(--muted);margin-top:12px;line-height:1.6}
+  a.back{font-size:.8rem;color:var(--blue);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./index.html">← 信用卡工具</a>
+  <h1>💹 投資 Dashboard</h1>
+  <div class="sub" id="asof"></div>
+
+  <div class="panel">
+    <div class="grid">
+      <div><div class="lbl">核心組合 VTI + QQQ</div><div class="big tnum" id="coreVal"></div></div>
+      <div><div class="lbl">總市值(連 legacy)</div><div class="big tnum" id="totalVal"></div></div>
+    </div>
+    <div style="margin-top:10px"><span class="lbl">未實現盈虧</span> <span class="pl tnum" id="pl"></span></div>
+  </div>
+
+  <div class="panel">
+    <div class="lbl">配置 vs 目標 50 / 50</div>
+    <div class="bar" id="bar"><div class="mark"></div></div>
+    <div class="legend"><span id="legVti"></span><span id="legQqq"></span></div>
+    <div id="driftChip"></div>
+  </div>
+
+  <div class="panel">
+    <div class="lbl">每月 DCA 規則</div>
+    <table>
+      <tr><td>金額</td><td class="r">US$800–1,000</td></tr>
+      <tr><td>日子</td><td class="r">每月 1 號(出糧後)</td></tr>
+      <tr><td>新資金分配</td><td class="r" id="dcaSplit"></td></tr>
+    </table>
+    <div class="note">Time in market &gt; timing the market — 唔使睇市,到日子就供。日曆已有 1 號提醒。</div>
+  </div>
+
+  <div class="panel">
+    <div class="lbl">持倉明細</div>
+    <table id="holdings"></table>
+    <div class="note">VT 同 TTWO 係 legacy——只持有、唔加倉、唔計入 50/50 目標。</div>
+  </div>
+
+  <div class="note">📱 每月更新:喺 TigerTrade 影低持倉 screenshot,畀 Claude 講聲「update dashboard」即可。</div>
+</div>
+
+<script>
+// ===== 每月更新呢個 object 就得(由 TigerTrade screenshot 抄) =====
+const PORTFOLIO = {
+  as_of: "2026-07-05",
+  cash_usd: 4.76,
+  // pl = TigerTrade 顯示嘅持倉盈虧(以券商為準,避免平均價四捨五入誤差)
+  holdings: [
+    { t:"VTI",  name:"大盤指數ETF-Vanguard", units:72.52484, avg:311.99, price:369.48, pl:4371.28, core:true },
+    { t:"QQQ",  name:"納指100ETF",          units:23.9855,  avg:617.99, price:708.82, pl:2199.96, core:true },
+    { t:"VT",   name:"世界全股市ETF",        units:2.87904,  avg:120.57, price:156.26, pl:108.42,  core:false },
+    { t:"TTWO", name:"Take-Two",            units:2,        avg:210.12, price:259.42, pl:98.60,   core:false },
+  ],
+};
+// =================================================================
+
+const usd = n => "$" + n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const H = PORTFOLIO.holdings.map(h => ({...h, mv: h.units*h.price}));
+const core = H.filter(h=>h.core);
+const coreVal = core.reduce((s,h)=>s+h.mv,0);
+const totalVal = H.reduce((s,h)=>s+h.mv,0);
+const pl = H.reduce((s,h)=>s+h.pl,0), plPct = pl/(totalVal-pl)*100;
+const vti = core.find(h=>h.t==="VTI"), qqq = core.find(h=>h.t==="QQQ");
+const vtiPct = vti.mv/coreVal*100, qqqPct = qqq.mv/coreVal*100;
+const drift = Math.abs(vtiPct-50);
+
+document.getElementById("asof").textContent = "數據日期 " + PORTFOLIO.as_of + " · TigerTrade · USD";
+document.getElementById("coreVal").textContent = usd(coreVal);
+document.getElementById("totalVal").textContent = usd(totalVal);
+document.getElementById("pl").textContent = (pl>=0?"+":"") + usd(pl) + "(" + (pl>=0?"+":"") + plPct.toFixed(1) + "%)";
+
+const bar = document.getElementById("bar");
+bar.insertAdjacentHTML("afterbegin",
+  `<span class="vti" style="width:${vtiPct}%">VTI ${vtiPct.toFixed(1)}%</span><span class="qqq" style="width:${qqqPct}%">QQQ ${qqqPct.toFixed(1)}%</span>`);
+document.getElementById("legVti").textContent = "VTI " + usd(vti.mv);
+document.getElementById("legQqq").textContent = "QQQ " + usd(qqq.mv);
+
+const over10 = drift > 10;
+document.getElementById("driftChip").innerHTML = over10
+  ? `<span class="chip warn">⚠️ 偏離目標 ${drift.toFixed(1)} 百分點(>10)— 新資金傾向 QQQ,唔使賣貨</span>`
+  : `<span class="chip good">✓ 偏離 ${drift.toFixed(1)} 百分點,喺 10 點容忍範圍內</span>`;
+document.getElementById("dcaSplit").textContent = vtiPct>50
+  ? "70% QQQ / 30% VTI(直至返到 50/50)" : (qqqPct>50 ? "70% VTI / 30% QQQ(直至返到 50/50)" : "50% / 50%");
+
+document.getElementById("holdings").innerHTML = H.map(h=>
+  `<tr><td><b>${h.t}</b> <span style="color:var(--muted);font-size:.78rem">${h.core?"核心":"legacy"} · ${h.units}股</span></td>
+    <td class="r tnum">${usd(h.mv)}<br><span style="font-size:.76rem;color:var(--emerald)">${h.pl>=0?"+":""}${usd(h.pl)}</span></td></tr>`
+).join("");
+</script>
+</body>
+</html>
