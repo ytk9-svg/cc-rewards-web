@@ -10,12 +10,12 @@
     --ink:#192233; --muted:#5d6878; --line:#e2e7ef;
     --emerald:#0e8a63; --emerald-soft:#e6f4ee;
     --gold:#b8860b; --gold-soft:#fbf2da;
-    --amber:#b4690e; --blue:#2f6df0; --qqq:#7c5cff;
+    --amber:#b4690e; --blue:#2f6df0; --qqq:#7c5cff; --red:#c0392b;
     --radius:14px; --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
   }
   @media (prefers-color-scheme: dark){
     :root{--bg:#101418; --surface:#1a2027; --surface2:#232a33; --ink:#e8edf4; --muted:#96a1b0; --line:#2c343f;
-      --emerald:#2fbf8a; --emerald-soft:#123328; --gold:#d8a83c; --gold-soft:#3a2f14; --amber:#e09a4a; --blue:#6ea2ff; --qqq:#9d86ff;
+      --emerald:#2fbf8a; --emerald-soft:#123328; --gold:#d8a83c; --gold-soft:#3a2f14; --amber:#e09a4a; --blue:#6ea2ff; --qqq:#9d86ff; --red:#e07b6f;
       --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35)}
   }
   *{box-sizing:border-box}
@@ -42,6 +42,7 @@
   td{padding:7px 0;border-top:1px solid var(--line)}
   tr:first-child td{border-top:0}
   td.r{text-align:right;font-weight:640}
+  .up{color:var(--emerald)} .down{color:var(--red)}
   .note{font-size:.74rem;color:var(--muted);margin-top:12px;line-height:1.6}
   a.back{font-size:.8rem;color:var(--blue);text-decoration:none}
 </style>
@@ -50,14 +51,17 @@
 <div class="wrap">
   <a class="back" href="./index.html">← 信用卡工具</a>
   <h1>💹 投資 Dashboard</h1>
-  <div class="sub" id="asof"></div>
+  <div class="sub" id="asof">連接中…</div>
 
   <div class="panel">
     <div class="grid">
-      <div><div class="lbl">核心組合 VTI + QQQ</div><div class="big tnum" id="coreVal"></div></div>
-      <div><div class="lbl">總市值(連 legacy)</div><div class="big tnum" id="totalVal"></div></div>
+      <div><div class="lbl">核心組合 VTI + QQQ</div><div class="big tnum" id="coreVal">—</div></div>
+      <div><div class="lbl">總市值(連 legacy)</div><div class="big tnum" id="totalVal">—</div></div>
     </div>
-    <div style="margin-top:10px"><span class="lbl">未實現盈虧</span> <span class="pl tnum" id="pl"></span></div>
+    <div style="margin-top:10px">
+      <span class="lbl">未實現盈虧</span> <span class="pl tnum" id="pl">—</span>
+      <span class="lbl" style="margin-left:14px">今日</span> <span class="tnum" id="day" style="font-weight:700">—</span>
+    </div>
   </div>
 
   <div class="panel">
@@ -68,71 +72,81 @@
   </div>
 
   <div class="panel">
-    <div class="lbl">每月 DCA 規則</div>
+    <div class="lbl">每月 DCA</div>
     <table>
-      <tr><td>金額</td><td class="r">US$800–1,000</td></tr>
-      <tr><td>日子</td><td class="r">每月 1 號(出糧後)</td></tr>
-      <tr><td>新資金分配</td><td class="r" id="dcaSplit"></td></tr>
+      <tr><td>本月狀態</td><td class="r" id="dcaState">—</td></tr>
+      <tr><td>金額 / 日子</td><td class="r">US$800–1,000 · 每月 1 號</td></tr>
+      <tr><td>新資金分配</td><td class="r" id="dcaSplit">—</td></tr>
     </table>
     <div class="note">Time in market &gt; timing the market — 唔使睇市,到日子就供。日曆已有 1 號提醒。</div>
   </div>
 
   <div class="panel">
-    <div class="lbl">持倉明細</div>
-    <table id="holdings"></table>
+    <div class="lbl">持倉明細(實時價)</div>
+    <table id="holdings"><tr><td>載入中…</td></tr></table>
     <div class="note">VT 同 TTWO 係 legacy——只持有、唔加倉、唔計入 50/50 目標。</div>
   </div>
 
-  <div class="note">📱 每月更新:喺 TigerTrade 影低持倉 screenshot,畀 Claude 講聲「update dashboard」即可。</div>
+  <div class="note">📊 數據源:出門喵 Worker(Cloudflare KV 持股 + Finnhub 實時價)——同 ESP32 巴士板同一個源。<br>
+  📱 每月供完 DCA:影低 TigerTrade 持倉 screenshot 畀 Claude 講「update dashboard」,呢頁 + ESP32 板一齊更新;或者自己去 Worker 嘅 /edit 頁改。</div>
 </div>
 
 <script>
-// ===== 每月更新呢個 object 就得(由 TigerTrade screenshot 抄) =====
-const PORTFOLIO = {
-  as_of: "2026-07-05",
-  cash_usd: 4.76,
-  // pl = TigerTrade 顯示嘅持倉盈虧(以券商為準,避免平均價四捨五入誤差)
-  holdings: [
-    { t:"VTI",  name:"大盤指數ETF-Vanguard", units:72.52484, avg:311.99, price:369.48, pl:4371.28, core:true },
-    { t:"QQQ",  name:"納指100ETF",          units:23.9855,  avg:617.99, price:708.82, pl:2199.96, core:true },
-    { t:"VT",   name:"世界全股市ETF",        units:2.87904,  avg:120.57, price:156.26, pl:108.42,  core:false },
-    { t:"TTWO", name:"Take-Two",            units:2,        avg:210.12, price:259.42, pl:98.60,   core:false },
-  ],
-};
-// =================================================================
+const WORKER = "https://etf-relay.ytk9-games.workers.dev/web";
+// fallback snapshot(Worker 連唔到時顯示;每次 Claude 更新時同步)
+const FALLBACK = {"v":1,"partial":false,"as_of":"2026-07-08 00:33 HKT(離線快照)","target_pp":50,"drift_pp":10,"dca_day":1,"last_dca":"2026-07","holdings":[{"t":"VTI","core":true,"u":72.52484,"c":309.2171,"p":370.49,"mv":26869.73,"pl":4443.81,"d":null},{"t":"QQQ","core":true,"u":23.9855,"c":617.0595,"p":713.12,"mv":17104.54,"pl":2304.06,"d":null},{"t":"VT","core":false,"u":2.87904,"c":118.602,"p":156.67,"mv":451.06,"pl":109.6,"d":null},{"t":"TTWO","core":false,"u":2,"c":210.12,"p":259.53,"mv":519.06,"pl":98.82,"d":null}]};
 
 const usd = n => "$" + n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-const H = PORTFOLIO.holdings.map(h => ({...h, mv: h.units*h.price}));
-const core = H.filter(h=>h.core);
-const coreVal = core.reduce((s,h)=>s+h.mv,0);
-const totalVal = H.reduce((s,h)=>s+h.mv,0);
-const pl = H.reduce((s,h)=>s+h.pl,0), plPct = pl/(totalVal-pl)*100;
-const vti = core.find(h=>h.t==="VTI"), qqq = core.find(h=>h.t==="QQQ");
-const vtiPct = vti.mv/coreVal*100, qqqPct = qqq.mv/coreVal*100;
-const drift = Math.abs(vtiPct-50);
+const sgn = n => (n>=0?"+":"") + usd(n);
 
-document.getElementById("asof").textContent = "數據日期 " + PORTFOLIO.as_of + " · TigerTrade · USD";
-document.getElementById("coreVal").textContent = usd(coreVal);
-document.getElementById("totalVal").textContent = usd(totalVal);
-document.getElementById("pl").textContent = (pl>=0?"+":"") + usd(pl) + "(" + (pl>=0?"+":"") + plPct.toFixed(1) + "%)";
+function render(D, live){
+  const H = D.holdings.filter(h=>h.mv!=null);
+  const core = H.filter(h=>h.core);
+  const coreVal = core.reduce((s,h)=>s+h.mv,0);
+  const totalVal = H.reduce((s,h)=>s+h.mv,0);
+  const pl = H.reduce((s,h)=>s+h.pl,0), plPct = pl/(totalVal-pl)*100;
+  const vti = core.find(h=>h.t==="VTI"), qqq = core.find(h=>h.t==="QQQ");
+  const vtiPct = vti.mv/coreVal*100, qqqPct = qqq.mv/coreVal*100;
+  const drift = Math.abs(vtiPct - D.target_pp);
+  // 核心今日變化(以持倉加權)
+  const dayW = core.every(h=>h.d!=null) ? core.reduce((s,h)=>s+h.d*h.mv,0)/coreVal : null;
 
-const bar = document.getElementById("bar");
-bar.insertAdjacentHTML("afterbegin",
-  `<span class="vti" style="width:${vtiPct}%">VTI ${vtiPct.toFixed(1)}%</span><span class="qqq" style="width:${qqqPct}%">QQQ ${qqqPct.toFixed(1)}%</span>`);
-document.getElementById("legVti").textContent = "VTI " + usd(vti.mv);
-document.getElementById("legQqq").textContent = "QQQ " + usd(qqq.mv);
+  document.getElementById("asof").textContent = (live?"🟢 實時":"⚪ 離線快照") + " · " + D.as_of + " · 同 ESP32 板同源";
+  document.getElementById("coreVal").textContent = usd(coreVal);
+  document.getElementById("totalVal").textContent = usd(totalVal);
+  document.getElementById("pl").textContent = sgn(pl) + "(" + (pl>=0?"+":"") + plPct.toFixed(1) + "%)";
+  const dayEl = document.getElementById("day");
+  if (dayW==null) dayEl.textContent = "—";
+  else { dayEl.textContent = (dayW>=0?"+":"") + dayW.toFixed(2) + "%"; dayEl.className = "tnum " + (dayW>=0?"up":"down"); }
 
-const over10 = drift > 10;
-document.getElementById("driftChip").innerHTML = over10
-  ? `<span class="chip warn">⚠️ 偏離目標 ${drift.toFixed(1)} 百分點(>10)— 新資金傾向 QQQ,唔使賣貨</span>`
-  : `<span class="chip good">✓ 偏離 ${drift.toFixed(1)} 百分點,喺 10 點容忍範圍內</span>`;
-document.getElementById("dcaSplit").textContent = vtiPct>50
-  ? "70% QQQ / 30% VTI(直至返到 50/50)" : (qqqPct>50 ? "70% VTI / 30% QQQ(直至返到 50/50)" : "50% / 50%");
+  const bar = document.getElementById("bar");
+  bar.querySelectorAll("span").forEach(e=>e.remove());
+  bar.insertAdjacentHTML("afterbegin",
+    `<span class="vti" style="width:${vtiPct}%">VTI ${vtiPct.toFixed(1)}%</span><span class="qqq" style="width:${qqqPct}%">QQQ ${qqqPct.toFixed(1)}%</span>`);
+  document.getElementById("legVti").textContent = "VTI " + usd(vti.mv);
+  document.getElementById("legQqq").textContent = "QQQ " + usd(qqq.mv);
 
-document.getElementById("holdings").innerHTML = H.map(h=>
-  `<tr><td><b>${h.t}</b> <span style="color:var(--muted);font-size:.78rem">${h.core?"核心":"legacy"} · ${h.units}股</span></td>
-    <td class="r tnum">${usd(h.mv)}<br><span style="font-size:.76rem;color:var(--emerald)">${h.pl>=0?"+":""}${usd(h.pl)}</span></td></tr>`
-).join("");
+  const lag = vtiPct < D.target_pp ? "VTI" : "QQQ";
+  document.getElementById("driftChip").innerHTML = drift > D.drift_pp
+    ? `<span class="chip warn">⚠️ 偏離目標 ${drift.toFixed(1)} 百分點(>${D.drift_pp})— 新資金傾向 ${lag},唔使賣貨</span>`
+    : `<span class="chip good">✓ 偏離 ${drift.toFixed(1)} 百分點,喺 ${D.drift_pp} 點容忍範圍內</span>`;
+  document.getElementById("dcaSplit").textContent = drift > D.drift_pp ? `70% ${lag} / 30% ${lag==="QQQ"?"VTI":"QQQ"}(直至返到 50/50)` : "50% / 50%";
+
+  const hk = new Date(Date.now() + 8*3600*1000);
+  const ym = hk.toISOString().slice(0,7);
+  document.getElementById("dcaState").innerHTML = D.last_dca === ym
+    ? '<span class="up">✓ 本月已定投</span>'
+    : (hk.getUTCDate() >= D.dca_day ? '<span style="color:var(--amber)">⏳ 本月未供 — 到期</span>' : "未到日子");
+
+  document.getElementById("holdings").innerHTML = D.holdings.map(h=>{
+    const dTxt = h.d==null ? "" : ` <span class="${h.d>=0?"up":"down"}" style="font-size:.76rem">${h.d>=0?"+":""}${h.d}%</span>`;
+    return `<tr><td><b>${h.t}</b>${dTxt}<br><span style="color:var(--muted);font-size:.76rem">${h.core?"核心":"legacy"} · ${h.u}股 @ ${h.p==null?"—":usd(h.p)}</span></td>
+      <td class="r tnum">${h.mv==null?"—":usd(h.mv)}<br><span style="font-size:.76rem" class="${(h.pl||0)>=0?"up":"down"}">${h.pl==null?"":sgn(h.pl)}</span></td></tr>`;
+  }).join("");
+}
+
+render(FALLBACK, false);
+fetch(WORKER).then(r=>r.json()).then(d=>{ if(d && d.holdings && !d.partial) render(d, true); }).catch(()=>{});
 </script>
 </body>
 </html>
